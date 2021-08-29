@@ -2,7 +2,7 @@
 \documentclass[aspectratio=169]{beamer}
 \input{../syde556_lecture_slides_preamble}
 
-\date{January 7, 2020}
+\date{September 8, 2021}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 0: Administrative Remarks}
 
 \begin{document}
@@ -14,12 +14,10 @@
 \begin{frame}{Organization (I)}
 	\begin{block}{Instructor}
 		\vspace{2mm}
-		\textbf{Andreas Stöckel}\\[2mm]
+		\textbf{Terry Stewart}\\[2mm]
 		\hspace{-2.5mm}\begin{tabular}{l l}
-			Office & E7-6342 (office hours in E7-6323)\\
-			Email & \url{astoecke@uwaterloo.ca}\\
-			Website & \url{http://compneuro.uwaterloo.ca/people/andreas-stoeckel.html}\\
-			GitHub & \url{https://github.com/astoeckel}
+			Email & \url{terry.stewart@gmail.com}\\
+			Website & \url{https://terrystewart.ca}\\
 		\end{tabular}
 	\end{block}
  
@@ -27,31 +25,27 @@
 
 	\begin{block}{Course website}
 		\begin{itemize}
-			\item \url{http://compneuro.uwaterloo.ca/courses/syde-750.html}
-			\item \url{https://github.com/astoeckel/syde556-w20}
+			\item \url{https://github.com/tcstewar/syde556-f21}
+			\item \url{syde556-f21.slack.com}
 		\end{itemize}
 	\end{block}
 \end{frame}
 
 \begin{frame}{Organization (II)}
-	\begin{block}{Course times and location}
+	\begin{block}{Course times and logistics}
 		\begin{itemize}
-			\item \textbf{Tuesday:}\\
-			11:30-12:50 in \hl{E5-4106} (SYDE 556/750)
-			\item \textbf{Thursday:}\\
-			9:00-10:20 in \hl{E5-6004} (SYDE 556/750) 
-			\item \textbf{Thursday:}\\10:30-11:20 in \hl{E5-6127} (SYDE 750, optional for 556)
+			\item \textbf{Saturday:}\\
+			Pre-recorded lectures posted
+			\item \textbf{Monday:}\\
+			8:30-9:50 online lecture and discussion (LEARN)
+			\item \textbf{Tuesday:}\\9:00-9:50 online discussion (LEARN) (SYDE 750, optional for 556)
+			\item \textbf{Wednesday:}\\
+			8:30-9:50 online lecture and discussion (LEARN) 
+			\item \textbf{Any time:}\\
+Email \url{terry.stewart@gmail.com}\\ Slack \url{syde556750-f21.slack.com} 
 		\end{itemize}
 	\end{block}
 
-	\begin{block}{Office hours}
-		\begin{itemize}
-			\item Office hours are generally in E7-6323.
-			\item Potential times:\\
-			\texttt{Tue 13:00-14:00}, \texttt{Tue 15:00-16:00}, \texttt{Thu 11:30-12:30}, \texttt{Fri 10:30-11:30}
-			\item Alternatively, if that time doesn't work for you, by appointment.
-		\end{itemize}
-	\end{block}
 \end{frame}
 
 \begin{frame}{Textbooks and Readings}
@@ -78,20 +72,20 @@
 \begin{frame}{Coursework (SYDE 556 \& SYDE 750)}
 	\begin{columns}[t]
 		\column{0.5\textwidth}
-		\begin{block}{\hl{Four Assignments} (60\% of the mark)}
+		\begin{block}{\hl{Five Assignments}}
 		\begin{itemize}
-				\item 20\%, 20\%, 10\%, 10\%, respectively
+				\item 20\%, 20\%, 15\%, 15\%, 30\%, respectively
 				\item Roughly two weeks for each assignment
 				\item Everyone must write their own code, generate their own graphs, and write their own answers.
 			\end{itemize}
 		\end{block}
 		\column{0.5\textwidth}
-		\begin{block}{\hl{Final Project} (40\% of the mark)}
+		\begin{block}{\hl{Final Project} (SYDE 750 only)}
 			\begin{itemize}
 				\item Build a model of some neural system.
-				\item For 556 students: extension of something seen in class
-				\item For 750 students: research project with more novelty
-				\item Have your project approved via email before Reading Week!
+				\item Replicable science: report everything needed to recreate your model and analysis
+				\item 25\% of grade (assignments are rescaled to 75\%)
+				\item Have your project proposal approved via email by Oct 27
 			\end{itemize}
 		\end{block}
 	\end{columns}
@@ -100,10 +94,10 @@
 \begin{frame}{Coursework (SYDE 750 only)}
 	\begin{block}{Class Participation in the Seminar  (SYDE 750 only; optional for SYDE 556)}
 	\begin{itemize}
-		\item SYDE 750 students must attend the seminar (Thursday, 10:30-11:20 in E5-6127).
-		\item Each student is asked to submit (at least) three questions or interesting observations pertaining this week's reading, lecture notes, or the material referenced in the lecture (this should be about 100 words).
-		\item Questions must be submitted via email to the instructor (\url{astoecke@uwaterloo.ca}) by midnight (23:59 EST) on the Wednesday before.
-		\item This is to ensure a lively discussion in the seminar --- there are no marks for this part of the course.
+		\item General discussion about Neuroscience, cognitive science, AI, etc.
+		\item Special interest: replicable science and computational modelling
+		\item SYDE 750 students must attend the seminar (Tuesday, 9:00-9:50).
+		\item No marks for this part of the course.
 	\end{itemize}
 	\end{block}
 \end{frame}
@@ -114,54 +108,48 @@
 	\toprule
 	\textbf{Date} &	\textbf{Reading} &	\textbf{Topic} & \textbf{Assignments} \\
 	\tiny WEEK 1 & & & \\
-	Jan 7 &
+	Sept 8 &
 	Chapter 1 &
 	Introduction &
-	\\
-	Jan 9 &
+	\\[0.05cm]
+	\tiny WEEK 2 & & & \\
+	Sept 13 &
 	Chapter 2 &
 	Neurons &
-	\\[0.05cm]
-	
-	\tiny WEEK 2 & & & \\
-	Jan 14 &
+	\\
+	Sept 15 &
 	Chapter 2 &
 	Population Representation (I) &
-	\#1 posted\\
-	Jan 16 &
+	\#1 posted
+	\\[0.05cm]
+	\tiny WEEK 3 & & & \\
+	Sept 20 &
 	Chapter 2 &
 	Population Representation (II) &
-	\\[0.05cm]
-	
-	\tiny WEEK 3 & & & \\
-	Jan 21 &
-	Chapter 4 &
-	Temporal Representation (I) &
 	\\
-	Jan 23 &
+	Sept 22 &
 	Chapter 4 &
-	Temporal Representation (II) &
+	Temporal Representation &
 	\\[0.05cm]
-	
 	\tiny WEEK 4 & & & \\
-	Jan 28 &
+	Sept 27 &
+	 &
+	Guest Lecture &
+	\\
+	Sept 29 & & Guest Lecture &
+	\\[0.05cm]
+	\tiny WEEK 5 & & & \\
+	
+	Oct 4 &
 	Chapters 5, 6 &
 	Feedforward Transformations (I) &
 	\#1 due*, \#2 posted\\
-	Jan 30 &
+	Oct 6 &
 	Chapters 5, 6 &
 	Feedforward Transformations (II) &
 	\\[0.05cm]
+	\tiny WEEK 6 & \multicolumn{3}{c}{\emph{--- Reading week, no lectures ---}} \\[0.05cm]
 	
-	\tiny WEEK 5 & & & \\
-	Feb 4 &
-	Chapter 8 &
-	Dynamics (I) &
-	\\
-	Feb 6 &
-	Chapter 8 &
-	Dynamics (II) &
-	\\
 	\bottomrule
 \end{tabular}
 \end{frame}
@@ -172,50 +160,50 @@
 	\begin{tabular}{p{2cm} p{2cm} p{5cm} p{3cm}}
 		\toprule
 		\textbf{Date} &	\textbf{Reading} &	\textbf{Topic} & \textbf{Assignments} \\
-		\tiny WEEK 6 & & & \\
-		Feb 11 &
+		
+		\tiny WEEK 7 & & & \\
+		Oct 18 &
+		Chapter 8 &
+		Dynamics (I) &
+		\\
+		Oct 20 &
+		Chapter 8 &
+		Dynamics (II) &
+		\\
+		
+		\tiny WEEK 8 & & & \\
+		Oct 25 &
 		Chapter 7 &
 		Analysis of Representation &
 		\#2 due*, \#3 posted\\
-		Feb 13 &
+		Oct 27 &
 		\emph{provided} &
 		Temporal Basis Functions &
 		\\
-		Feb 14 &
 		&
 		&
-		Project proposal due\\[0.05cm]
+		&
+		SYDE 750 Project proposal due\\[0.05cm]
 		
-		\tiny WEEK 7 & \multicolumn{3}{c}{\emph{--- Reading week, no lectures ---}} \\[0.05cm]
-		
-		\tiny WEEK 8 & & & \\
-		Feb 25 &
+		\tiny WEEK 9 & & & \\
+		Nov 1 &
 		\emph{provided} &
 		Symbols (I) &
 		\\
-		Feb 27 &
+		Nov 3 &
 		\emph{provided} &
 		Symbols (II) &
 		\\[0.05cm]
 		
-		\tiny WEEK 9 & & & \\
-		Mar 3 &
+		\tiny WEEK 10 & & & \\
+		Nov 8 &
 		Chapter 8 &
 		Memory &
 		\#3 due*, \#4 posted\\
-		Mar 5 &
+		Nov 10 &
 		\emph{provided} &
 		Action Selection &
-		\\[0.05cm]
 		
-		\tiny WEEK 10 & & & \\
-		Mar 10 &
-		Chaper 9 &
-		Learning (I) &
-		\\
-		Mar 12 &
-		Chaper 9 &
-		Learning (II) &
 		\\
 		\bottomrule
 	\end{tabular}
@@ -227,40 +215,49 @@
 		\toprule
 		\textbf{Date} &	\textbf{Reading} &	\textbf{Topic} & \textbf{Assignments} \\
 		\tiny WEEK 11 & & & \\
-		Mar 17 &
+		Nov 15 &
+		Chaper 9 &
+		Learning (I) &
+		\\
+		Nov 17 &
+		Chaper 9 &
+		Learning (II) &
+		\\[0.05cm]
+		\tiny WEEK 12 & & & \\
+		Nov 22 &
 		\emph{provided} &
 		Spatial Semantic Pointers &
 		\#4 due*\\
-		Mar 19 &
+		Nov 24 &
 		\emph{provided} &
 		Biological Details &
 		\\[0.05cm]
 		
-		\tiny WEEK 12 & & & \\
-		Mar 24 &
+		\tiny WEEK 13 & & & \\
+		Nov 29 &
 		\emph{provided} &
 		Other modelling frameworks &
 		\\
-		Apr 2 &
+		Dec 1 &
 		&
 		Conclusion &
 		\\[0.05cm]
 		
-		\tiny WEEK 13 & & & \\
-		Mar 31, Apr 2 &
+		\tiny WEEK 14 & & & \\
+		Dec 6 &
 		&
-		Project presentations &
+		Discussion &
 		\\[0.05cm]
 		
-		\tiny WEEK 15 & & & \\
-		Apr 15 &
+		\tiny WEEK 16 & & & \\
+		Dec 23 &
 		&
 		&
-		Projects due* \\
+		\#5 due; SYDE 750 projects due* \\
 		\bottomrule
 	\end{tabular}\\[0.2cm]
 	\footnotesize
-	* The project and all assignments are due at midnight ($\approx$ 11:59p EST) of that day.
+	* The project and all assignments are due at midnight ($\approx$ 11:59p Eastern) of that day.
 \end{frame}
 
 \begin{frame}{Homework}
@@ -270,9 +267,6 @@
 		(\enquote{Neural Engineering}, Chris Eliasmith and Charles Anderson, 2003)
 		\item \textbf{Be able to run \hl{\texttt{jupyter lab}} or (\texttt{jupyter notebook}) with \hl{Python 3}}\\
 		Install \texttt{numpy}, \texttt{scipy}, and \texttt{matplotlib}. You may want to use \href{https://www.anaconda.com/distribution/}{Anaconda}, which ships with these packets preinstalled.
-		\item Have a look at the \hl{course website} and the \hl{lecture notes}.
-		\item \hl{For SYDE 750}: write down three questions and submit before Thursday
-		\item Start thinking about a \hl{project}\textellipsis already.
 	\end{itemize}
 \end{frame}
 
