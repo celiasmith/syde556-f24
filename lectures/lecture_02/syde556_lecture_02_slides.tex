@@ -6,7 +6,7 @@
 \fi%
 \input{../syde556_lecture_slides_preamble}
 
-\date{January 9 \& 14, 2020}
+\date{September 13, 2021}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 2: Neurons}
 
 \begin{document}
@@ -34,9 +34,34 @@
 	Cambridge University Press, 1991)}
 \end{frame}
 
+\begin{frame}{Basic High-Level Details (Lapicque, 1907)}
+	\begin{enumerate}
+		\item The cell acts like a \emph{capacitor}, i.e., the voltage increases while we're injecting a current.
+		\item The capacitor is \emph{leaky}. As soon as we stop injecting a current, the voltage collapses back to the resting potential $E_\mathrm{L}$.
+		\item As soon as the voltage surpasses a certain value, the \emph{threshold potential} $v_\mathrm{th}$, the cell will generate a spike.
+		\item Shortly after the spike has been produced, the voltage drops below the resting potential. During this period, the \emph{refractory period} of length $\tau_\mathrm{ref}$, we cannot get the neuron to spike again, even if we apply relatively large input currents $J$.
+	\end{enumerate}
+
+\end{frame}
+
 \begin{frame}{The Leaky Integrate-and-Fire Equivalent Circuit}
 	\centering
 	\includegraphics[width=0.7\textwidth]{media/lif_circuit.pdf}
+	\begin{align}
+		\begin{aligned}
+			\frac{\mathrm{d}}{\mathrm{d}t} v(t) &= \frac{1}{C_\mathrm{m}} \big(g_\mathrm{L} (E_\mathrm{L} - v(t))
+			+ J
+			\big) \,, \quad \text{if } v(t) < v_\mathrm{th}\,.
+		\end{aligned}
+	\end{align}
+	if $v(t) = v_\mathrm{th}$ at $t = t_\mathrm{th}$, output a spike ($\delta(t - t_\mathrm{th})$) and:
+	\begin{align}
+		\begin{aligned}
+			v(t) &\gets v_\mathrm{reset} \,, &\text{if } t_\mathrm{th} < t \leq t_\mathrm{th} + \tau_\mathrm{ref} \,,
+		\end{aligned}
+		\label{eqn:super-threshold}
+	\end{align}
+
 \end{frame}
 
 \begin{frame}{Injecting a Current Ramp into a Detailed Neuron Model}
@@ -52,22 +77,45 @@
 
 \begin{frame}{Injecting a Current Ramp into a LIF Neuron Model}
 	\centering
-	\includegraphics[width=0.9\textwidth]{media/lif_neuron_ramp.pdf}
+	\includegraphics[width=0.9\textwidth]{media/lif_neuron_ramp.pdf} \\
+	(note normalization to $v_{th}=1$, $v_{reset}=E_L=0$)
 
 	\begin{overlayarea}{\textwidth}{1cm}
 	\end{overlayarea}
-\end{frame}
-
-\begin{frame}{Exploring the LIF Rate Approximation}
-	\centering
-	\includegraphics[width=0.5\textwidth]{media/lif_neuron_rate_tau_rc.pdf}%
-	\includegraphics[width=0.5\textwidth]{media/lif_neuron_rate_tau_ref.pdf}
 \end{frame}
 
 \begin{frame}{Limitations of the LIF Neuron Model}
 	\centering
 	\includegraphics<1>[width=\textwidth]{media/izhikevich_whichmod_figure1.pdf}
 	\includegraphics<2>[width=\textwidth]{media/izhikevich_whichmod_figure2.pdf}
+\end{frame}
+
+
+
+\begin{frame}{LIF Rate Approximation}
+	\begin{itemize}
+		\item need to compute $t_\mathrm{th}$ (the time $v(t_\mathrm{th})=v_{th}$)
+		\item assume: $J$ is constant and $v(0) = 0$. 
+		\begin{align*}
+			v(t) &= - \int_0^t \frac{1}{\tau_\mathrm{RC}} \big( v(t') - RJ \big) \,\mathrm{d}t'
+			= RJ \left(1 - e^{-\frac{t}{\tau_\mathrm{RC}}} \right) \,.
+		\end{align*}
+		\begin{align*}
+			v_\mathrm{th} = RJ \left(1 - e^{-\frac{t_\mathrm{th}}{\tau_\mathrm{RC}}} \right) 
+			\Leftrightarrow 1 - \frac{v_\mathrm{th}}{RJ} = e^{-\frac{t_\mathrm{th}}{\tau_\mathrm{RC}}} \,, \\
+			t_\mathrm{th} = - \tau_\mathrm{RC} \log \left( 1 - \frac{v_\mathrm{th}}{RJ} \right)
+		\end{align*}
+	\begin{align*}
+		G[J]
+		&= \begin{cases}
+			\frac{1}{\tau_\mathrm{ref} - \tau_\mathrm{RC} \log \left( 1 - \frac{v_\mathrm{th}}{RJ} \right)} & \text{if } 1 - \frac{v_\mathrm{th}}{RJ} > 0 \,,\\
+			0 & \mathrm{otherwise} \,.
+		\end{cases}
+	\end{align*}
+	
+	
+	\end{itemize}
+
 \end{frame}
 
 \begin{frame}{Artifical Rate Neurons: LIF}
@@ -84,6 +132,14 @@
 			\item[\OMinus] Spike onset is smooth in noisy systems
 		\end{itemize}
 	\end{columns}	
+\end{frame}
+
+
+
+\begin{frame}{Exploring the LIF Rate Approximation}
+	\centering
+	\includegraphics[width=0.5\textwidth]{media/lif_neuron_rate_tau_rc.pdf}%
+	\includegraphics[width=0.5\textwidth]{media/lif_neuron_rate_tau_ref.pdf}
 \end{frame}
 
 \begin{frame}{Artifical Rate Neurons: ReLU}

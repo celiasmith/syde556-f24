@@ -96,7 +96,7 @@ Second, we have the \emph{super-threshold behaviour}, i.e.~the spike production 
 \begin{align}
 	\begin{aligned}
 		v(t) &\gets \delta(t - t_\mathrm{th}) \,, &\text{if } t &= t_\mathrm{th} \,,\\
-		v(t) &\gets v_\mathrm{reset} \,, &\text{if } t &> t_\mathrm{th} \text{ and } t \geq t_\mathrm{th} + \tau_\mathrm{ref} \,,
+		v(t) &\gets v_\mathrm{reset} \,, &\text{if } t &> t_\mathrm{th} \text{ and } t \leq t_\mathrm{th} + \tau_\mathrm{ref} \,,
 	\end{aligned}
 	\label{eqn:super-threshold}
 \end{align}
@@ -113,7 +113,7 @@ For our modelling purposes, we don't really care about the exact values of $v_\m
 		\frac{\mathrm{d}}{\mathrm{d}t} v(t) &= -\frac{1}{\tau_\mathrm{RC}} \big( v(t) - RJ \big)
 		\big) \,, \quad &\text{if } v(t) &< v_\mathrm{th}\,, \\
 		v(t) &\gets \delta(t - t_\mathrm{th}) \,, &\text{if } t &= t_\mathrm{th} \,,\\
-v(t) &\gets 0 \,, &\text{if } t &> t_\mathrm{th} \text{ and } t \geq t_\mathrm{th} + \tau_\mathrm{ref} \,,
+v(t) &\gets 0 \,, &\text{if } t &> t_\mathrm{th} \text{ and } t \leq t_\mathrm{th} + \tau_\mathrm{ref} \,,
 	\end{aligned}
 	\label{eqn:sub-threshold-normalised}
 \end{align}
