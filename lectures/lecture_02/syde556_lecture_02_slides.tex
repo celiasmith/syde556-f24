@@ -47,20 +47,20 @@
 \begin{frame}{The Leaky Integrate-and-Fire Equivalent Circuit}
 	\centering
 	\includegraphics[width=0.7\textwidth]{media/lif_circuit.pdf}
-	\begin{align}
+	\begin{align*}
 		\begin{aligned}
 			\frac{\mathrm{d}}{\mathrm{d}t} v(t) &= \frac{1}{C_\mathrm{m}} \big(g_\mathrm{L} (E_\mathrm{L} - v(t))
 			+ J
 			\big) \,, \quad \text{if } v(t) < v_\mathrm{th}\,.
 		\end{aligned}
-	\end{align}
+	\end{align*}
 	if $v(t) = v_\mathrm{th}$ at $t = t_\mathrm{th}$, output a spike ($\delta(t - t_\mathrm{th})$) and:
-	\begin{align}
+	\begin{align*}
 		\begin{aligned}
 			v(t) &\gets v_\mathrm{reset} \,, &\text{if } t_\mathrm{th} < t \leq t_\mathrm{th} + \tau_\mathrm{ref} \,,
 		\end{aligned}
 		\label{eqn:super-threshold}
-	\end{align}
+	\end{align*}
 
 \end{frame}
 
@@ -96,6 +96,7 @@
 	\begin{itemize}
 		\item need to compute $t_\mathrm{th}$ (the time $v(t_\mathrm{th})=v_{th}$)
 		\item assume: $J$ is constant and $v(0) = 0$. 
+		\item also: $g_L = 1/R$ and $\tau_{RC} = R C_m$
 		\begin{align*}
 			v(t) &= - \int_0^t \frac{1}{\tau_\mathrm{RC}} \big( v(t') - RJ \big) \,\mathrm{d}t'
 			= RJ \left(1 - e^{-\frac{t}{\tau_\mathrm{RC}}} \right) \,.
