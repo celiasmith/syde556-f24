@@ -6,8 +6,8 @@
 \fi%
 \input{../syde556_lecture_slides_preamble}
 
-\date{January 14 \& 16 \& 21, 2020}
-\title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 3: Representations}
+\date{September 13 \& 15, 2021}
+\title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 3 and 4: Population Representation}
 
 \begin{document}
 	
@@ -105,6 +105,82 @@
 	\end{columns}
 \end{frame}
 
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item Last lecture: response curves: $a=G(J)$
+			\item This lecture: tuning curves: $a=f(x) = G(J_i(x))$
+			\item What sort of function can we try for $J_i(x)$?
+			\item<2-> Introduce a gain $\alpha_i$ and a bias $J^\mathrm{bias}_i$:
+			\begin{align*}
+				J_i(x) &= \alpha_i x + J^\mathrm{bias}_i \\
+				a_i(x) &= G(\alpha_i x + J^\mathrm{bias}_i)			
+			\end{align*}
+			\item<2-> $\alpha_i$ controls the slope
+			\item<2-> $J^\mathrm{bias}_i$ shifts curve left and right		
+		\end{itemize}
+		\column{0.5\textwidth}
+		\includegraphics[width=0.7\textwidth]{media/audition_tuning_curves_annotated.pdf}\\
+		\includegraphics[width=0.7\textwidth]{media/nonlinearity_lif.pdf}%
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.8\textwidth}
+		\begin{itemize}
+			\item Does this work for all tuning curves?
+			\vspace*{-0.3cm}			
+			\begin{align*}
+				a_i(x) &= G(\alpha_i x + J^\mathrm{bias}_i)			
+			\end{align*}			
+			\item<2-> a) increasing: Yes!
+			\item<3-> b) decreasing: Yes! (just let $\alpha_i$ be negative)
+			\begin{itemize}
+			\item or, better yet, introduce $e_i$ which is either 1 or -1 and keep $\alpha_i$ to be always positive.  This keeps the two ideas (slope and increase/decreasing) separate. 
+			\end{itemize}
+			\vspace*{-0.3cm}
+			\begin{align*}
+				a_i(x) &= G(\alpha_i (e_i x) + J^\mathrm{bias}_i)			
+			\end{align*}			
+			\item<4-> c) preferred stimulus: Need some sort of similarity measure
+			\begin{itemize}
+				\item<4-> But it shouldn't be too complicated.  So far we've only needed to introduce multiplication and addition, which are both things we're pretty sure neurons can do, so let's avoid adding anything else if we don't have to.  Ideas?
+			\end{itemize} 
+			\vspace*{-0.3cm}		
+			\begin{align*}
+				a_i(x) &= G(\alpha_i sim(e_i, x) + J^\mathrm{bias}_i)			
+			\end{align*}			
+		\end{itemize}
+		\column{0.2\textwidth}
+		\includegraphics[scale=0.75]{media/saleem_et_al_tuning_curves_a.pdf} \\
+		\includegraphics[scale=0.75]{media/saleem_et_al_tuning_curves_c.pdf} \\
+		\includegraphics[scale=0.75]{media/saleem_et_al_tuning_curves_b.pdf}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Encoders: Preferred Direction Vectors}
+	\begin{itemize}
+		\item The represented value $x$ doesn't have to be a scalar
+		\item What if it's a vector?
+		\item<2-> There's a simple similarity-like measure for vectors: the dot product
+		\begin{align*}
+			\langle \vec x, \vec y \rangle = \sum_{i = 0}^d x_i y_i = \cos(\angle(\vec x, \vec y)) \| \vec x\| \| \vec y\|
+		\end{align*}					
+		\begin{align*}
+			a_i(\vec x) &= G(\alpha_i \langle \vec e_i, \vec x \rangle + J^\mathrm{bias}_i)			
+		\end{align*}
+		\item<2-> Constrain $e_i$ to be a unit vector
+		\begin{itemize}
+			\item Note that for scalar $x$, the only two unit vectors are +1 and -1
+			\item So the increasing / decreasing scenario is a special case of this!
+		\end{itemize}					
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{Preferred Directions in Higher Dimensions: Representing 2D Values}
 	\begin{columns}[c]
 		\column{0.5\textwidth}
@@ -116,8 +192,59 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Decoding Without Taking Noise Into Account}
+
+\begin{frame}{Decoding}
+	\begin{itemize}
+		\item Non-linear Encoding and Linear Decoding
+		\begin{align*}
+			\vec a_i &=
+			G\big[\alpha_i \langle \vec x, \vec e_i \rangle + J^\mathrm{bias}_i\big] \,, && \text{Encoding} \\
+			\hat{\vec x} &= \mat D \vec a && \text{Decoding}
+		\end{align*}
+		\item How do we find $\mat D$?
+		\item<2-> Least-squares minimization
+		\begin{align*}
+			\arg\min_{\mat D} E = \frac{1}{|\mathbb{X}|} \int_{\mathbb{X}} \|\vec x - \hat{\vec x}\| \,\mathrm{d}\vec x = \frac{1}{|\mathbb{X}|} \int_{\mathbb{X}} \|\vec x - \mat D \vec a(\vec x)\| \,\mathrm{d}\vec x
+		\end{align*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Decoding via Least-squares Minimization}
+	\begin{itemize}
+		\item Find the minimum decoding error
+	\begin{align*}
+		\arg\min_{\mat D} E = \frac{1}{|\mathbb{X}|} \int_{\mathbb{X}} \|\vec x - \hat{\vec x}\| \,\mathrm{d}\vec x = \frac{1}{|\mathbb{X}|} \int_{\mathbb{X}} \|\vec x - \mat D \vec a(\vec x)\| \,\mathrm{d}\vec x
+	\end{align*}
+		\item Can't do that analytically (in general), so let's sample
+	\begin{align*}
+	\arg\min_{\mat D} E = \frac{1}{N} \sum_{i=0}^N \|\vec x_i - \mat D \vec a(\vec x_i)\| \,
+	\end{align*}
+\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Decoding via Least-squares Minimization}
+	\begin{itemize}
+		\item Let's write this in matrix form, where $\mat A_{ik} = a_i(x_k)$ and $\vec X = (x_1, \ldots, x_N)$
+		\item We want $\mat A^T \mat D^T = \mat X^T$
+		\item So $\mat A \mat A^T \mat D^T = \mat A \mat X^T$
+		\item $(\mat A \mat A^T)^{-1}\mat A \mat A^T \mat D^T = (\mat A \mat A^T)^{-1}\mat A \mat X^T$ 
+		\item $\mat D^T = (\mat A \mat A^T)^{-1}\mat A \mat X^T$
+		\item In Python, \texttt{D = np.linalg.lstsq(A.T, X.T, rcond=None)[0].T}
+		\item (where \texttt{A} is a n x N array and \texttt{X} is a d x N array)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Decoding}
 	\includegraphics[width=\textwidth]{media/decoding_example_no_noise.pdf}
+	\begin{columns}
+		\column{0.20\textwidth}
+		$\mat A$
+		\column{0.20\textwidth}
+		$\mat A^T \mat D^T$
+		\column{0.20\textwidth}
+		$\mat A^T \mat D^T - \mat X^T$
+	\end{columns}
 \end{frame}
 
 \begin{frame}{Sources of Noise in Biological Neural Networks}
@@ -357,10 +484,7 @@
 	\begin{itemize}
 		\setlength{\itemsep}{0.75cm}
 		\item \hl{Assignment 1 has been released.}\\[0.25cm]
-		The due date has been adjusted to January,~30.
-		\item Some new potential times for office hours\\[0.5cm]
-			{\color{aluminium4}\texttt{Mon 15:30-16:30}, \texttt{Mon 16:30-17:30}, \texttt{Tue 15:00-16:00},}\\[0.5cm]
-			\texttt{Thu 11:30-12:30} (current slot){\color{aluminium4}, \texttt{Thu 12:30-13:30}}
+		The due date is October 4, 2021.
 	\end{itemize}
 \end{frame}
 
