@@ -22,3 +22,14 @@ Course website: http://github.com/tcstewar/syde556-f21
 -   **Jupyter Notebook Template**  
   [[Preview](https://github.com/tcstewar/syde556-f21/blob/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
   [[Download Jupyter Notebook](https://github.com/tcstewar/syde556-f21/raw/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
+
+
+### Assignment 2 ― due Monday, October 25, 2021
+
+-   **Instructions**  
+  [[Preview](https://github.com/tcstewar/syde556-f21/blob/master/assignments/assignment_02/syde556_assignment_02.pdf)]
+  [[Download PDF](https://github.com/tcstewar/syde556-f21/raw/master/assignments/assignment_02/syde556_assignment_02.pdf)]
+
+-   **Jupyter Notebook Template**  
+  [[Preview](https://github.com/tcstewar/syde556-f21/blob/master/assignments/assignment_02/syde556_assignment_02_template.ipynb)]
+  [[Download Jupyter Notebook](https://github.com/tcstewar/syde556-f21/raw/master/assignments/assignment_02/syde556_assignment_02_template.ipynb)]
