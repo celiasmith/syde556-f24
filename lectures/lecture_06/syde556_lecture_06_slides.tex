@@ -6,7 +6,7 @@
 \fi%
 \input{../syde556_lecture_slides_preamble}
 
-\date{February 4 \& 6 \& 11, 2020}
+\date{October 18 \& 20, 2021}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 6: Recurrent Dynamics}
 
 \begin{document}
@@ -41,38 +41,60 @@
 		\includegraphics[width=\textwidth]{media/fxs_example.pdf}
 	\end{frame}
 
-	\begin{frame}{NEF Principle 3: Dynamics}
-		\begin{columns}[b]
-			\column{0.5\textwidth}
-				\centering
-				\hl{Time-Invariant Dynamical System}\\
-				\begin{align*}
-					\frac{\mathrm{d}\vec x(t)}{\mathrm{d}t} &= f(\vec x(t), \vec u(t))
-				\end{align*}
-			\column{0.5\textwidth}
-				\centering
-				\hl{Linear Time-Invariant (LTI)}
-				\hl{Dynamical System}
-				\begin{align*}
-					\frac{\mathrm{d}\vec x(t)}{\mathrm{d}t} &= \mat A \vec x + \mat B \vec u
-				\end{align*}
-		\end{columns}
-		\vspace{0.75cm}
-		\begin{mdframed}
-			\textbf{NEF Principle 3 -- Dynamics}\\
-			Neural dynamics are characterized by considering neural representations as control theoretic state variables. We can use control theory (and dynamical systems theory) to analyse and construct these systems.
-		\end{mdframed}
-	\end{frame}
 
 	\begin{frame}{Making Sense of Dynamics}
 		\centering
 		\includegraphics[width=\textwidth]{media/synaptic_filter.pdf} 		
 	\end{frame}
 
-	\begin{frame}{Phase Portraits}
-		\centering
-		\includegraphics[width=\textwidth]{media/phase_portraits.pdf}
+	%\begin{frame}{Phase Portraits}
+%		\centering
+%		\includegraphics[width=\textwidth]{media/phase_portraits.pdf}
+%	\end{frame}
+
+	\begin{frame}{Behaviour of a Recurrent Connection}
+	Feed-forward
+			\begin{align*}
+				x(t) = g(u(t)) * h(t)				
+			\end{align*}		
+	Recurrent
+			\begin{align*}
+	x(t) &= (g(u(t)) + f(x(t))) * h(t)	\\
+	X(s) &= (G(s) + F(s))H(s) \\
+	X(s) &= (G(s) + F(s)){1 \over {1+s\tau}} \\
+	X(s) + s\tau X(s) &= G(s) + F(s) \\
+	s\tau X(s) &= G(s) + F(s) - X(s) \\
+	sX(s) &= {{F(s) - X(s)} \over \tau} + {G(s) \over \tau} \\
+	{dx \over dt} &= {{f(x(t))-x(t)} \over \tau} + {{g(u(t))} \over \tau}
+			\end{align*}		
+	
 	\end{frame}
+
+	\begin{frame}{Behaviour of a Recurrent Connection}
+	\begin{align*}
+		{dx \over dt} &= {{f(x(t))-x(t)} \over \tau} + {{g(u(t))} \over \tau}
+	\end{align*}		
+	If we want this
+	\begin{align*}
+	{dx \over dt} &= a(x) + b(u)
+	\end{align*}
+	Then we set
+	\begin{align*}
+	f(x) &= \tau a(x) + x \\
+	g(x) &= \tau b(u)
+	\end{align*}
+	And we get
+	\begin{align*}
+	{dx \over dt} &= {{(\tau a(x) + x) - x} \over \tau} + {{(\tau b(u))} \over \tau} \\
+	{dx \over dt} &= {{a(x)}} + {{b(u)}}
+	\end{align*}		
+	
+	
+			
+	
+	
+\end{frame}
+
 
 	\begin{frame}{Implementing Dynamics using a Neural Ensemble}
 		\centering
@@ -103,6 +125,46 @@
 		\centering \hl{\enquote{General} Recipe}\\[0.25cm]
 		Scale the original dynamics by $\tau$, add feedback $\vec x$
 	\end{frame}
+
+	\begin{frame}{NEF Principle 3: Dynamics}
+	\begin{columns}[b]
+		\column{0.5\textwidth}
+		\centering
+		\hl{Time-Invariant Dynamical System}\\
+		\begin{align*}
+			\frac{\mathrm{d}\vec x(t)}{\mathrm{d}t} &= f(\vec x(t), \vec u(t))
+		\end{align*}
+		\column{0.5\textwidth}
+		\centering
+		\hl{Linear Time-Invariant (LTI)}
+		\hl{Dynamical System}
+		\begin{align*}
+			\frac{\mathrm{d}\vec x(t)}{\mathrm{d}t} &= \mat A \vec x + \mat B \vec u
+		\end{align*}
+	\end{columns}
+	\vspace{0.75cm}
+	\begin{mdframed}
+		\textbf{NEF Principle 3 -- Dynamics}\\
+		Neural dynamics are characterized by considering neural representations as control theoretic state variables. We can use control theory (and dynamical systems theory) to analyse and construct these systems.
+	\end{mdframed}
+\end{frame}
+
+\begin{frame}{Low-pass Filter Example}
+Desired behaviour
+\begin{align*}
+	{dx \over dt} = {{u - x} \over \tau_{desired}}	
+\end{align*}
+Feed-forward input
+\begin{align*}
+	g(u) &= \tau_{synapse} ({u \over \tau_{desired}}) \\
+	g(u) &= {\tau_{synapse} \over \tau_{desired}} u	
+\end{align*}
+Recurrent
+\begin{align*}
+	f(x) &= \tau_{synapse} ({{-x} \over \tau_{desired}}) + x \\
+	f(x) &= (1-{\tau_{synapse} \over \tau_{desired}})x			
+\end{align*}	
+\end{frame}	
 
 	\begin{frame}{Integrator Example (I)}
 		\centering
@@ -148,10 +210,8 @@
 
 	\begin{frame}{Administrative Remarks}
 	\begin{itemize}
-		\item \textbf{\hl{Project proposals}} due Friday, February 14\\ \url{http://compneuro.uwaterloo.ca/courses/syde-750/syde-556-possible-projects.html}\\[0.5cm]
-		\item \textbf{\hl{Assignment 2}} due Thursday, February 13\\[0.5cm]
-		\item \textbf{\hl{Assignment 3}} will be released later today, February 11 (due in three weeks)\\[0.5cm]
-		\item Some adjustments to the schedule
+		\item \textbf{\hl{Assignment 2}} due Monday, October 25\\[0.5cm]
+		\item \textbf{\hl{Project proposals}} due Wednesday, October 27\\[0.5cm]
 	\end{itemize}
 	\end{frame}
 
