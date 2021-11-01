@@ -13,6 +13,7 @@ Course website: http://github.com/tcstewar/syde556-f21
 - Oct 18, 20 - Recurrent Dynamics [[Slides](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_06/syde556_lecture_06_slides.pdf)] [[Notes](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_06/syde556_lecture_06_notes.pdf)]
 - Oct 25 - Analysing Representation [[Slides](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_09/syde556_lecture_09_slides.pdf)] [[Notes](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_09/syde556_lecture_09_notes.pdf)]
 - Oct 27 - Temporal Basis Functions [[Slides](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_07/syde556_lecture_07_slides.pdf)] [[Notes](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_07/syde556_lecture_07_notes.pdf)]
+- Nov 1, 3 - Symbols [[Slides](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_10/syde556_lecture_10_slides.pdf)] [[Notes](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]
 
 ## 📝 Assignments
 
