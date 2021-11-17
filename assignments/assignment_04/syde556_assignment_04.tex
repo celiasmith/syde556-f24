@@ -14,11 +14,11 @@
 \newcommand{\assignmentCourseName}{Simulating Neurobiological Systems}
 \newcommand{\assignmentName}{Assignment 4}
 \newcommand{\assignmentNo}{04}
-\newcommand{\assignmentTerm}{Winter 2020}
-\newcommand{\assignmentDue}{March 24, 2020}
-\newcommand{\assignmentMarks}{10 marks (10\% of the final grade)}
-\newcommand{\assignmentURL}{https://github.com/astoeckel/syde556-w20/blob/master/assignments/assignment_04/syde556_assignment_04_template.ipynb}
-\newcommand{\assignmentEmail}{astoecke@uwaterloo.ca}
+\newcommand{\assignmentTerm}{Fall 2021}
+\newcommand{\assignmentDue}{Nov 29, 2021}
+\newcommand{\assignmentMarks}{15 marks (15\% of the final grade)}
+\newcommand{\assignmentURL}{https://github.com/tcstewar/syde556-f21/blob/master/assignments/assignment_04/syde556_assignment_04_template.ipynb}
+\newcommand{\assignmentEmail}{terry.stewart@gmail.com}
 \newcommand{\assignmentExtraNotes}{\item \textbf{For this assignment, you must use \href{https://www.nengo.ai/getting-started/}{Nengo}}. Feel free to look through the examples folder and/or the tutorials on the Nengo website before doing this assignment.}
 
 \begin{document}
@@ -72,7 +72,7 @@ nd_input = nengo.Node(nengo.processes.Piecewise({
 
 	\begin{enumerate}[a)]
 		\item \Marks{1} \emph{Computing the identity function.} Show the input value and the decoded values from the two  ensembles in three separate plots. Run the simulation for $\SI{0.5}{\second}$.
-		\item \Marks{0.5} \emph{Computing an affine transformation.} Make a new version of the model where instead of computing the identity function, it computes $y(t) = 1 - 2x(t)$. Show the same graphs as in part (a).
+		\item \Marks{1} \emph{Computing an affine transformation.} Make a new version of the model where instead of computing the identity function, it computes $y(t) = 1 - 2x(t)$. Show the same graphs as in part (a).
 	\end{enumerate}
 
 
@@ -89,16 +89,16 @@ nd_input = nengo.Node(nengo.processes.Piecewise({
 	\end{itemize}
 
 	\begin{enumerate}[a)]
-		\item \Marks{0.5} \emph{Transforming the dynamical system.} Rewrite the linear dynamical system describing the integrator in terms of $\frac{\mathrm{d}\vec x(t)}{\mathrm{d}t} = \mat A \vec x + \mat B \vec u$, i.e., write down the matrices $\mat A$ and $\mat B$ (you can just use the equations from class, you do not have to re-derive the equations) What are the matrices $\mat A'$ and $\mat B'$ we have to use when implementing this system using the recurrent connection post-synaptic filter?
+		\item \Marks{1} \emph{Transforming the dynamical system.} Rewrite the linear dynamical system describing the integrator in terms of $\frac{\mathrm{d}\vec x(t)}{\mathrm{d}t} = \mat A \vec x + \mat B \vec u$, i.e., write down the matrices $\mat A$ and $\mat B$ (you can just use the equations from class, you do not have to re-derive the equations) What are the matrices $\mat A'$ and $\mat B'$ we have to use when implementing this system using the recurrent connection post-synaptic filter?
 		\begin{itemize}
 			\item[{\symbolfont 🖈}] You may assume that the input $\vec u$ and the state $\vec x$ are $d$-dimensional, i.e., you may write down the equations as general as possible. In the remainder of this question we assume $d = 1$.
 		\end{itemize}
-		\item \Marks{0.5} \emph{Integrator using spiking neurons.} Show the input, the ideal integral, and the value represented by the ensemble when the input is a value of $0.9$ from $t=0.04$ to $t=1.0$ (and $0$ for other times). Run the simulation for $\SI{1.5}{\second}$.
+		\item \Marks{1} \emph{Integrator using spiking neurons.} Show the input, the ideal integral, and the value represented by the ensemble when the input is a value of $0.9$ from $t=0.04$ to $t=1.0$ (and $0$ for other times). Run the simulation for $\SI{1.5}{\second}$.
 		\begin{itemize}
 			\item[{\symbolfont 🖈}] For this and the following questions, we consider the scalar case, i.e., the dimensionality $n$ of $x$ and $u$ is one.
 			\item[{\symbolfont 🐍}] We're going to run this simulation with various input functions and ensemble parameters in the following questions. It is highly recommended that you write a function that takes ensemble parameters and the input function as arguments and produces all plots you need.
 		\end{itemize}
-		\item \Marks{0.5} \emph{Discussion.} What is the expected ideal result, i.e., if we just mathematically computed the integral of the input, what is the equation describing the integral? How does the simulated output compare to that ideal?
+		\item \Marks{1} \emph{Discussion.} What is the expected ideal result, i.e., if we just mathematically computed the integral of the input, what is the equation describing the integral? How does the simulated output compare to that ideal?
 		\begin{itemize}
 			\item[{\symbolfont 🖈}] When you write down the integral of the step function, you have to distinguish between three cases. Your function should be a \emph{definite} integral of the form
 			\begin{align*}
@@ -112,15 +112,15 @@ nd_input = nengo.Node(nengo.processes.Piecewise({
 			\item[{\symbolfont 🖈}] Plot the ideal on top of your simulation result in your answer for the previous question.
 			\item[{\symbolfont 🐍}] You can use the \texttt{numpy} function \texttt{np.cumsum} to compute the ideal integral numerically (don't forget to scale by \texttt{dt}). However, still write down the integral mathematically to answer this question.
 		\end{itemize}
-		\item \Marks{0.5} \emph{Simulation using rate neurons.} Change the neural simulation to rate mode. Re-run the simulation in rate mode. Show the same plots as in the previous question.
+		\item \Marks{1} \emph{Simulation using rate neurons.} Change the neural simulation to rate mode. Re-run the simulation in rate mode. Show the same plots as in the previous question.
 		\begin{itemize}
 			\item[{\symbolfont 🐍}] Pass the extra parameter \texttt{neuron\_type = nengo.LIFRate()} to the \texttt{Ensemble} constructor to switch an ensemble to rate mode.
 		\end{itemize}
-		\item \Marks{0.5} \emph{Discussion.}  How does this compare to the result in part (b)? What deviations from the ideal do you still observe? Where do those deviations come from?
-		\item \Marks{0.5} \emph{Integration of a shorter input pulse.} Returning to spiking mode, change the input to be a value of $0.9$ from $t=0.04$ to $0.16$. Show the same plots as before (the input, the ideal, and the value represented by the ensemble over $\SI{1.5}{\second}$). 
-		\item \Marks{0.5} \emph{Discussion.} How does this compare to (b)? What is the ideal equation? Does it work as intended? If not, why is it better or worse?
-		\item \Marks{0.5} \emph{Input ramp.} Change the input to a ramp input from $0$ to $0.9$ from $t=0$ to $t=0.45$ (and $0$ for $t>0.45$). Show the same plots as in the previous parts of this question.
-		\item \Marks{0.5} \emph{Discussion.} What does the ensemble end up representing, and why? What is the (ideal) equation for the curve traced out by the ensemble? 
+		\item \Marks{1} \emph{Discussion.}  How does this compare to the result in part (b)? What deviations from the ideal do you still observe? Where do those deviations come from?
+		\item \Marks{1} \emph{Integration of a shorter input pulse.} Returning to spiking mode, change the input to be a value of $0.9$ from $t=0.04$ to $0.16$. Show the same plots as before (the input, the ideal, and the value represented by the ensemble over $\SI{1.5}{\second}$). 
+		\item \Marks{1} \emph{Discussion.} How does this compare to (b)? What is the ideal equation? Does it work as intended? If not, why is it better or worse?
+		\item \Marks{1} \emph{Input ramp.} Change the input to a ramp input from $0$ to $0.9$ from $t=0$ to $t=0.45$ (and $0$ for $t>0.45$). Show the same plots as in the previous parts of this question.
+		\item \Marks{1} \emph{Discussion.} What does the ensemble end up representing, and why? What is the (ideal) equation for the curve traced out by the ensemble? 
 		\begin{itemize}
 			\item[{\symbolfont 🖈}] As above, make sure to write down the \emph{definite} integral $\int_0^t u(t') \,\mathrm{d}t'$. This means that there will be no integration constant in your result.
 		\end{itemize}

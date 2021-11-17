@@ -14,6 +14,7 @@ Course website: http://github.com/tcstewar/syde556-f21
 - Oct 25 - Analysing Representation [[Slides](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_09/syde556_lecture_09_slides.pdf)] [[Notes](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_09/syde556_lecture_09_notes.pdf)]
 - Oct 27 - Temporal Basis Functions [[Slides](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_07/syde556_lecture_07_slides.pdf)] [[Notes](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_07/syde556_lecture_07_notes.pdf)]
 - Nov 1, 3 - Symbols [[Slides](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_10/syde556_lecture_10_slides.pdf)] [[Notes](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]
+- Nov 8, 10 -  Action Selection [[Slides](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_11/syde556_lecture_11_slides.pdf)] [[Notes](https://github.com/tcstewar/syde556-f21/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]
 
 ## 📝 Assignments
 
@@ -47,3 +48,13 @@ Course website: http://github.com/tcstewar/syde556-f21
 -   **Jupyter Notebook Template**  
   [[Preview](https://github.com/tcstewar/syde556-f21/blob/master/assignments/assignment_03/syde556_assignment_03_template.ipynb)]
   [[Download Jupyter Notebook](https://github.com/tcstewar/syde556-f21/raw/master/assignments/assignment_03/syde556_assignment_03_template.ipynb)]
+
+### Assignment 4 ― due Monday, November 29, 2021
+
+-   **Instructions**  
+  [[Preview](https://github.com/tcstewar/syde556-f21/blob/master/assignments/assignment_04/syde556_assignment_04.pdf)]
+  [[Download PDF](https://github.com/tcstewar/syde556-f21/raw/master/assignments/assignment_04/syde556_assignment_04.pdf)]
+
+-   **Jupyter Notebook Template**  
+  [[Preview](https://github.com/tcstewar/syde556-f21/blob/master/assignments/assignment_04/syde556_assignment_04_template.ipynb)]
+  [[Download Jupyter Notebook](https://github.com/tcstewar/syde556-f21/raw/master/assignments/assignment_04/syde556_assignment_04_template.ipynb)]
