@@ -2,7 +2,7 @@
 \documentclass[aspectratio=169]{beamer}
 \input{../syde556_lecture_slides_preamble}
 
-\date{September 8, 2021}
+\date{September 8, 2022}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 0: Administrative Remarks}
 
 \begin{document}
@@ -18,7 +18,7 @@
 		\column{0.4\textwidth}
 		\begin{itemize}
 			\item The UWFlow reviews are accurate. 
-			\item This is a tough course.
+			\item This can be a challenging course.
 			\item Be prepared to spend a lot of time on the assignments.
 			\item We'll be making use of pretty much everything in the SyDe undergrad
 			      program, and applying it to cognitive science and neuroscience.
@@ -27,37 +27,13 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{About Me}
-	\begin{columns}[T]
-		\column{0.3\textwidth}
-		\fboxrule=0.4pt\fboxsep=0pt\fbox{\includegraphics[height=0.8\textheight]{media/TerryStewart2.png}}\\
-		\column{0.7\textwidth}
-		\begin{itemize}
-			\item Terry Stewart
-			\item Research Officer at the National Research Council Canada (NRC)
-			\begin{itemize}
-				\item Investigate algorithms underlying biological cognition
-				\item Build computational models of them
-				\item Determine if they may be useful to industry
-			\end{itemize}
-			\item Undergrad: Systems Design Engineering at Waterloo
-			\item Masters: M.Phil in Comp.Sci and AI at Sussex University (UK)
-			\item PhD: Cognitive Science at Carleton University (Ottawa)
-			\item Post-doc: at Waterloo, working with Chris Eliasmith on the research discussed in this course.
-			\item co-founder of Applied Brain Research
-		\end{itemize}
-	\end{columns}
-\end{frame}
-
-
-
 \begin{frame}{Organization (I)}
 	\begin{block}{Instructor}
 		\vspace{2mm}
-		\textbf{Terry Stewart}\\[2mm]
+		\textbf{Chris Eliasmith}\\[2mm]
 		\hspace{-2.5mm}\begin{tabular}{l l}
-			Email & \url{terry.stewart@gmail.com}\\
-			Website & \url{https://terrystewart.ca}\\
+			Email & \url{celiasmith@uwaterloo.ca}\\
+			Website & \url{compneuro.uwaterloo.ca}\\
 		\end{tabular}
 	\end{block}
  
@@ -66,24 +42,20 @@
 	\begin{block}{Course website}
 		\begin{itemize}
 			\item LEARN
-			\item \url{https://github.com/tcstewar/syde556-f21}
-			\item \url{syde556-f21.slack.com}
+			\item \url{https://github.com/celiasmith/syde556-f22}
 		\end{itemize}
 	\end{block}
 \end{frame}
 
 \begin{frame}{Organization (II)}
-	\begin{block}{Course times and logistics}
+	\begin{block}{Course times and logistics - All meetings in E5 6008}
 		\begin{itemize}
-			\item \textbf{Saturday:}\\
-			Pre-recorded lectures posted
-			\item \textbf{Monday:}\\
-			8:30-9:50 online lecture and discussion (LEARN)
-			\item \textbf{Tuesday:}\\9:00-9:50 online discussion (LEARN) (SYDE 750, optional for 556)
 			\item \textbf{Wednesday:}\\
-			8:30-9:50 online lecture and discussion (LEARN) 
-			\item \textbf{Any time:}\\
-Email \url{terry.stewart@gmail.com}\\ Slack \url{syde556-f21.slack.com} 
+			11:00-11:50 In person discussion (SYDE 750, optional for 556)
+			\item \textbf{Thursday:}\\
+      4:00-5:20 Lecture
+			\item \textbf{Friday:}\\
+			3:30-4:50 Lecture 
 		\end{itemize}
 	\end{block}
 
@@ -136,169 +108,21 @@ Email \url{terry.stewart@gmail.com}\\ Slack \url{syde556-f21.slack.com}
 	\begin{block}{Class Participation in the Seminar  (SYDE 750 only; optional for SYDE 556)}
 	\begin{itemize}
 		\item General discussion about Neuroscience, cognitive science, AI, etc.
-		\item Special interest: replicable science and computational modelling
-		\item SYDE 750 students must attend the seminar (Tuesday, 9:00-9:50).
-		\item No marks for this part of the course.
-	\end{itemize}
+		\item Each student is asked to submit (at least) three questions or interesting observations pertaining this week's reading, lecture notes, or the material referenced in the lecture (this should be about 100 words).
+		\item Questions must be submitted via email to the instructor (\url{celiasmith@uwaterloo.ca}) by midnight (23:59 EST) on the Tuesday before.
+    \item This is to ensure a lively discussion in the seminar --- there are no marks for this part of the course.
+  \end{itemize}
 	\end{block}
 \end{frame}
 
-\begin{frame}{Schedule (I)}
-\small
-\begin{tabular}{p{2cm} p{2cm} p{5cm} p{3cm}}
-	\toprule
-	\textbf{Date} &	\textbf{Reading} &	\textbf{Topic} & \textbf{Assignments} \\
-	\tiny WEEK 1 & & & \\
-	Sept 8 &
-	Chapter 1 &
-	Introduction &
-	\\[0.05cm]
-	\tiny WEEK 2 & & & \\
-	Sept 13 &
-	Chapter 2 &
-	Neurons &
-	\\
-	Sept 15 &
-	Chapter 2 &
-	Population Representation (I) &
-	\#1 posted
-	\\[0.05cm]
-	\tiny WEEK 3 & & & \\
-	Sept 20 &
-	Chapter 2 &
-	Population Representation (II) &
-	\\
-	Sept 22 &
-	Chapter 4 &
-	Temporal Representation &
-	\\[0.05cm]
-	\tiny WEEK 4 & & & \\
-	Sept 27 &
-	 &
-	Guest Lecture &
-	\\
-	Sept 29 & & Guest Lecture &
-	\\[0.05cm]
-	\tiny WEEK 5 & & & \\
-	
-	Oct 4 &
-	Chapters 5, 6 &
-	Feedforward Transformations (I) &
-	\#1 due*, \#2 posted\\
-	Oct 6 &
-	Chapters 5, 6 &
-	Feedforward Transformations (II) &
-	\\[0.05cm]
-	\tiny WEEK 6 & \multicolumn{3}{c}{\emph{--- Reading week, no lectures ---}} \\[0.05cm]
-	
-	\bottomrule
-\end{tabular}
+\begin{frame}{Schedule}
+	\begin{block}{Syllabus, Project Template, Due Dates}
+    \begin{itemize}
+      \item These are available at \url{http://compneuro.uwaterloo.ca/courses/syde-750.html}
+      \item Assignments, slides, and lecture notes are posted on github
+    \end{itemize}
+    \end{block}
 \end{frame}
 
-
-\begin{frame}{Schedule (II)}
-	\small
-	\begin{tabular}{p{2cm} p{2cm} p{5cm} p{3cm}}
-		\toprule
-		\textbf{Date} &	\textbf{Reading} &	\textbf{Topic} & \textbf{Assignments} \\
-		
-		\tiny WEEK 7 & & & \\
-		Oct 18 &
-		Chapter 8 &
-		Dynamics (I) &
-		\\
-		Oct 20 &
-		Chapter 8 &
-		Dynamics (II) &
-		\\
-		
-		\tiny WEEK 8 & & & \\
-		Oct 25 &
-		Chapter 7 &
-		Analysis of Representation &
-		\#2 due*, \#3 posted\\
-		Oct 27 &
-		\emph{provided} &
-		Temporal Basis Functions &
-		\\
-		&
-		&
-		&
-		SYDE 750 Project proposal due\\[0.05cm]
-		
-		\tiny WEEK 9 & & & \\
-		Nov 1 &
-		\emph{provided} &
-		Symbols (I) &
-		\\
-		Nov 3 &
-		\emph{provided} &
-		Symbols (II) &
-		\\[0.05cm]
-		
-		\tiny WEEK 10 & & & \\
-		Nov 8 &
-		Chapter 8 &
-		Memory &
-		\#3 due*, \#4 posted\\
-		Nov 10 &
-		\emph{provided} &
-		Action Selection &
-		
-		\\
-		\bottomrule
-	\end{tabular}
-\end{frame}
-
-\begin{frame}{Schedule (III)}
-	\small
-	\begin{tabular}{p{2cm} p{2cm} p{5cm} p{3cm}}
-		\toprule
-		\textbf{Date} &	\textbf{Reading} &	\textbf{Topic} & \textbf{Assignments} \\
-		\tiny WEEK 11 & & & \\
-		Nov 15 &
-		Chaper 9 &
-		Learning (I) &
-		\\
-		Nov 17 &
-		Chaper 9 &
-		Learning (II) &
-		\\[0.05cm]
-		\tiny WEEK 12 & & & \\
-		Nov 22 &
-		\emph{provided} &
-		Spatial Semantic Pointers &
-		\#4 due*, \#5 posted\\
-		Nov 24 &
-		\emph{provided} &
-		Biological Details &
-		\\[0.05cm]
-		
-		\tiny WEEK 13 & & & \\
-		Nov 29 &
-		\emph{provided} &
-		Other modelling frameworks &
-		\\
-		Dec 1 &
-		&
-		Conclusion &
-		\\[0.05cm]
-		
-		\tiny WEEK 14 & & & \\
-		Dec 6 &
-		&
-		Discussion &
-		\\[0.05cm]
-		
-		\tiny WEEK 16 & & & \\
-		Dec 23 &
-		&
-		&
-		\#5 due; SYDE 750 projects due* \\
-		\bottomrule
-	\end{tabular}\\[0.2cm]
-	\footnotesize
-	* The project and all assignments are due at midnight ($\approx$ 11:59p Eastern) of that day.
-\end{frame}
 
 \end{document}
