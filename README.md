@@ -5,7 +5,7 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 ## 🎒 Lectures
 
 - Sep 8 - Administrative Remarks [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_00/syde556_lecture_00_slides_distr.pdf)]
-- Sep 8 - Introduction [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_01/syde556_lecture_01_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_01/syde556_lecture_01_notes.pdf)]-->
+- Sep 8 - Introduction [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_01/syde556_lecture_01_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_01/syde556_lecture_01_notes.pdf)]
 - Sep 9 - Neurons [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_02/syde556_lecture_02_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_02/syde556_lecture_02_notes.pdf)]-->
 - Sep 15, 16 - Population Representation [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_03/syde556_lecture_03_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_03/syde556_lecture_03_notes.pdf)]-->
 - Sep 22, 23 - Temporal Representation [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_04/syde556_lecture_04_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_04/syde556_lecture_04_notes.pdf)]-->
