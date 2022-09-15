@@ -215,7 +215,7 @@
 	\begin{align*}
 		\arg\min_{\mat D} E = \frac{1}{|\mathbb{X}|} \int_{\mathbb{X}} \|\vec x - \hat{\vec x}\| \,\mathrm{d}\vec x = \frac{1}{|\mathbb{X}|} \int_{\mathbb{X}} \|\vec x - \mat D \vec a(\vec x)\| \,\mathrm{d}\vec x
 	\end{align*}
-		\item Can't do that analytically (in general), so let's sample
+		\item We can do this analytically, or sample:
 	\begin{align*}
 	\arg\min_{\mat D} E = \frac{1}{N} \sum_{i=0}^N \|\vec x_i - \mat D \vec a(\vec x_i)\| \,
 	\end{align*}
