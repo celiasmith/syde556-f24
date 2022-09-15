@@ -7,7 +7,7 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 - Sep 8 - Administrative Remarks [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_00/syde556_lecture_00_slides_distr.pdf)]
 - Sep 8 - Introduction [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_01/syde556_lecture_01_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_01/syde556_lecture_01_notes.pdf)]
 - Sep 9 - Neurons [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_02/syde556_lecture_02_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_02/syde556_lecture_02_notes.pdf)]
-- Sep 15, 16 - Population Representation [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_03/syde556_lecture_03_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_03/syde556_lecture_03_notes.pdf)]-->
+- Sep 15, 16 - Population Representation [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_03/syde556_lecture_03_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_03/syde556_lecture_03_notes.pdf)]
 - Sep 22, 23 - Temporal Representation [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_04/syde556_lecture_04_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_04/syde556_lecture_04_notes.pdf)]-->
 - Sept 29, 30 - Feedforward Transformations [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_05/syde556_lecture_05_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_05/syde556_lecture_05_notes.pdf)]-->
 - Oct 7, 20 - Recurrent Dynamics [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_06/syde556_lecture_06_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_06/syde556_lecture_06_notes.pdf)]-->
@@ -32,11 +32,11 @@ The five assignments will be posted here.
 ### Assignment 1 ― due Sept 30, 2021
 
 -   **Instructions**  
-  [[Download PDF]<!--(https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01.pdf)]-->
+  [[Download PDF](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01.pdf)]
 
 -   **Jupyter Notebook Template**  
-  [[Preview]<!--(https://github.com/celiasmith/syde556-f22/blob/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]-->
-  [[Download Jupyter Notebook]<!--(https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]-->
+  [[Preview](https://github.com/celiasmith/syde556-f22/blob/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
+  [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
 
 
 ### Assignment 2 ― due Oct 21, 2021
