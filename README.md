@@ -9,7 +9,7 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 - Sep 9 - Neurons [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_02/syde556_lecture_02_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_02/syde556_lecture_02_notes.pdf)]
 - Sep 15, 16 - Population Representation [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_03/syde556_lecture_03_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_03/syde556_lecture_03_notes.pdf)]
 - Sep 22, 23 - Temporal Representation [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_04/syde556_lecture_04_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_04/syde556_lecture_04_notes.pdf)]
-- Sept 29, 30 - Feedforward Transformations [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_05/syde556_lecture_05_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_05/syde556_lecture_05_notes.pdf)]-->
+- Sept 29, 30 - Feedforward Transformations [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_05/syde556_lecture_05_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_05/syde556_lecture_05_notes.pdf)]
 - Oct 7, 20 - Recurrent Dynamics [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_06/syde556_lecture_06_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_06/syde556_lecture_06_notes.pdf)]-->
 - Oct 21 - Temporal Basis Functions [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_07/syde556_lecture_07_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_07/syde556_lecture_07_notes.pdf)]-->
 - Oct 27, 28, Nov 3 - Learning [Slides][Notes]
@@ -17,8 +17,8 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 - Nov 10, 11 - Symbols [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_10/syde556_lecture_10_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]-->
 - Nov 17 - Working Memory [Slides][Notes]
 - Nov 18 -  Action Selection [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_11/syde556_lecture_11_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]-->
-- Nov 24 Biological Details [Slides][Notes]
-- Nov 25 Concusion [Slides][Notes]
+- Nov 24 - Biological Details [Slides][Notes]
+- Nov 25 - Concusion [Slides][Notes]
 
 ## 📝 Assignments
 
@@ -35,7 +35,6 @@ The five assignments will be posted here.
   [[Download PDF](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01.pdf)]
 
 -   **Jupyter Notebook Template**  
-  [[Preview](https://github.com/celiasmith/syde556-f22/blob/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
 
 
