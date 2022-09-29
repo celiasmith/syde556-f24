@@ -6,7 +6,7 @@
 \fi%
 \input{../syde556_lecture_slides_preamble}
 
-\date{October 4 \& 6, 2021}
+\date{September 29 \& 30, 2022}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 5: Feed-Forward Transformation}
 
 \begin{document}
@@ -21,7 +21,26 @@
 		\end{columns}
 	\end{frame}
 
-	\begin{frame}{NEF Principle 2: Transformation}
+	\begin{frame}{Introduction}
+    \begin{columns}[c]
+			\column{0.6\textwidth}
+        \begin{itemize}
+          \setlength\itemsep{0.5cm}
+          \item We've only talked about representation til now
+          \begin{itemize}
+            \setlength\itemsep{0.25cm}
+            \item What about computation?
+          \end{itemize}
+          \item We start by focusing on the state of a network after learning and development
+          \item A kind of hypothesis testing and generation 
+        \end{itemize}
+      \column{0.4\textwidth}
+        \includegraphics[width=\textwidth]{media/dalle_child_adult.png}
+        \raggedleft\small DALL-E AI Generated Art, 2022
+    \end{columns}
+	\end{frame}
+
+  \begin{frame}{NEF Principle 2: Transformation}
 		\centering
 		\includegraphics[scale=1.175]{media/transformation_fully_connected.pdf}
 		\begin{mdframed}
@@ -66,6 +85,19 @@
 		\hspace*{-1.2cm}%
 		\includegraphics<1>[width=1.175\textwidth]{media/transformation_07.pdf}%
 	\end{frame}
+
+  \begin{frame}{Computational Complexity}
+    \begin{itemize}
+      \setlength\itemsep{0.25cm}
+        \item Weights - multiplying $\vec a \in \mathbb{R}^{n}$ with $\mat W \in \mathbb{R}^{m \times n}$ is $\mathcal{O}(n m)$ i.e., $\approx\mathcal{O}(n^2)$
+        \item Decoding - $\hat{\vec x} = \mat D \vec a$ is $\mathcal{O}(d n)$
+        \item Encoding - $\vec J = \mat E \hat{\vec x} + \vec J_\mathrm{bias}$ is $\mathcal{O}(d m)$
+        \item Encoding/Decoding - $\mathcal{O}(d (n + m))$ or $\approx\mathcal{O}(d n)$ for $n = m$
+        \item So if $d$ is small we get a linear complexity $\mathcal{O}(n)$
+        \item Therefore, sequential decoding and re-encoding saves a lot of time compared to using actual synaptic weights
+        \item One reason why Nengo is so fast compared to other SNN simulators
+      \end{itemize}
+  \end{frame}
 
 	\begin{frame}{Computing Functions}
 		\hspace*{-1.2cm}%
