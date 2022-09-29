@@ -17,8 +17,8 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 - Nov 10, 11 - Symbols [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_10/syde556_lecture_10_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]-->
 - Nov 17 - Working Memory [Slides][Notes]
 - Nov 18 -  Action Selection [[Slides]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_11/syde556_lecture_11_slides_distr.pdf)]--> [[Notes]<!--(https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]-->
-- Nov 24 Biological Details [Slides][Notes]
-- Nov 25 Concusion [Slides][Notes]
+- Nov 24 - Biological Details [Slides][Notes]
+- Nov 25 - Concusion [Slides][Notes]
 
 ## 📝 Assignments
 
