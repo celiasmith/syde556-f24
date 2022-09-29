@@ -35,7 +35,6 @@ The five assignments will be posted here.
   [[Download PDF](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01.pdf)]
 
 -   **Jupyter Notebook Template**  
-  [[Preview](https://github.com/celiasmith/syde556-f22/blob/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
 
 
