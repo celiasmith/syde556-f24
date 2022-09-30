@@ -458,7 +458,7 @@ import numpy as np
 A = np.array(...) # n x N array
 X = np.array(...) # d x N array
 D = np.linalg.lstsq(
-        A @ A.T + 0.5 * N * np.square(sigma) * np.eye(n), A @ X.T,
+        A @ A.T + N * np.square(sigma) * np.eye(n), A @ X.T,
         rcond=None)[0].T
 \end{lstlisting}
 Using \texttt{lstsq} is numerically more stable than manually inverting the matrix using a function such as \texttt{np.linalg.inv}.}
