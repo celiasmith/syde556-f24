@@ -2,7 +2,7 @@
 \documentclass[10pt,letterpaper,oneside]{article}
 \input{../syde556_lecture_notes_preamble}
 
-\date{February 4 \& 6 \& 11, 2020}
+\date{October 7 \& 20th, 2022}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 6: Recurrent Dynamics}
 
 
@@ -74,7 +74,7 @@ We can use the same setup as above to implement the recurrent connection depicte
 	J^B_i(t) &= \big\langle \vec w_i^A , \big ( \vec a^{A}_\mathrm{pre} \ast h \big)(t) \big\rangle
 			+ \big\langle \vec w_i^B , \big ( \vec a^{B}_\mathrm{pre} \ast h \big)(t) \big\rangle
 			+ J^\mathrm{bias}_i \,,
-			& \text{where } \vec w^A_i = \big( \mat E \mat D^{g_1} \big)_i \text{ and } \vec w^B_i = \big( \mat E \mat D^{g_2} \big)_i \,.
+			& \text{where } \vec w^A_i = \big( \mat E \mat D^{g} \big)_i \text{ and } \vec w^B_i = \big( \mat E \mat D^{f} \big)_i \,.
 \end{align*}
 Notice that apart from names, there is virtually no difference between the previous two equations. The population $B$ approximately represents the value $\vec x = g(\vec u) + f(\vec x)$. In terms of control theory, the variable $\vec u$ is the \emph{input} to our system, whereas the variable $\vec x$ is the represented value. The function $g(\vec x)$ is a function transforming our input, the function $f(\vec x)$ is the \emph{feedback function}.
 
@@ -224,7 +224,7 @@ For this particular feedback function, our dynamical system becomes
 \begin{align*}
 	\frac{\mathrm{d}}{\mathrm{d}t} x(t) &= \frac{\mathrm{d}}{\mathrm{d}t} \phi(x(t), u(t)) = \frac{1}{\tau} \big(u(t) + x(t) + 1 - x(t) \big) = \frac{1}{\tau} \big(u(t) + 1 \big) \,.
 \end{align*}
-Looking at the phase portrait for $f(u, x) = u - 2 x$ in \cref{fig:phase_portraits}, we can see that this function will diverge for inputs $u(t) \neq -1$.
+Looking at the phase portrait for $f(u, x) = u + 1$ in \cref{fig:phase_portraits}, we can see that this function will diverge for inputs $u(t) \neq -1$.
 
 \paragraph{Analysing $f(x) = -x$}
 For this feedback function, our dynamical system becomes
