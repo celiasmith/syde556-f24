@@ -331,9 +331,9 @@ Transforming back to the time domain, comparing to the target system and rearran
 
 The textbook is also giving an equation that allows us to transform an arbitrary, time-variant dynamical system $\frac{\mathrm{d}x(t)}{\mathrm{d}t} = \phi(\vec u, \vec x, t)$. In this general case we get
 \begin{align*}
-	\Phi'(U(s), X(s), s) &= \frac{1}{\tau} \Phi(U(s), X(s), s) + X(s) \,.
+	\Phi'(U(s), X(s), s) &= \tau \Phi(U(s), X(s), s) + X(s) \,.
 \end{align*}
-As we can see, we generally have to scale our dynamical system by $\frac{1}{\tau}$ and feed back the current state in order to \enquote{remind} the system of its past.
+As we can see, we generally have to scale our dynamical system by $\tau$ and feed back the current state in order to \enquote{remind} the system of its past.
 
 \subsection{Examples}
 
