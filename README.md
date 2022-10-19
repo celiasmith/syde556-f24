@@ -64,8 +64,7 @@ The five assignments will be posted here.
 
 ### Assignment 5 ― due Dec 2, 2022
 
--   **Instructions**  
-  [[Download PDF]<!--(https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_05/syde556_assignment_05.pdf)]-->
-
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook]<!--(https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_05/syde556_assignment_05_template.ipynb)]-->
+  <br>Note: All Instructions are included in the notebook.
+ 
