@@ -29,7 +29,7 @@ The five assignments will be posted here.
  * Assignments are due _at Midnight_.  The late penalty is one mark per day it is late. You may be at most seven days late.
  * **Please read and follow the instructions regarding submission posted on the front page of each assignment.**
  
-### Assignment 1 ― due Sept 30, 2021
+### Assignment 1 ― due Sept 30, 2022
 
 -   **Instructions**  
   [[Download PDF](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01.pdf)]
@@ -38,7 +38,7 @@ The five assignments will be posted here.
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_01/syde556_assignment_01_template.ipynb)]
 
 
-### Assignment 2 ― due Oct 21, 2021
+### Assignment 2 ― due Oct 21, 2022
 
 -   **Instructions**  
   [[Download PDF](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_02/syde556_assignment_02.pdf)]
@@ -46,7 +46,7 @@ The five assignments will be posted here.
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_02/syde556_assignment_02_template.ipynb)]
 
-### Assignment 3 ― due Nov 4, 2021
+### Assignment 3 ― due Nov 4, 2022
 
 -   **Instructions**  
   [[Download PDF](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_03/syde556_assignment_03.pdf)]
@@ -54,7 +54,7 @@ The five assignments will be posted here.
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_03/syde556_assignment_03_template.ipynb)]
 
-### Assignment 4 ― due Nov 18, 2021
+### Assignment 4 ― due Nov 18, 2022
 
 -   **Instructions**  
   [[Download PDF]<!--(https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_04/syde556_assignment_04.pdf)]-->
@@ -62,7 +62,7 @@ The five assignments will be posted here.
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook]<!--(https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_04/syde556_assignment_04_template.ipynb)]-->
 
-### Assignment 5 ― due Dec 2, 2021
+### Assignment 5 ― due Dec 2, 2022
 
 -   **Instructions**  
   [[Download PDF]<!--(https://github.com/celiasmith/syde556-f22/raw/master/assignments/assignment_05/syde556_assignment_05.pdf)]-->
