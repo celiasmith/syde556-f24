@@ -108,7 +108,7 @@ In summary, this means that there is hope that we can represent physical signals
 
 \Aside{\emph{The Nyquist-Shannon Sampling Theorem and Audio Signals.} There are some engineering related reasons for sampling slightly faster than the Nyquist frequency. For example, the absolute hearing threshold for (young) humans is about $B = \SI{20}{\kilo\hertz}$. Correspondingly, to record an audio signal meant for humans (i.e., music or speech recordings), we can do the following: (1) band-limit the original signal to \SI{20}{\kilo\hertz} in the capture device, (2) sample at $f_\mathrm{s} = \SI{40}{\kilo\hertz}$. This allows us to perfectly reconstruct the band-limited signal according to the Nyquist-Shannon sampling theorem. Since frequencies above \SI{20}{\kilo\hertz} are not audible, the result will appear to humans exactly as the original signal.
 
-However, this only works if we can trust our capture device (i.e., the microphone and its amplifier circuit) to \emph{sharply} cut off all frequencies above $\SI{20}{\kilo\hertz}$. Unfortunately, such perfect filters are impossible to implement as an analogue device. Frequencies slightly above $B$ will still pass through, albeit being attenuated. This violates the pre-condition of the Nyquist-Shannon sampling theorem, leading to imperfect reconstructions (en effect known as \emph{aliasing}). Hence, it is better to sample faster than Nyquist, to give room for frequencies in the signal that are (slightly) above $B$.
+However, this only works if we can trust our capture device (i.e., the microphone and its amplifier circuit) to \emph{sharply} cut off all frequencies above $\SI{20}{\kilo\hertz}$. Unfortunately, such perfect filters are impossible to implement as an analogue device. Frequencies slightly above $B$ will still pass through, albeit being attenuated. This violates the pre-condition of the Nyquist-Shannon sampling theorem, leading to imperfect reconstructions (an effect known as \emph{aliasing}). Hence, it is better to sample faster than Nyquist, to give room for frequencies in the signal that are (slightly) above $B$.
 
 This is why common sampling rates for audio signals are $\SI{44.1}{\kilo\hertz}$ (CD audio), and $\SI{48}{\kilo\hertz}$ (DVD audio). Much higher sampling of audio signals intended for human listening make no sense, except for intermediate signals (i.e., for sidestepping the imperfect analogue filter problem by sampling at a very high rate and applying a cheap and precise digital filter).}
 
@@ -164,14 +164,14 @@ then each coefficient of $\vec x = (x_1, \ldots, x_q)$ is just given as
 
 \Note{\emph{Basis functions and the Fourier/Laplace transformation.} Notice that this is very similar to the equation underlying the Fourier or Laplace transformations that we saw earlier in the course. This is exactly because these transformations can be described in terms of an orthonormal function basis.
 
-The same equation---i.e., computing the dot-product between value that should be represented and the basis---is also used when representing a vector in terms of an orthonormal vector basis. In a sense, we are just computing \enquote{how similar} the represented value is to each basis vector/function, giving us the vector coefficients with respect to the new basis.}
+The same equation---i.e., computing the dot-product between the value that should be represented and the basis---is also used when representing a vector in terms of an orthonormal vector basis. In a sense, we are just computing \enquote{how similar} the represented value is to each basis vector/function, giving us the vector coefficients with respect to the new basis.}
 
 \paragraph{Computing the vector coefficients of $\vec x$ in the general case.}
 In the general case, we can compute the coefficients of $\vec x$ by sampling and solving a least squares problem
 \begin{align*}
 	\vec x = \arg\min_{\vec x} \sum_{k = 1}^N \sum_{i = 1}^q \big( f(t_k) - x_i \phi_i(t_k) \big)^2 \,,
 \end{align*}
-where $t_1, \ldots, t_N$ are a set of $N$ sample points. Note that this is exactly the optimization problem we solve when computing population decoders $\mat D$. This is not a coincidence; the tuning curves in a neuron ensemble form a set of basis vectors.
+where $t_1, \ldots, t_N$ are a set of $N$ sample points. Note that this is exactly the optimization problem we solve when computing population decoders $\mat D$. This is not a coincidence; the tuning curves in a neuron ensemble form a set of basis functions.
 
 \paragraph{Popular basis functions} So what are some popular basis functions that people use to represent functions over time? As mentioned above, we have already seen the Fourier and Laplace transformation, which---at least in their discrete versions---can be thought of as a basis transformation.
 
@@ -196,11 +196,13 @@ Another popular (orthonormal) basis is the discrete cosine basis and the associa
 	\caption{Representing a function (dotted line in the bottom plots) with a variable number $q$ of shifted Legendre polynomials over the interval $\mathbb{X} = [0, 1]$. The error goes to zero as $q$ increases.}
 	\label{fig:legendre}
 \end{figure}
-Another popular set of basis functions (which are orthogonal, but not ortho\emph{normal}) is the Legendre basis (\cref{fig:legendre}). This is a so called \enquote{polynomial} basis, which means that the $i$th basis function is a Polynomial of order $i - 1$ (or $i$ when counting from zero). The (shifted) Legendre basis is given as
+Another popular set of basis functions (which are orthogonal, but not ortho\emph{normal}) is the Legendre basis (\cref{fig:legendre}). This is a so called \enquote{polynomial} basis, which means that the $i$th basis function is a polynomial of order $i$ when counting from zero. The (shifted) Legendre basis is given as
 \begin{align}
-	\phi_i(t) = \tilde P_i(t) = (-1)^{i - 1} \sum_{k=0}^{i - 1} \binom{n}{k} \binom{n + k}{k} (-t)^{k} \quad \text{for } t \in \mathbb{X} = [0, 1]\,. && \textit{(Shifted Legendre Basis)}
+	\phi_i(t) = \tilde P_i(t) = (-1)^{i} \sum_{k=0}^{i} \binom{i}{k} \binom{i + k}{k} (-t)^{k} \quad \text{for } t \in \mathbb{X} = [0, 1]\,. && \textit{(Shifted Legendre Basis)}
 	\label{eqn:legendre}
 \end{align}
+
+These are shifted in the sense that they are symmetric over [0,1] rather than [-1,1].
 
 \section{Representing the Past: The Delay Network}
 
@@ -241,7 +243,7 @@ One way of remembering a window of time $[t - \theta, t]$ is to implement a dela
 		u\left(t' - \theta' \right) \approx f_{[t - \theta, t]}\left(\frac{\theta'}{\theta}\right) &= \sum_{i=1}^q \tilde P_i \left( \frac{\theta'}{\theta} \right) x_i(t) \,.
 	\end{align*}
 	\item When representing $\vec x$ in neurons, we can not only decode delays but any function using information from the past $\theta$ seconds.
-	\item This network implements an optimal recurrent neural network remembering a slice of the past, as so called \enquote{reservoir}.
+	\item This network implements an optimal recurrent neural network remembering a slice of the past, as a so called \enquote{reservoir}.
 \end{itemize}
 
 \subsection{Example: Implementing the Delay Network in Nengo}
