@@ -72,14 +72,14 @@ Within this field, computer scientists typically distinguish between three types
 	\item \textbf{Supervised Learning}\\
 	Given $N$ training samples $(\vec x_k, \vec t_k)$, and a model function $f(\vec x; \vec w)$, find weights/parameters $\vec w$ such that $f(\vec x_k) \approx \vec t_k$. We hope that after training, $f(\vec x; \vec w)$ will also work for unseen~$\vec x$. In other words, we assume that there is an unknown ground truth function $f_\mathrm{GT}(\vec x) = \vec t$ that we would like to approximate by tuning the parameters of our model function $f(\vec x; \vec w)$.\\
 	\emph{Examples:} Polynomial fitting, Perceptrons, generalised linear models (GLMs), Support Vector Machines (SVMs), Gaussian Processes, Multi-Layer Perceptrons (MLPs).
-	\item \textbf{Unsupervised Learning}\\
-	We are just given a set of $N$ samples $\vec x_k$ and would like to discover some inherent order within this dataset. Often, we would like to map each $\vec x_k$ onto a lower-dimensional \enquote{latent} space $\vec \lambda$, where conceptually similar $\vec x$ are being assigned to similar $\vec \lambda$.\\
+	\item \textbf{Unsupervised (or Self-supervised) Learning}\\
+	We are just given a set of $N$ samples $\vec x_k$ and would like to discover some inherent order within this dataset. Often, we would like to map each $\vec x_k$ onto a lower-dimensional \enquote{latent} space $\vec \lambda$, where conceptually similar $\vec x$ are being assigned to similar $\vec \lambda$. Self-supervised is often used to pick out examples where an error signal is internally generated. For example, large language models learn based on predicting masked words available in the training text.\\
 	\emph{Examples:} Clustering, autoencoders, dimensionality-reduction methods (PCA, tSNE, \textellipsis).
 	\item \textbf{Semi-supervised (or Reinforcement) Learning}\\
-	A system receives state information $\vec x(t)$ and a low-dimensional reward signal $r(t)$. Goal is to learn a policy $\pi(\vec x)$ that produces actions $\vec t(t)$ maximizing the time-cumulative reward.
+	A system receives state information $\vec x(t)$ and a low-dimensional reward signal $r(t)$. The goal is to learn a policy $\pi(\vec x)$ that produces actions $\vec t(t)$ maximizing the time-cumulative reward.
 \end{itemize}
 
-Furthermore, there are additional constraints on the learning process place that are orthogonal to these concepts, such as \enquote{offline} (training happens while the system is not being used), \enquote{online} (the system learns on a stream of data), or \enquote{life-long} (the system is constantly learning whenever it is active, which is the type of learning we defined above) learning.
+Furthermore, there are additional constraints on the learning process that are orthogonal to these concepts, such as \enquote{offline} (training happens while the system is not being used), \enquote{online} (the system learns on a stream of data), or \enquote{life-long} (the system is constantly learning whenever it is active, which is the type of learning we defined above) learning.
 
 In the following sections, we have a closer look at these concepts. Maybe we can borrow some insights from Machine Learning and apply them to our spiking neural network models!
 
@@ -98,9 +98,9 @@ While equation \cref{eqn:supervised_learning} looks quite innocuous, this proble
 	\item Multi-layer perceptrons/\enquote{deep} neural networks.
 \end{itemize}
 
-The overall goal of this endeavour is \emph{generalisation}. While our training tuples $(\vec x_k, \vec t_k)$ may only cover a small portion of the space $\mathbb{X}$ we are interested in, the general hope is that once we find the right parameters $\vec w$, our function $f(\vec x; \vec w)$ will also work for tuples $(\vec x_k, \vec t_k)$ we have seen before. Underpinning this hope is the assumption that there exists a systematic mapping between $f_{\mathrm{GT}}(\vec x; \vec w)$ that is unknown to the engineer building the system, and that $f$ will approximate this $f_{\mathrm{GT}}$ after training.
+The overall goal of this endeavour is \emph{generalisation}. While our training tuples $(\vec x_k, \vec t_k)$ may only cover a small portion of the space $\mathbb{X}$ we are interested in, the general hope is that once we find the right parameters $\vec w$, our function $f(\vec x; \vec w)$ will also work for tuples $(\vec x_k, \vec t_k)$ we have not seen before. Underpinning this hope is the assumption that there exists a systematic mapping between $f_{\mathrm{GT}}(\vec x; \vec w)$ that is unknown to the engineer building the system, and that $f$ will approximate this $f_{\mathrm{GT}}$ after training.
 
-Unfortunately, in general, there are not guarantees that this will actually work. To the contrary, we can guarantee that an algorithm solving for $\vec w$ that generalises well within one particular application domain will not be able to generalise will in another application domain. This is known as the so-called \enquote{No Free Lunch Theorem}.
+Unfortunately, in general, there are not guarantees that this will actually work. To the contrary, we can guarantee that an algorithm solving for $\vec w$ that generalises well within one particular application domain will not be able to generalise in another application domain. This is known as the so-called \enquote{No Free Lunch Theorem}.
 
 \Note{\emph{Solving for decoders is a supervised learning problem.}
 The problem we solve when computing identity or function decoders fits exactly into this framework. In this case, our function $f(\vec x; \vec w)$ is just a linear model given as
@@ -124,9 +124,9 @@ In a nutshell, we analyse how infinitesimally small changes to one of the weight
 \begin{align*}
 	\Delta w_i &= \big( \nabla E(\vec w) \big)_i =  \frac{\partial E(\vec w)}{\partial w_i} = \frac{\partial}{\partial w_i} \frac{1}{N} \sum_{k = 1}^N \big\| f(\vec x_k ; \vec w) - \vec t_k \big\|^2 \,, & \text{weight update step } \vec w &\gets \vec w - \eta \Delta \vec w \,,
 \end{align*}
-where $\eta$ is the so called \emph{learning rate}. The weight update steps are then repeated until $\vec w$ converges (i.e.,~does not change considerably). See \cref{fig:gradient_descent_poly_example_10} for a simple example, yet keep in mind that depending on $f(\vec x; \vec w)$ -- the loss function will not have a clear global minimum and the number of parameters can go into the thousands (and not just two as in the example).
+where $\eta$ is the so called \emph{learning rate}. The weight update steps are then repeated until $\vec w$ converges (i.e.,~does not change considerably). See \cref{fig:gradient_descent_poly_example_10} for a simple example. Keep in mind that depending on $f(\vec x; \vec w)$, the loss function will not have a clear global minimum and the number of parameters can go into the billions (and not just two as in the example).
 
-We can either compute the partial differential $\frac{\partial}{\partial w_i}$ numerically (i.e., by evaluating $E$ for slightly different $\vec w$ and computing the difference quotient). For some $f$, the gradient $\nabla E$ can be evaluated efficiently using the chain-rule, leading to an algorithm called \emph{error back-propagation}. There are libraries such as Autograd or Tensorflow that conveniently compute these gradients.
+We can sometimes compute the partial differential $\frac{\partial}{\partial w_i}$ numerically (i.e., by evaluating $E$ for slightly different $\vec w$ and computing the difference quotient). For some $f$, the gradient $\nabla E$ can be evaluated efficiently using the chain-rule, leading to an algorithm called \emph{error back-propagation}. There are libraries such as Autograd or Tensorflow that conveniently compute these gradients.
 
 In practice, the loss function $E$ is often not evaluated for all $N$ training samples at once, but for a random subset of $N' \ll N$ samples, where $N'$ is the so called \enquote{batch size}. Not only does this increase the efficiency of the gradient descent algorithm, it also prevents the algorithm from \enquote{getting stuck} in local minima. This variant of gradient descent is called \enquote{stochastic gradient descent} (stochastic because of the random selection of samples).
 
@@ -134,7 +134,7 @@ In practice, the loss function $E$ is often not evaluated for all $N$ training s
 
 As noted above, we are solving a supervised \enquote{learning} problem (in the machine learning sense) when computing decoders $\mat D$. However, so far we have been using what is known as an \emph{offline} method -- we compute $\mat D$ in one step for all $N$ using the $L_2$-regularised Moore-Penrose pseudo inverse. That is, we have a training phase during which we compute $\mat D$, followed by the \enquote{inference} phase during which we use $\mat D$ within our neural network.
 
-In order to \emph{learn} synaptic weights $\mat W$ in the sense defined in the introduction, we need a so called \emph{online} learning rule. That is, we would like to find a learning rule that allows us to update the weights for a stream of input data while the network is active.
+In order to \emph{learn} synaptic weights $\mat W$ in the sense defined in the introduction, we need a so-called \emph{online} learning rule. That is, we would like to find a learning rule that allows us to update the weights for a stream of input data while the network is active.
 
 Luckily, we can easily derive such an algorithm in two stages. First, we will implement a decoder learning rule by performing gradient descent for an input-target pair $(\vec x(t), \vec y^\mathrm{d}(t))$. This is somewhat comparable to stochastic gradient descent with a batch size of $N' = 1$, although we do not randomly sample from a pool of $N$ available samples, but always use the information that is currently (i.e., at time $t$) available in our network.
 
@@ -146,7 +146,7 @@ For simplicity, let's assume that $d = 1$, i.e., we are representing a scalar va
 	\Rightarrow \Delta d_i = \frac{\partial E(\vec d)}{\partial d_i} &= \underbrace{\left(\left(\sum_{i = 1}^n d_i a_i\big(x(t)\big) \right) - y^\mathrm{d}(t)\right)}_{\epsilon(t)} a_i\big(x(t)\big) \\
 		&= \epsilon(t) a_i\big(x(t)\big) \,,
 \end{align*}
-where $\epsilon(t)$ is the error we are making at the current point in time. This is a version of the so called \enquote{Delta Learning Rule} for a linear model. In the next subsection we will extend this rule to individual synaptic weights $w_{ij}$.
+where $\epsilon(t)$ is the error we are making at the current point in time. This is a version of the so-called \enquote{Delta Learning Rule} for a linear model. In the next subsection we will extend this rule to individual synaptic weights $w_{ij}$.
 
 \Note{Since we are not stochastically sampling from a large pool of $N$ samples, this method has a problem often referred to a \emph{catastrophic forgetting}. By not looking at older samples, we are temporarily over-fitting our system to the current region of the input-target space.}
 
@@ -266,18 +266,17 @@ The general experimental setup is the following. An animal \enquote{unconditonal
 
 If the unconditioned stimulus is paired with a so called conditioned stimulus (CS) (for example a tone, or a flash of light), the animal gradually learns to associate the conditioned stimulus with the unconditioned stimulus and will produce a conditioned response (CR) mimicking the unconditioned response even in the absence of the unconditioned stimulus (\cref{fig:classical_conditioning_b}).
 
-One possible implementation of classical conditioning using the PES learning rule is depicted in \cref{fig:conditioning_network}. As visible, the system solely receives two modalities as sensory input.
-
+One possible implementation of classical conditioning using the PES learning rule is depicted in \cref{fig:conditioning_network}. As visible, the system solely receives two modalities as sensory input. We also see the phenomenon of extinction in that example implementation. Note that this might also be understood as a kind of self-supervised learning because the system internally generates the error signal.
 
 \section{Unsupervised Learning}
 
-Another way to eliminate the need for an external error signal is to not define an explicit target signal $\mat y^\mathrm{d}(t)$ at all, but to instead try to learn structure inherent to samples of data $\vec x_k$ without any external guidance. Often, what we would like to accomplish is some sort of \emph{dimensionality reduction}. That is, we would like to map each high dimensional datum $\vec x_k$ onto a low dimensional space $\vec \lambda$ (the so called \enquote{latent space}), where each dimension in the low dimensional space has some dimension that intrinsically describes the data.
+Internal generation of error signals, as in the classical conditioning example, is often considered a type of unsupervised learning -- although it sits somewhat on the boarder of the supervised and unsupervised dichotomy. Another way to eliminate the need for an external error signal is to not define an explicit target signal $\mat y^\mathrm{d}(t)$ at all, but to instead try to learn structure inherent to samples of data $\vec x_k$ without any external guidance. Often, what we would like to accomplish is some sort of \emph{dimensionality reduction}. That is, we would like to map each high dimensional datum $\vec x_k$ onto a low dimensional space $\vec \lambda$ (the so called \enquote{latent space}), where each dimension in the low dimensional space has some dimension that intrinsically describes the data.
 
 As with supervised learning, the assumption is that there exists a ground-truth function
 \begin{align*}
 	f^{-1}_\mathrm{GT}(\vec \lambda) : \mathbb{R}^{d'} \longrightarrow \mathbb{R}^d \text{, with } d' \ll d \text{ and } f^{-1}_\mathrm{GT}(\vec \lambda_k) = \vec x_k + \text{ noise} \,.
 \end{align*}
-That is, we assume that the high-dimensional samples $\vec x_k$ we observe are actually the result of a process that only depends on a few variables $\vec \lambda$.
+That is, we assume that the high-dimensional samples $\vec x_k$ we observe are actually the result of a process that only depends on a few variables $\vec \lambda$. Essentially, we introduce an implicit error signal which is the difference between the high-dimensional and (reconstructed) low-dimensional representations.
 
 \Example{\emph{Faces.} For a moment, think about a set of greyscale photographs of faces. Naturally, we could describe each of these photographs as a vector of pixel intensities $\vec x_k \in \mathbb{R}^d$, where $d$ is the product of the width and height of the photographs in number of pixels. Typically, $d$ would be on the order of magnitude of a few thousand (i.e., for a $32 \times 32$ pixel image we have $d = 1024$) to a few million ($d = 20\times10^6$ for a \enquote{20 megapixel} image).
 	
@@ -331,7 +330,7 @@ To prevent this from happening, we need to apply some regularisation to the bott
 An interesting concept that -- as we will see -- is directly related to unsupervised learning in biologically plausible neural networks, is the so called Principal Component Analysis, often referred to as PCA. In short, the PCA computes a linear basis transformation $\mat T$ that transforms the input samples $\vec x_k$ in such a way that the most information (in terms of variance) is explained by the first dimensions of the resulting $\lambda_k$.
 
 \paragraph{Basis Transformation}
-In order to understand this a little better, let's first define what a \emph{basis transformation} is. Let $\mat T \in \mathbb{R}^{d \times d}$ be an orthogonal matrix, that is $\mat T \mat T^\T = \mat T^\T \mat T = \mat I$, then $\mat T$ can be seen as a so called \enquote{basis transformation}. The mathematical term for an orthogonal transformation matrix is \emph{rotation}. Rotations are quite intuitive in two and three dimensions (they do exactly what their name suggests, i.e.,~they change the orientation of points in space without changing their distance), where we can easily visualise rotations, but we can no longer to so for $d > 3$. In particular, it holds
+In order to understand this a little better, let's first define what a \emph{basis transformation} is. Let $\mat T \in \mathbb{R}^{d \times d}$ be an orthogonal (aka orthonormal) matrix, that is $\mat T \mat T^\T = \mat T^\T \mat T = \mat I$, then $\mat T$ can be seen as a so called \enquote{basis transformation}. The mathematical term for an orthogonal transformation matrix is \emph{rotation}. Rotations are quite intuitive in two and three dimensions (they do exactly what their name suggests, i.e.,~they change the orientation of points in space without changing their distance), where we can easily visualise rotations, but we can no longer to so for $d > 3$. Nevertheless, it holds
 \begin{align*}
 	\vec \lambda = \mat T \vec x \,, \quad \text{ and }\quad \vec x = \mat T^\T \vec \lambda \,, && \text{ where } \mat T \in \mathbb{R}^{d \times d} \, \text{ and } \vec x, \vec \lambda \in \mathbb{R}^d \,.
 \end{align*}
@@ -376,7 +375,7 @@ def PCA(X): # X: N x d matrix
     N, d = X.shape 
     X_cen = X - np.mean(X, axis=0)
     C = (X_cen.T @ X_cen) / (N - 1)
-    L, V = np.linalg.eigh(C) # "eigh" faster than "eig" for symmetric matrices
+    L, V = np.linalg.eigh(C) # "eigh" is faster than "eig" for symmetric matrices
     return V.T[::-1, :] # d x d matrix
 \end{lstlisting}}
 
@@ -517,7 +516,7 @@ A popular choice for $W(\theta)$ (see \cref{fig:stdp}) is
 		-\alpha^- e^{-\theta / \tau^-}& \text{if } \theta \leq 0 \,,
 	\end{cases}
 \end{align*}
-where the time constants $\tau^+$ and $\tau^-$ are typically in the range of \SI{10}{\milli\second}. There is strong experimental support for this type of learning -- see \cite{sjostrom2010spiketiming} for more details.
+where the time constants $\tau^+$ and $\tau^-$ are typically in the range of \SI{10}{\milli\second}. There is strong experimental support for this type of learning -- see \cite{sjostrom2010spiketiming} for more details. It has been suggested that, in fact, the STDP and BCM rules capture the same phenomena under appropriate interpretations of `activity' as post-synaptic filtered spikes \cite{bekolay2011masters}.
 
 \begin{figure}
 	\centering
