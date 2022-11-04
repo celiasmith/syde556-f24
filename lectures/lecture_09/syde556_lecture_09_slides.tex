@@ -9,8 +9,8 @@
 
 \usepackage{ragged2e}
 
-\date{October 25, 2021}
-\title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 7: Analysing Representations}
+\date{Nov 4, 2022}
+\title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 9: Analysing Representations}
 
 \begin{document}
 	
@@ -28,6 +28,13 @@
 		\centering
 		\includegraphics[width=\textwidth]{media/poly_decodings.pdf} 
 	\end{frame}
+
+  \begin{frame}{Projection of the Neuron Space to PCA}
+    \centering
+    \includegraphics[scale=.4]{media/c5.chi.projections.pdf}
+    
+    A subspace of neuron activity being projected onto the first few principle component planes. Notice that the axis scales are different, capturing the size of the singular value.
+  \end{frame}
 
 	\begin{frame}{LIF Tuning Curve Principal Components}
 		\centering
@@ -100,6 +107,11 @@
 		\end{overlayarea}
 	\end{frame}
 
+  \begin{frame}{Gaussian vs LIF Singular Values}
+		\centering
+		\includegraphics[scale=.5]{media/c5.line.gauss.sing.vals.pdf}
+	\end{frame}
+
 	\begin{frame}{PCA of 2D Tuning Curves}
 		\centering
 		\includegraphics[width=\textwidth]{media/2d_tuning_curves.pdf}
@@ -107,6 +119,13 @@
 			\centering
 			\only<2->{\vspace*{-0.5cm}\hl{Combination of 2D Polynomials}}
 		\end{overlayarea}
+	\end{frame}
+
+  \begin{frame}{2D Singular Values}
+		\centering
+		\includegraphics[scale=.5]{media/c5.multiset.2D.pdf}
+
+    2D and 4D singular values compared to the prediction of the multiset (i.e., number of cross terms).
 	\end{frame}
 
 	\begin{frame}{Conclusions}
