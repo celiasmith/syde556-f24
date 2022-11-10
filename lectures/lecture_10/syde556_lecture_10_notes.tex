@@ -91,7 +91,7 @@ An attempt at solving all four problems posed by Jackendoff is the \enquote{Neur
 	\item[\OMeh] This is still a (at least partially) localist representation.
 	\item[\OMinus] Uses a very particular structure that does not really seem to match biology.
 	\item[\OMinus] Uses a very large number of neurons; about $500\times 10^6$ to represent simple sentences.
-	\item[\OMinus] Only considers sentence representation, but not the individual control structures.
+	\item[\OMinus] Only considers sentence representation, but not how they can be transformed and manipulated.
 \end{itemize}
 
 \subsection{Solution Attempt 3: Vector Operators}
@@ -126,7 +126,7 @@ This idea is actually quite old, and there have been multiple suggestions as for
 This way, two vectors $\vec x$, $\vec y$ can be bound without losing any information. In contrast to just stacking the two vectors (which would also not incur any information loss), the tensor product has some nice mathematical properties, and can, as outlined by Smolensky in his paper, to a degree be easily implemented in a neural substrate.
 \begin{itemize}
 	\item[\OPlus] Solves the binding problem and the problem of two.
-	\item[\OMeh] Unclear how to solve Jackendoff's third and fourth challenge.
+	\item[\OMeh] Unclear how to solve Jackendoff's fourth challenge.
 	\item[\OMinus] The method scales extremely poorly. Every time two vectors are bound, the dimensionality of the resulting structure is squared; we need $d^2$ dimensions when binding two $d$-dimensional vectors. In general, for $n$ binding operations we need $d^n$ dimensions.
 \end{itemize}
 
@@ -223,7 +223,7 @@ We can use this technique to write down more interesting concepts, such as the s
 
 \subsection{Circular Convolution}
 
-In the following, we are going to focus on \emph{circular convolution} as a binding operator. Circular convolution has been used in signal processing for a long time, but has been proposed by Tony Plate in the 1990s as a binding operator \cite{plate1995holographic}. Circular convolution of two vectors $\vec z = \vec x \CC \vec y$ is defined as
+In the following, we are going to focus on \emph{circular convolution} as a binding operator. Circular convolution has been used in signal processing for a long time, but has been proposed by Tony Plate in the 1990s as a binding operator \cite{plate1995holographic} and is used extensively in SPA models including Spaun. Circular convolution of two vectors $\vec z = \vec x \CC \vec y$ is defined as
 \begin{ImportantEqn}{Circular Convolution}
 	z_i &= \sum_{j = 0}^{d - 1} x_{j} y_{i - j \hspace{-1.25mm} \mod d } \,, & \text{ where } \vec x, \vec y, \vec z \in \mathbb{R}^d \,, \text{ and } a \hspace{-2mm} \mod b = a - b \left\lfloor \frac{a}b \right\rfloor \,.
 	\label{eqn:cc}
