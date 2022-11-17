@@ -2,7 +2,7 @@
 \documentclass[10pt,letterpaper,oneside]{article}
 \input{../syde556_lecture_notes_preamble}
 
-\date{March 24 \& 26, 2020}
+\date{November 17 \& 18, 2022}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 11: The Semantic Pointer Architecture}
 
 \newcommand{\Pred}[1]{\ensuremath{\mathbf{\textcolor{Crimson}{#1}}}}
@@ -16,23 +16,28 @@
 
 \section{Introduction}
 
-\Note{In the previous lecture, we discussed Vector Symbolic Architectures (VSAs) in combination with circular convolution as a way to represent symbols as vectors and to \enquote{combine} concepts into a new one. However, VSAs alone are not a \enquote{cognitive architecture}. It is unclear how to build \enquote{cognitive agents} that receive information from the environment, turn this information into symbol vectors, and finally produce \emph{behaviour}. The semantic pointer architecture (SPA) is an attempt at providing a cognitive architecture based on VSAs.}
+\Note{In the previous lecture, we discussed Vector Symbolic Architectures (VSAs) in combination with circular convolution as a way to represent symbols as vectors and to \enquote{combine} concepts into a new one. However, VSAs alone are not a \enquote{cognitive architecture}. It is unclear how to build \enquote{cognitive agents} that receive information from the environment, turn this information into symbol vectors, and finally produce \emph{behaviour}. The semantic pointer architecture (SPA) is an attempt at providing a cognitive architecture combining VSAs, the NEF, and other modeling approaches to produce \emph{biological cognition}.}
 
-As we have seen, we can use Vector Symbolic Architectures in conjunction with circular convolution to solve some relatively challenging cognitive problems, such as Raven's progressive matrices. However, so far, we have presumed that a certain vocabulary of random symbol vectors exists and that there is some kind of system in place that extracts these symbol vectors from the environment.
+As we have seen, we can use Vector Symbolic Architectures in conjunction with circular convolution to solve some relatively challenging cognitive problems, such as Raven's progressive matrices. Furthermore, we can use the NEF to implement such approaches in spiking neural networks. However, so far, we have presumed that a certain vocabulary of random symbol vectors exists and that there is some kind of system in place that extracts these symbol vectors from the environment.
 
-In this lecture we are going to be a little more specific. We are going to describe an architecture based on symbol vectors that hypothesises how sensory information could be turned into symbol vectors, how these vectors a processed, and, lastly, how symbol vectors can be turned into motor commands. This architecture is called the \enquote{Semantic Pointer Architecture} (SPA).
+In this lecture we are going to be a little more specific. We are going to describe an NEF-implementable architecture based on symbol vectors that hypothesises how sensory information could be turned into symbol vectors, how these vectors are processed, and, lastly, how symbol vectors can be turned into motor commands. This architecture is called the \enquote{Semantic Pointer Architecture} (SPA).
 
-At a smaller scale, the SPA can be used to build neural models of cognitive phenomena such as working memory or language association tasks. At a larger scale, the SPA has been used to build one of the largest functional brain models to date, the Semantic Pointer Architecture Unified Network (SPAUN) \cite{eliasmith2012largescale,choo2018spaun}. SPAUN is able to solve a variety of cognitive tasks, using the same underlying neural network and without being \enquote{reprogrammed}. This ability is a major strength of the SPA in contrast to other models of cognition.
+At a smaller scale, the SPA can be used to build neural models of cognitive phenomena such as working memory or language association tasks. At a larger scale, the SPA has been used to build the largest functional brain model to date, the Semantic Pointer Architecture Unified Network (Spaun) \cite{eliasmith2012largescale,choo2018spaun}. Spaun is able to solve a variety of cognitive tasks, using the same underlying spiking neural network and without being \enquote{reprogrammed}. This ability is a major strength of the SPA in contrast to other models of cognition.
 
-In this lecture we will first have a broader look at the SPA, including the concepts of \enquote{shallow and deep semantics}. Then, we have quick look at SPAUN, and in particular a specific model of human serial working memory, followed by a discussion of cognitive control and action selection in particular.
+In this lecture we will first have a broader look at the SPA. In the book \enquote{How to build a brain}, the SPA is broken down into chapters on semantics, syntax, control, and learning and memory. We have already seen how syntax is handled, as the SPA uses a spiking implementation of circular convolution.  We have also seen examples of learning in earlier lectures that are quite similar to the methods in the SPA. In this lecture we will focus on the other elements of the SPA, starting with the concepts of \enquote{shallow and deep semantics}. Then, we have quick look at Spaun, and in particular a specific model of human serial working memory, followed by a discussion of cognitive control and action selection in particular.
 
 \section{The Semantic Pointer Architecture}
 
 \Note{The content of this section is to a large degree based on Chapter 3 of \enquote{How to Build a Brain} \cite{eliasmith2013how}. Read the chapter for a more thorough discussion of semantic pointers.}
 
-In a nutshell, the Semantic Pointer Architecture combines the idea of vector symbolic architectures (VSAs) with the NEF as a \enquote{computational substrate}. In addition, the SPA proposes, first, a specific cognitive architecture---the basal ganglia cortex control loop.
+In a nutshell, the Semantic Pointer Architecture combines the ideas of vector symbolic architectures (VSAs), deep convolutional neural networks, control theory, and action selection all while using the NEF as a \enquote{neural compiler}. In addition, the SPA adopts a specific cognitive architecture---the basal ganglia cortex control loop.
 
-Second, symbol vectors in the SPA are no longer random, but thought to be the result of a reversible \emph{compression} process. Just as a pointers in most programming languages can be \enquote{dereferenced} to access the original content, symbol vectors $\vec x$ constructed in this way can be \emph{decompressed} to access the information---\enquote{deep semantics}---about the underlying represented object. Hence, symbol vectors in the SPA are called \emph{semantic pointers}.
+Given the overall architecture, symbol vectors in the SPA are no longer random, but thought to be the result of a partly reversible \emph{compression} process. Just as a pointers in most programming languages can be \enquote{dereferenced} to access the original content, symbol vectors $\vec x$ constructed in this way can be \emph{decompressed} to access the information---\enquote{deep semantics}---about the underlying represented object. Hence, symbol vectors in the SPA are called \emph{semantic pointers}.
+
+The SPA argues for the Semantic Pointer Hypothesis. Simply put, this hypothesis states: 
+\begin{quote}
+Higher-level cognitive functions in biological systems are made possible by semantic pointers. Semantic pointers are neural representations that carry partial semantic content and are composable into the representational structures necessary to support complex cognition.
+\end{quote}
 
 
 \subsection{Shallow and Deep Semantics}
@@ -41,14 +46,14 @@ In order to gain a better understanding of semantic pointers, we must first dist
 
 In general---and without going into any philosophical details---a \emph{symbol} is an arbitrary mapping from a short piece of information (the representation of the symbol itself) onto a richer semantic concept.
 
-For example, consider the symbol {\Obj{TREE}}. As a human being seeing this symbol, we tend to immediately map it onto a certain class of tall plants, along with the corresponding visual imagery, smells, sounds, and textures. All this cross-modal information establishes the \emph{deep semantics} of the symbol, i.e.,~our \enquote{subjective experience} of the concept.
+For example, consider the symbol {\Obj{TREE}}. As a human being seeing this symbol, we tend to immediately map it onto a certain class of tall plants, along with the corresponding visual imagery, smells, sounds, and textures. All this cross-modal information establishes the \emph{deep semantics} of the symbol, i.e.,~our \enquote{experience} of the concept.
 
 Now consider an early 1980s artificial intelligence researcher building a symbolic reasoning system. In such a system the symbol {\Obj{TREE}} might just be represented as a short sequence of bytes (i.e., \Obj{TREE} is \texttt{0x54 0x52 0x45 0x45} in ASCII), along with a set of similarly encoded information linking this symbol to other symbols, for example
 \begin{align*}
 	\forall x \Pred{is\_a}(x, \Obj{PINE}) &\rightarrow \Pred{is\_a}(x, \Obj{TREE}) \wedge \Pred{has}(x, \Obj{NEEDLES}) \wedge \Pred{is}(x, \Obj{EVERGREEN}) \,, \\
 	\forall x \Pred{is\_a}(x, \Obj{TREE}) &\rightarrow \Pred{is\_a}(x, \Obj{PLANT}) \,, \quad \forall x \Pred{is\_a}(x, \Obj{PLANT}) \rightarrow \Pred{is}(x, \Obj{ALIVE}) \,.
 \end{align*}
-The problem of \enquote{symbol grounding} is the observation that even though we could imagine building a database with all important information there is to know about a concept, the symbols we use in this relational description (the \emph{shallow semantics}) are not really linked or related to any sensory information or \enquote{subjective experience}.
+The problem of \enquote{symbol grounding} is the observation that even though we could imagine building a database with all important information there is to know about a concept, the symbols we use in this relational description (the \emph{shallow semantics}) are not really linked or related to any sensory information or \enquote{experience} of the world.
 
 \Aside{A project that aims to build exactly such a database is Douglas Lenat's Cyc project, started in 1984. The database is still under active development. (\url{https://www.cyc.com/})}
 
@@ -108,13 +113,13 @@ We can treat these high-level control signals as \enquote{semantic pointers} tha
 	\label{fig:spa_network}
 \end{figure}
 
-In order to use semantic pointers in Nengo models, we can use the \texttt{nengo\_spa} library. While this library does not implement the perception and action systems we discussed above (i.e., per default, semantic vectors are just random symbol vectors), it does provide an implementation of the action selection system we discuss below.
+In order to use semantic pointers in Nengo models, we can use the \texttt{nengo\_spa} library.\footnote{The current library to use is \texttt{nengo.spa} as \texttt{nengo\_spa} is being deprecated.} While this library does not implement the perception and action systems we discussed above (i.e., per default, semantic vectors are just random symbol vectors), it does provide an implementation of the action selection system we discuss below.
 
 In a nutshell, the \texttt{nengo\_spa} library provides \texttt{spa.Transcode} in lieu of \texttt{nengo.Node} objects whenever a symbolic stimulus is received from the environment. Furthermore, \texttt{nengo.Ensemble} instances can be replaced with \texttt{spa.State} objects to represent symbol vectors in a neural population.
 
-Consider the \enquote{question asking} example we discussed in the last lecture, where we saw that the pseudo-inverse of a symbol vector $\vec x$ can be used to reconstruct which other concept $\vec x$ has been bound to. For example, $(\Obj{RED} \CC \Obj{SQUARE}) \CC \Obj{SQUARE}^{-1} \approx \Obj{RED}$, i.e., we are asking the question \enquote{what property does the square have}?
+Consider the \enquote{question answering} example we discussed in the last lecture, where we saw that the pseudo-inverse of a symbol vector $\vec x$ can be used to reconstruct which other concept $\vec x$ has been bound to. For example, $(\Obj{RED} \CC \Obj{SQUARE}) \CC \Obj{SQUARE}^{-1} \approx \Obj{RED}$, i.e., we are asking the question \enquote{what property does the square have}?
 
-The following code example (\CodeLink{lecture_11/media/code/nengo_spa_example.ipynb}) shows how to implement a network that queries different properties from a dynamically changing set of inputs. A diagram giving a better overview of what we are implementing here is given in \cref{fig:spa_network}.
+The following code example (\CodeLink{lecture_11/media/code/spa.ipynb}) shows how to implement a network that queries different properties from a dynamically changing set of inputs. A diagram giving a better overview of what we are implementing here is given in \cref{fig:spa_network}.
 \pagebreak\vspace*{-0.75cm}
 \cprotect\Python{\begin{lstlisting}[language=python,morekeywords=with]
 import nengo
@@ -140,6 +145,9 @@ def cue_input(t):
     idx = int((t // (1. / len(sequence))) % len(sequence))
     return sequence[idx]
 
+model = spa.Network()
+dimensions = 32
+
 with model:
     colour_in = spa.Transcode(colour_input, output_vocab=dimensions)
     shape_in = spa.Transcode(shape_input, output_vocab=dimensions)
@@ -155,7 +163,7 @@ with model:
 
 \begin{figure}
 	\centering\hspace*{-0.33cm}\includegraphics{media/nengo_spa_example.pdf}
-	\caption{Output of the \texttt{nengo\_spa} \enquote{question asking} example detailed above. As can be seen in the output plot, the network correctly identifies the concept that is bound to any given cue. \CodeLink{lecture_11/media/code/nengo_spa_example.ipynb}}
+	\caption{Output of the \texttt{nengo\_spa} \enquote{question answering} example detailed above. As can be seen in the output plot, the network correctly identifies the concept that is bound to any given cue. \CodeLink{lecture_11/media/code/spa.ipynb}}
 	\label{fig:nengo_spa_example}
 \end{figure}
 
@@ -163,25 +171,135 @@ Note that the strings returned in the callback functions passed to \texttt{spa.T
 
 \Note{While the \texttt{nengo\_spa} library offers useful abstractions for building SPA models, keep in mind that the resulting network is still a low-level NEF network; even though you use the \texttt{spa.Transcode} or \texttt{spa.State} objects, the network is consisting of \texttt{nengo.Node} objects for anything input/output related and \texttt{nengo.Ensemble} objects for everything else.}
 
-\section{SPAUN}
+\section{Control: Action Selection}
 
-\begin{figure}
-	\includegraphics[width=\textwidth]{media/eliasmith_2012_spaun_architecture.pdf}
-	\caption{SPAUN's architecture. Visual input and motor output translate visual stimuli into semantic pointers and vice versa. Information is routed to different subsystems according to an action selection system, which, turn, is controlled by the content of the working memory and a reward system. Figure copied from \cite{eliasmith2012largescale}.}
-	\label{fig:eliasmith_2012_spaun_architecture}
+\Note{The following sections are under construction and only outline information on the contents covered in class.}
+
+To this point we have seen methods that allow us to construct and manipulate symbol-like information.  However, brains need to know \emph{when} to perform such manipulations.  This is the purpose of an action selection mechanism.  Action selection is one of two elements of control in the SPA. The other is \emph{routing}. `Routing' refers to ensuring that the right information goes to the right place at the right time. Selected actions are essentially implemented by routing. In what follows we consider both together, but focus on action selection.  A greater focus on routing would occur if we were discussing notions like `attention'.
+
+\paragraph{What is an action?}
+\begin{itemize}
+	\item Physical movements (most obvious)
+	\item Cognitive actions (less obvious), like
+	\begin{itemize}
+    \item Moving attention
+    \item Changing the contents of working memory
+    \item Recalling items from long-term memory
+  \end{itemize}
+	\item[$\Rightarrow$] Routing information in a particular way
+\end{itemize}
+
+Action selection is picking which of these to do.
+
+\paragraph{Basal Ganglia}
+Notes, do not write down!
+\begin{itemize}
+	\item All of cortex connects to this
+	\item Output goes to Thalamus, central routing system
+	\item Clinical evidence
+	\begin{itemize}
+		\item Parkinson's disease
+		\begin{itemize}			
+			\item Neurons in the substantia nigra die off
+			\item Extremely difficult to trigger actions to start
+			\item Usually physical actions; as disease progresses and more of the SNc is gone, can get cognitive effects too
+			
+		\end{itemize}
+		\item Huntington's disease
+		
+		\begin{itemize}
+			\item Neurons in the striatum die off
+			\item Actions are triggered inappropriately (disinhibition)
+			\item Small uncontrollable movements
+			\item Trouble sequencing cognitive actions too
+		\end{itemize}
+	\end{itemize}
+	\item Neurophysiological Evidence that BG are involved in RL, dopamine levels in BG correspond to reward prediction error
+	\item Thalamus disinhibits other brain regions
+	\item I.e., outputs $[1, 1, 0, 1]$ if action \textbf{C} is chosen
+	\item Use inhibitory connections to suppress information from being transmitted
+\end{itemize}
+
+\paragraph{A simple example}
+\begin{itemize}
+	\item A critter is trying to survive in a harsh environment
+	\item Possible actions
+	\begin{itemize}
+		\item[\textbf{A}] Go home
+		\item[\textbf{B}] Move randomly
+		\item[\textbf{C}] Go towards food
+		\item[\textbf{D}] Go away from predator
+	\end{itemize}
+	\item Which one do we pick?
+	\item[$\Rightarrow$] Reinforcement learning is a standard approach
+\end{itemize}
+
+\paragraph{Reinforcement Learning}
+\begin{itemize}
+	\item Learn function $Q(\vec s, \vec a)$ assigning a \emph{utility} to the current state
+	\item Policy: choose action $\vec a$ with the highest utility $Q(\vec s, \vec a)$ in a given state $\vec s$ - i.e. use a selector like the BG to pick the action based on the value
+\end{itemize}
+
+\paragraph{Action Selection Examples}
+
+We can try using lateral/mutual inhibition as in the code below.
+
+\cprotect\Python{\begin{lstlisting}[language=python,morekeywords=with]
+import nengo
+
+def stimulus(t):
+    if t<.3:
+        return [.5,.4]
+    elif .3<t<.5:
+        return [.3,.5]
+    else:
+        return [0,0] 
+    
+model = nengo.Network('Selection')
+
+with model:
+    stim = nengo.Node(stimulus)
+        
+    s = nengo.Ensemble(200, dimensions=2)
+    Qs = nengo.networks.EnsembleArray(50, n_ensembles=4)
+    Action = nengo.networks.EnsembleArray(50, n_ensembles=4)
+    
+    nengo.Connection(s, Qs.input, transform=[[1,0],[-1,0],[0,1],[0,-1]])
+    nengo.Connection(Qs.output, Action.input)
+    
+    e = 0.1
+    i = -1
+
+    recur = [[e, i, i, i], [i, e, i, i], [i, i, e, i], [i, i, i, e]]    
+
+    def positive(x):
+        if x[0]<0: return [0]
+        else: return x
+    pos = Action.add_output('positive', positive)
+    
+    nengo.Connection(pos, Action.input, transform=recur)
+    
+    def select(x):
+        if x[0]>=0: return [1]
+        else: return [0]
+    sel = Action.add_output('select', select)
+        
+    aValues = nengo.networks.EnsembleArray(50, n_ensembles=4)
+    
+    nengo.Connection(sel, aValues.input)   
+    nengo.Connection(stim, s)
+\end{lstlisting}}
+
+Note if we increase the excitation too high (e.g., .5) we get a lot of hysteresis (i.e., changes in the input which switch the max value don't cause the selection to change). In general, it's very difficult to tune such a network, especially as the number of actions and states becomes large. As well, if the Q values are close or farther apart across the range (e.g. Does it work for $Q =[0.9, 0.9, 0.95, 0.9]$ and $Q=[0.2, 0.2, 0.25, 0.2]$?) These are the problems the brain is solving with the basal ganglia circuitry (See Figure \ref{fig:simple_bg}).
+
+In this simplified model, the cortical state feeds into striatum (D1 and D2) and STN (the hyperdirect pathway). The D1 pathway then projects to the GPi (output) with inhibition, so in a basic sense whatever is most active will be the most inhibited (and hence selected -- call the inhibited pathway is selected). The rest of the circuit is roughly normalizing this max operation by monitoring the activity going into GPi, and adjusting that input based on how active those connections are. It's a very nonlinear dynamical system that is difficult to analyze.  However, it also works quite well. See Nengo example tutorial 21 on SPA sequences. 
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[scale=1]{media/gpr3.png}
+	\caption{Simplified basal ganglia model that performs action selection in a scalable manner.}
+	\label{fig:simple_bg}
 \end{figure}
-
-\begin{figure}
-	\includegraphics[width=\textwidth]{media/eliasmith_2012_spaun_anatomy.pdf}
-	\caption{Brain areas modelled by SPAUN. Colours correspond to those found in \cref{fig:eliasmith_2012_spaun_architecture}. The orange dashed line corresponds to the Basal Ganglia. Figure copied from \cite{eliasmith2012largescale}.}
-	\label{fig:eliasmith_2012_spaun_anatomy}
-\end{figure}
-
-As mentioned above, SPAUN is one of the largest functional brain models to date~\cite{eliasmith2012largescale}. SPAUN implements the ideas discussed above. Visual input is directly translated into semantic pointers, and semantic pointers representing motor actions are used to drive a motor system (\cref{fig:eliasmith_2012_spaun_architecture}).
-
-Processing---apart from visual input and motor output---consists of a comparably small set of building blocks information is routed to according to an action selection system. The action selection system itself is driven by the state of a working memory and a reward evaluation model. All these building blocks are coarsely modelled after individual brain regions, as detailed in \cref{fig:eliasmith_2012_spaun_anatomy}. Although SPAUN consists of relatively few modules, it is able to flexibly use these components to solve a variety of tasks---without the experimenter having to intervene and reconfigure the model (see here for some videos showing SPAUN in action: \YouTube[digit recognition]{f6Ul5TYK5-o}, \YouTube[copy drawing]{WNnMhF7rnYo}, \YouTube[addition by counting]{mP7DX6x9PX8}, \YouTube[pattern completion]{Q_LRvnwnYp8}).
-
-For a detailed description of the model, refer to \enquote{How to Build a Brain} \cite{eliasmith2013how}. In the following, we will focus on two import sub-components: the working memory model used in SPAUN, as well as the Basal Ganglia/Thalamus model that is used for action selection and that lies at the heart of the Semantic Pointer Architecture.
 
 \subsection{Serial Working Memory}
 
@@ -205,7 +323,7 @@ Working memory (or, here, synonymously \emph{short-term memory}), has been exten
 
 When repeating this experiment multiple times with lists of different lengths, one will find that participants are relatively good at remembering the first and last words in the list, but can often not remember the words in between. The ability to remember the initial words is called \emph{primacy effect} (i.e., the first (primal) observations of a new sequence of events are remembered), the ability to remember the last words is called \emph{recency effect} (i.e., the most recent events are still in memory) (\cref{fig:htbab_ose_experiment}).
 
-As we have discussed before, in the context of the NEF, we think about working memory content as being encoded in neural activity patterns and not in neural connection weights. Furthermore, we discussed neural integrators as a kind of working memory. Instead of just representing one dimension, we can also implement higher-dimensional neural integrators that \enquote{remember} entire semantic pointers $\vec x$ (this requires careful tuning of the neural encoders).
+As we have discussed before, in the context of the NEF, we think about working memory content as being encoded in neural activity patterns and not in neural connection weights. Furthermore, we discussed neural integrators as a kind of working memory. Instead of just representing one dimension, we can also implement higher-dimensional neural integrators that \enquote{remember} entire semantic pointers $\vec x$ (this requires careful tuning of the neural encoders). Changing the amount of feedback in an integrator can give your network more of a recency (<1) or primacy (>1) behaviour (see Nengo example 19 SPA).
 
 When presenting a sequence of symbol vectors $\Obj{ITEM_A}, \Obj{ITEM_B}, \ldots, \Obj{ITEM_X}$, a perfect integrator will automatically remember the sum of these symbol vectors, i.e., the state $\vec x$ after all items have been presented is given as a weighted sum of the individual symbol vectors:
 \begin{align*}
@@ -215,7 +333,7 @@ Of course, when building a model of the above experiment, we also need to store 
 \begin{align*}
 	\Obj{POS}_i &= \underbrace{\Obj{POS} \CC \Obj{POS} \CC \ldots \CC \Obj{POS}}_{i \text{ times}} \,, & \text{where } \Obj{POS} \text { is a unitary vector, i.e. } \| \vec x \CC \Obj{POS} \| = \| \vec x \| \,.
 \end{align*}
-We can thus create these position vectors \enquote{on the fly} whenever a new item is presented, by just binding \Obj{POS} to the previous position vector.
+We can thus create these position vectors \enquote{on-the-fly} whenever a new item is presented, by just binding \Obj{POS} to the previous position vector.
 
 Depending on how exactly the integrator is tuned (i.e., whether it is implemented as a leaky integrator or not, what the strength of the feedback connection is, radius of the population, etc.), a neural integrator implemented using NEF principle three can either show recency or primacy effects. Combining a primacy and a recency memory system thus allows us to implement a model of human serial working memory. Having two memory systems maps well onto the human brain, where we know that prefrontal cerebral cortex (PFC) is responsible for representing events in the immediate past, whereas Hippocampus is involved in remembering events in the more distant past (this type of memory is also referred to as \enquote{episodic memory}). See the left half of \cref{fig:htbab_ose} for an overview diagram of this memory model.
 
@@ -223,82 +341,28 @@ Of course, in order to recall items from this memory in series, we need a circui
 
 An experiment comparing human performance to the performance of this memory system is depicted in the right half of \cref{fig:htbab_ose_experiment}. As visible, the model data matches the human performance quite well, both qualitatively and quantitatively.
 
-\pagebreak
 
-\vspace*{-0.5cm}
 \Note{\emph{Repeating experiments.} When evaluating NEF models, one should always repeat the experiment several times with different random seeds. This will cause the $x$-intercepts, maximum firing rates and encoders to be different in each trial. Each of these experimental trials can be interpreted as a different \enquote{participant}. One should then look at the distribution of the results, for example by visualising the mean, median, standard deviation, and the 10-/90-percentiles in a box plot (see \href{https://en.wikipedia.org/wiki/Box_plot}{Wikipedia} and \href{https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.boxplot.html}{the Matplotlib documentation} for more information).}
 
-\subsection{Action Selection}
+\section{Spaun}
 
-\begin{itemize}
-	\item \emph{Talk about SPAUN, need for action selection, need for  routing of information between modules}
-\end{itemize}
+\begin{figure}
+	\includegraphics[width=\textwidth]{media/eliasmith_2012_spaun_architecture.pdf}
+	\caption{SPAUN's architecture. Visual input and motor output translate visual stimuli into semantic pointers and vice versa. Information is routed to different subsystems according to an action selection system, which, turn, is controlled by the content of the working memory and a reward system. Figure copied from \cite{eliasmith2012largescale}.}
+	\label{fig:eliasmith_2012_spaun_architecture}
+\end{figure}
 
-\paragraph{What is an action?}
-\begin{itemize}
-	\item Physical movements ($\Rightarrow$ control theory)
-	\item Moving attention
-	\item Changing the contents of working memory
-	\item Recalling items from long-term memory
-	\item[$\Rightarrow$] Routing information
-\end{itemize}
+\begin{figure}
+	\includegraphics[width=\textwidth]{media/eliasmith_2012_spaun_anatomy.pdf}
+	\caption{Brain areas modelled by Spaun. Colours correspond to those found in \cref{fig:eliasmith_2012_spaun_architecture}. The orange dashed line corresponds to the Basal Ganglia. Figure copied from \cite{eliasmith2012largescale}.}
+	\label{fig:eliasmith_2012_spaun_anatomy}
+\end{figure}
 
-\paragraph{A simple example}
-\begin{itemize}
-	\item A critter is trying to survive in a harsh environment
-	\item Possible actions
-	\begin{itemize}
-		\item[\textbf{A}] Go home
-		\item[\textbf{B}] Move randomly
-		\item[\textbf{C}] Go towards food
-		\item[\textbf{D}] Go away from predator
-	\end{itemize}
-	\item Which one do we pick?
-	\item[$\Rightarrow$] Reinforcement learning
-\end{itemize}
+As mentioned above, Spaun is one of the largest functional brain models to date~\cite{eliasmith2012largescale}. Spaun implements the ideas discussed above. Visual input is directly translated into semantic pointers, and semantic pointers representing motor actions are used to drive a motor system (\cref{fig:eliasmith_2012_spaun_architecture}).
 
-\paragraph{Reinforcement Learning}
-\begin{itemize}
-	\item Learn function $Q(\vec s, \vec a)$ assigning a \emph{utility} to the current state
-	\item Policy: choose action $\vec a$ with the highest utility $Q(\vec s, \vec a)$ in a given state $\vec s$
-\end{itemize}
+Processing---apart from visual input and motor output---consists of a comparably small set of building blocks information is routed to according to an action selection system. The action selection system we saw above is driven by the state of the working memory and a reward evaluation model. All these building blocks are coarsely modelled after individual brain regions, as detailed in \cref{fig:eliasmith_2012_spaun_anatomy}. Although Spaun consists of relatively few modules, it is able to flexibly use these components to solve a variety of tasks---without the experimenter having to intervene and reconfigure the model (see here for some videos showing Spaun in action: \YouTube[digit recognition]{f6Ul5TYK5-o}, \YouTube[copy drawing]{WNnMhF7rnYo}, \YouTube[addition by counting]{mP7DX6x9PX8}, \YouTube[pattern completion]{Q_LRvnwnYp8}). The full playlist is \href{https://www.youtube.com/playlist?list=PLYLu6sY3jnoV2DNi84T5OKqJ0oYTxFrQv}{here} (note these are for Spaun 1, Spaun 2.0 has fewer movies).
 
-\paragraph{Action Selection Example}
-\begin{itemize}
-	\item Use lateral/mutual inhibition
-	\item Hard to tune, especially in more complicated cases (higher dimensional $\vec q$, $\vec s$)
-	\item How does the brain do it? $\Rightarrow$ Basal Ganglia
-\end{itemize}
-
-\paragraph{Basal Ganglia}
-Notes, do not write down!
-\begin{itemize}
-	\item All of cortex connects to this
-	\item Output goes to Thalamus, central routing system
-	\item Clinical evidence
-	\begin{itemize}
-		\item Parkinson's disease
-		\begin{itemize}			
-			\item Neurons in the substantia nigra die off
-			\item Extremely difficult to trigger actions to start
-			\item Usually physical actions; as disease progresses and more of the SNc is gone, can get cognitive effects too			
-		\end{itemize}
-		\item Huntington's disease		
-		\begin{itemize}
-			\item Neurons in the striatum die off
-			\item Actions are triggered inappropriately (disinhibition)
-			\item Small uncontrollable movements
-			\item Trouble sequencing cognitive actions too
-		\end{itemize}
-	\end{itemize}
-	\item Neurophysiological Evidence that BG are involved in RL, dopamine levels in BG correspond to reward prediction error
-	\item Thalamus disinhibits other brain regions
-	\item I.e., outputs $[1, 1, 0, 1]$ if action \textbf{C} is chosen
-	\item Use inhibitory connections to suppress information from being transmitted
-\end{itemize}
-
-
-
+For a detailed description of the model, refer to \enquote{How to Build a Brain} \cite{eliasmith2013how}.
 
 \printbibliography
 

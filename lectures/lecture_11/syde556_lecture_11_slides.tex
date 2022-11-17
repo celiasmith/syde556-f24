@@ -13,7 +13,7 @@
 \newcommand{\Fun}[1]{\mathit{\textcolor{chameleon3}{#1}}}
 \newcommand{\CC}{\circledast}
 
-\date{March 24 \& 26, 2020\\[-1cm]~~}
+\date{November 17 \& 18, 2022}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 11: The Semantic Pointer Architecture}
 
 \begin{document}
@@ -31,25 +31,50 @@
 	\begin{frame}{Administrative Notes -- Remaining Deadlines}
 		\begin{itemize}
 			\setlength{\itemsep}{0.5cm}
-			\item \hl{Assignment 4} -- Due Tuesday, Mar.~24\textsuperscript{*} (today!)\\[0.125cm]
-			\begin{itemize}
-				\item Worth 10\% of the final mark
-			\end{itemize}
-			\item \hl{Interim Project Report} -- Due Thursday, Apr.~2\textsuperscript{*} (no late submission!)\\[0.125cm]
+			\item \hl{Assignment 4} -- Due Nov.~18\textsuperscript{*}
+			\item \hl{Assignment 5} -- Due Dec.~2\textsuperscript{*}
+			\item \hl{Project Presentations} --  Dec.~1\\[0.125cm]
 			\begin{itemize}
 				\setlength{\itemsep}{0.125cm}
-				\item One to two pages maximum; see the \href{https://raw.githubusercontent.com/astoeckel/syde556-w20/master/project/interim_report_template/syde556_project_interim_report_template.pdf}{website} for instructions
-				\item Not marked; either 0\% (not submitted) or 100\% (reasonable document submitted)
-				\item Worth 10 marks (25\% of the final project) of the final project
+				\item 5-10 min. presentation (see the `project summary document' on the website for instructions)
+				\item Worth 5 marks (25\% of the final project) of the final project
 			\end{itemize}
-			\item \hl{Final Project} -- Due Wednesday, Apr.~15\textsuperscript{*}\\[0.125cm]
+			\item \hl{Final Project} -- Due Dec.~18\textsuperscript{*}\\[0.125cm]
 			\begin{itemize}
-				\item Worth 40\% of the final mark
+				\item Worth 20\% of the final mark
 			\end{itemize}
 		\end{itemize}
 		\vspace{0.5cm}
 		{\footnotesize\color{aluminium4}\textsuperscript{*} All deadlines are 11:59pm EDT}
 	\end{frame}
+
+	\begin{frame}{The Semantic Pointer Architecture (SPA)}
+    \begin{columns}
+			\column{0.5\textwidth}
+      \centering
+			\begin{itemize}
+        \item \textbf{SPA}\\[.5cm]
+				\begin{itemize}			
+					\setlength{\itemsep}{0.5cm}
+					\item Semantics
+					\item Syntax
+					\item Control
+					\item Learning and memory
+				\end{itemize}
+			\end{itemize}
+			\column{0.5\textwidth}
+      \centering
+		    \fbox{\includegraphics[height=7cm]{media/htbab_cover.pdf}}
+    \end{columns}
+	\end{frame}
+
+  \begin{frame}{The Semantic Pointer Hypothesis}
+    The Semantic Pointer Hypothesis states: \\ [0.5cm]
+    \begin{quote}
+    Higher-level cognitive functions in biological systems are made possible by semantic pointers. Semantic pointers are neural representations that carry partial semantic content and are composable into the representational structures necessary to support complex cognition.
+    \end{quote}
+	\end{frame}
+
 
 	\begin{frame}{Shallow Versus Deep Semantics}
 		\includegraphics[width=\textwidth]{media/shallow_vs_deep_semantics.pdf}
@@ -74,16 +99,6 @@
 		\includegraphics[height=7cm]{media/htbab_perceptual_motor.pdf}
 	\end{frame}
 
-	\begin{frame}{Spaun -- Semantic Pointer Architecture Unified Network (I)}
-		\centering
-		\includegraphics[width=0.8\textwidth]{media/eliasmith_2012_spaun_architecture.pdf}
-	\end{frame}
-	
-	\begin{frame}{Spaun -- Semantic Pointer Architecture Unified Network (II)}
-		\centering
-		\includegraphics[width=0.8\textwidth]{media/eliasmith_2012_spaun_anatomy.pdf}
-	\end{frame}
-
 	\begin{frame}{Nengo SPA Example (I)}
 		\centering
 		\includegraphics[width=\textwidth]{media/spa_network.pdf}
@@ -94,56 +109,7 @@
 		\includegraphics[width=\textwidth]{media/nengo_spa_example.pdf}
 	\end{frame}
 
-	\begin{frame}{Recency and Primacy Experiment}
-		\centering
-		\Large
-		\hl{Experiment:} Remember this list (presented one at a time)
-		\begin{multicols}{2}
-%		\begin{enumerate}
-%			\centering
-%			\setlength{\itemsep}{0.25cm}
-%			\item<2,12> robot
-%			\item<3,12> teflon
-%			\item<4,12> kettlemaking
-%			\item<5,12> big-league
-%			\item<6,12> troubleshooter
-%			\item<7,12> conglomerates
-%			\item<8,12> waxberries
-%			\item<9,12> electrograph
-%			\item<10,12> overjoyous
-%			\item<11,12> unquailing
-%		\end{enumerate}
-		\begin{enumerate}
-			\centering
-			\setlength{\itemsep}{0.25cm}
-			\item robot
-			\item teflon
-			\item kettlemaking
-			\item big-league
-			\item troubleshooter
-			\item conglomerates
-			\item waxberries
-			\item electrograph
-			\item overjoyous
-			\item unquailing
-		\end{enumerate}
-		\end{multicols}
-	\end{frame}
-
-	\begin{frame}{Recency and Primacy Data}
-		\centering
-		\includegraphics[width=0.6\textwidth]{media/htbab_recall_accuracy_jahnke.pdf}
-	\end{frame}
-
-	\begin{frame}{Ordinal Serial Encoding (OSE) Model}
-		\centering
-		\includegraphics[width=0.9\textwidth]{media/htbab_ose.pdf}
-	\end{frame}
-
-	\begin{frame}{Ordinal Serial Encoding (OSE) Model: Experiment}
-		\centering
-		\includegraphics[width=\textwidth]{media/htbab_ose_experiment.pdf}
-	\end{frame}
+	
 
 	\begin{frame}{Basal Ganglia (BG)}
 		\centering
@@ -204,6 +170,68 @@
 	\end{frame}
 
 	\videoframe{nengo_hanoi}{sUvHCs5y0o8}
+
+  \begin{frame}{Recency and Primacy Experiment}
+		\centering
+		\Large
+		\hl{Experiment:} Remember this list (presented one at a time)
+		\begin{multicols}{2}
+%		\begin{enumerate}
+%			\centering
+%			\setlength{\itemsep}{0.25cm}
+%			\item<2,12> robot
+%			\item<3,12> teflon
+%			\item<4,12> kettlemaking
+%			\item<5,12> big-league
+%			\item<6,12> troubleshooter
+%			\item<7,12> conglomerates
+%			\item<8,12> waxberries
+%			\item<9,12> electrograph
+%			\item<10,12> overjoyous
+%			\item<11,12> unquailing
+%		\end{enumerate}
+		\begin{enumerate}
+			\centering
+			\setlength{\itemsep}{0.25cm}
+			\item robot
+			\item teflon
+			\item kettlemaking
+			\item big-league
+			\item troubleshooter
+			\item conglomerates
+			\item waxberries
+			\item electrograph
+			\item overjoyous
+			\item unquailing
+		\end{enumerate}
+		\end{multicols}
+	\end{frame}
+
+	\begin{frame}{Recency and Primacy Data}
+		\centering
+		\includegraphics[width=0.6\textwidth]{media/htbab_recall_accuracy_jahnke.pdf}
+	\end{frame}
+
+	\begin{frame}{Ordinal Serial Encoding (OSE) Model}
+		\centering
+		\includegraphics[width=0.9\textwidth]{media/htbab_ose.pdf}
+	\end{frame}
+
+	\begin{frame}{Ordinal Serial Encoding (OSE) Model: Experiment}
+		\centering
+		\includegraphics[width=\textwidth]{media/htbab_ose_experiment.pdf}
+	\end{frame}
+
+  \begin{frame}{Spaun -- Semantic Pointer Architecture Unified Network (I)}
+		\centering
+		\includegraphics[width=0.8\textwidth]{media/eliasmith_2012_spaun_architecture.pdf}
+	\end{frame}
+	
+	\begin{frame}{Spaun -- Semantic Pointer Architecture Unified Network (II)}
+		\centering
+		\includegraphics[width=0.8\textwidth]{media/eliasmith_2012_spaun_anatomy.pdf}
+	\end{frame}
+
 
 	\backupbegin
 
