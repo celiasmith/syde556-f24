@@ -1,0 +1,124 @@
+% !TeX spellcheck = en_GB
+\documentclass[10pt,letterpaper,oneside]{article}
+\def\NoteAuthor{Chris Eliasmith}
+\def\BasedOn{}
+\input{../syde556_lecture_notes_preamble}
+
+\date{November 24 \& 25, 2022}
+\title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 14: Spatial Semantic Pointers}
+
+\newcommand{\sinc}[1]{\operatorname{sinc}\left({#1}\right)}
+
+\begin{document}
+
+\MakeTitle{\textbf{Accompanying Readings: Dumont \& Eliasmith, 2020. \href{http://compneuro.uwaterloo.ca/publications/dumont2020.html}{See here.}}}
+
+\section{Introduction}
+
+\Note{These notes are very under constructions, and mostly mathematical background. Much of the material is directly from Dumont and Eliasmith, 2020.}
+
+We define circular convoluation exponentiation as: 
+\begin{equation}
+  B^n = \underbrace{B \circledast B \circledast \dots \circledast B. }_{\text{n times}}
+\end{equation}
+
+This can be written: 
+\begin{equation}
+  B^k = \mathcal{F}^{-1}\{\mathcal{F}\{B\}^k\}, \quad k \in \mathbb{R}
+\end{equation}
+
+where exponentiation in the fourier domain is regular exponentiation.  Where: 
+
+\begin{equation}
+  \mathcal{F}\{ X\} = r_{x} e^{i \theta_{x}}
+\end{equation}
+
+Note that because we are working with exclusively unitary vectors, $r_x = 1$, and so the $\theta$ phases completely determine the SSP that is being used.  
+
+We can write a 2D spatial representation as: 
+\begin{equation}
+  S(x,y) = X^x \circledast Y^y = \mathcal{F}^{-1}\{\mathcal{F}\{X\}^x\odot\mathcal{F} \{Y\}^y\},
+\end{equation}
+
+where $\odot$ is the Hadamard (element-wise) product. In the frequency domain: 
+\begin{align}
+  S(x, y) &= (X^{x} \circledast Y^{y}) \\
+   &= \mathcal{F}^{-1}( \mathcal{F}\{ X\}^{x} \odot \mathcal{F}\{ Y\}^{y} ) \\
+   &=  \mathcal{F}^{-1}(r_{x}^x e^{ i \theta_{x} x} r_{y}^y  e^{i \theta_{y} y })\\
+   &=  \mathcal{F}^{-1}(r_{x}^x r_{y}^y e^{ i(\theta_{x} x + \theta_{y} y )})
+\end{align}
+
+where we have left off the vector indexes for clarity, but note that the $\theta$ for each dimension can be different.
+
+\section{Mathematical properties}
+
+The most critical mathematical property that SSPs have is that they preserve Euclidean relations in a much higher dimensional space. That is, 
+\begin{align}
+   S(x_1,y_1) \circledast S(x_2,y_2) 
+   &= S(x_1 + x_2,y_1 + y_2) \\
+   &= X^{x_1 + x_2} \circledast Y^{y_1 + y_2}
+\end{align}
+
+So it's easy to shift a current spatial representation around without decoding the representation. We can use this to implement basic differential equations \cite{voelker2021a}:
+\begin{equation} \label{eq:discrete-binding}
+  S_{t + \Delta t} = \left ( X^{\Delta x_t} \circledast Y^{\Delta y_t} \right ) \circledast S_{t}  \text{,}
+\end{equation}
+
+where $\Delta x_t$ and $\Delta y_t$ are derived from differential equations that relate $x$ and $y$ to $t$. If the underlying dynamics are linear, we have $\Delta x = \frac{dx}{dt}\Delta t$. Assuming $ S_{t}=X^{x_t} \circledast Y^{y_t}$, then the algebraic properties of SSPs ensure that: 
+\begin{align}
+  & X^{x_t} \circledast Y^{y_t} \circledast X^{\Delta x_t} \circledast Y^{\Delta y_t} \\
+  &= X^{x_t + \Delta x_t} \circledast Y^{y_t + \Delta y_t} \\
+  &=  M_{t + \Delta t}
+\end{align}
+
+It's also possible to write a similar equation without discretizing time. The result of doing so gives: 
+\begin{equation} \label{eq:continuous-binding}
+  \frac{d S }{dt} = \left( \frac{dx}{dt} \ln X + \frac{dy}{dt} \ln Y \right) \circledast S \text{.}
+ \end{equation}
+
+Of relevance to using SSPs as probability representations, it's important to note that as the dimensionality becomes sufficiently high, the expected similiarity approaches:
+\begin{equation}
+X^{x_1} \cdot X^{x_2} = \sinc{x_2 - x_1}
+\end{equation}
+for SSPs~\cite{voelker2020short}.
+
+
+\section{Grid cells}
+Suppose ideal place cells are Gaussian bumps, and that they evenly cover a space to be represented. We would like to find the hidden layer activations $G \in \mathbb{R}^{n_x \times n_g}$ (where $n_g$ is the number of hidden neurons and $n_g < n_p$, and $n_p$ is the number of place cells) and the matrix of read-out weights $W \in \mathbb{R}^{n_g \times n_p}$ that minimize the reconstruction error of the place cell responses.
+\begin{align}
+\min_{G,W} || P - \hat{P} ||_{F}^2, \\ \hat{P} = GW
+\end{align}
+The optimal $W$ for a fixed $G$ is given by
+\begin{equation} \label{eqn:optimReadOutWeight}
+W^* = (G^T G)^{-1} G^T P.
+\end{equation}
+This $W$ should be thought of as the connection weights between the final two layers of some deep neural network. The input to the full network would be low level sensory information and the output would be the place cell activity, $P$. The hidden layer with activations $G$ is the last layer before the place cells, and, since $n_g < n_p$, it creates an information bottleneck. We are interested in finding the optimal $G$ - a compressed representation of spatial position that is optimal for reconstructing $P$ in a single layer.
+
+As stated in \cite{sorscher2019unified}, if the number of place cells is large and their receptive fields uniformly cover space (and space has periodic boundary conditions) then $PP^T$ will approximately be a circulant matrix and its eigenvectors will be Fourier modes.
+
+Thus, the optimal responses of hidden neurons will be linear combinations of plane waves. This will produce hidden neurons with grid-like spatial responses. Adding a non-negativity constraint to this optimization problem will result in the activity of an individual hidden neuron being proportional to a sum of three plane waves whose wave vectors are 120$^o$ degrees apart. Specifically, a column of $G$ will have entries,
+\begin{align}
+     \sum_{j=1}^{3} & e^{i \mathbf{k}_j \cdot \mathbf{x}_n } + e^{-i \mathbf{k}_j \cdot \mathbf{x}_n  } \label{eqn:planewavesum} \\
+    \text{where } \quad & |\mathbf{k}_j| = |\mathbf{k}_i| \quad \forall i,j \\
+    & \quad \sum_{j=1}^{3} \mathbf{k}_j = 0
+\end{align}
+
+The interference pattern of these waves will have a hexagonal grid pattern, like grid cells. Note that this is also real as the imaginary parts cancel. The first equation will show the interference patterns of the choice of $\mathbf{k}$ vectors -- i.e. be the grid cells in $G$.
+
+It might be helpful to recall Euler's formula: 
+\begin{align}
+   e^{i x} = \cos(x) + i \sin(x)
+\end{align}
+to show that equation \ref{eqn:planewavesum} is:
+\begin{align}
+  \sum_{j=1}^{3} & e^{i \mathbf{k}_j \cdot \mathbf{x}_n } + e^{-i \mathbf{k}_j \cdot \mathbf{x}_n } \\
+  =&  \sum_{j=1}^{3} \cos(\mathbf{k}_j \cdot \mathbf{x}_n) + i \sin(\mathbf{k}_j \cdot \mathbf{x}_n) + \cos(\mathbf{k}_j \cdot \mathbf{x}_n) - i \sin(\mathbf{k}_j \cdot \mathbf{x}_n) \\
+  =& 2 \sum_{j=1}^{3} \cos(\mathbf{k}_j \cdot \mathbf{x}_n)
+\end{align}
+
+which defines the interference pattern we see as grid-like for the appropriate choice of $\mathbf{k}$. Changing the orientation of the $\mathbf{k}$ will rotate the grid, and changing the length of the $\mathbf{k}$ will change the spatial frequency (i.e., spacing) of the grid.
+
+\printbibliography
+
+\end{document}
+

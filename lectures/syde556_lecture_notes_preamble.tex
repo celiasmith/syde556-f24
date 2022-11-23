@@ -45,12 +45,20 @@
 \usepackage[sorting=none]{biblatex}
 \addbibresource{../bibliography.bib}
 
-\author{Andreas Stöckel\\[0.5cm]Based on lecture notes by\\Chris Eliasmith and Terrence~C.~Stewart}
+\ifx\NoteAuthor\undefined
+  \def\NoteAuthor{Andreas Stöckel}
+\fi
+
+\ifx\BasedOn\undefined
+  \def\BasedOn{Based on lecture notes by\\Chris Eliasmith and Terrence~C.~Stewart}
+\fi
+
+\author{\NoteAuthor\\[0.5cm]\BasedOn}
 \newcommand{\baseCodeURL}{https://github.com/celiasmith/syde556-w22/blob/master/lectures}
 
 \fancyhf{}
 \fancyhead[L]{SYDE 556/750 Lecture Notes}
-\fancyhead[R]{Andreas Stöckel}
+\fancyhead[R]{\NoteAuthor}
 \fancyfoot[C]{\thepage}
 \pagestyle{fancy}
 

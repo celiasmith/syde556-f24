@@ -9,7 +9,7 @@ with open('statespace.svg', 'r') as f:
 with model:
     def statespace(t, x):
         statespace._nengo_html_ = \
-            svg.replace("0.222", str(x[0] + 0.51)).replace("0.333", str(-x[1] + 0.30))
+            svg.replace("0.222", str(x[0] + 0.52)).replace("0.333", str(-x[1] + 0.29))
         return x
     nd_stim = nengo.Node(statespace, size_in=2)
     nd_in = nengo.Node(size_in=2)
