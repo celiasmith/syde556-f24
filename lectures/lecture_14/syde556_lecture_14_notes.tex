@@ -8,6 +8,12 @@
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 14: Spatial Semantic Pointers}
 
 \newcommand{\sinc}[1]{\operatorname{sinc}\left({#1}\right)}
+\newcommand{\unbind}{\oslash}
+\newcommand{\bind}{\circledast}
+\newcommand{\analog}{\overset{C}{\approx}}
+\newcommand{\domain}[1]{\mathcal{#1}}
+\newcommand{\ssp}[1]{\mathrm{\uppercase{#1}}^{\lowercase{#1}/h}}
+\newcommand{\sspi}[2]{\mathrm{\uppercase{#1}}^{\lowercase{#1}_{#2}/h}}
 
 \begin{document}
 
@@ -117,6 +123,72 @@ to show that equation \ref{eqn:planewavesum} is:
 \end{align}
 
 which defines the interference pattern we see as grid-like for the appropriate choice of $\mathbf{k}$. Changing the orientation of the $\mathbf{k}$ will rotate the grid, and changing the length of the $\mathbf{k}$ will change the spatial frequency (i.e., spacing) of the grid.
+
+\section{Probabilities}
+
+This section is based on \cite{furlong2022fractional}. Assume a fixed dataset, $\mathcal{D} = \{x_{1},\ldots,x_{n}\mid x_{i} \in \mathbb{R}^{m}\}$ of $n$ samples of $m$-dimensional data. 
+
+We use a length scale parameter, $h$, so when we write $\ssp{x}$ we mean $\mathcal{F}^{-1}\left\{\mathrm{e}^{\mathrm{i}\theta_{X}x/h}\right\}$, for $x \in \mathbb{R}^{m}$. This parameter essentially normalizes the SSPs over the appropriate domain given the number of samples. You can find the optimal length scale for the estimator we discuss below, but it is beyond our scope.
+
+We define our estimator as: 
+\begin{align}
+  \hat{f}(x\mid \mathcal{D}) = \ssp{x}\cdot \frac{1}{nh}\sum_{x_{i} \in \mathcal{D}} \sspi{x}{i}
+\end{align} 
+
+For any domain space $x \in X \subseteq \mathbb{R}^{m}$, we will denote the normalized sum as:
+\begin{align}
+M_{X,n} = \frac{1}{nh}\sum_{x_{i} \in \mathcal{D}}\sspi{x}{i}
+\end{align}
+
+Recall that we know that the dot product between SSPs induces a sinc function.  This is a 'quasi'-kernel because it takes on negative values. So our estimator is not a Kernel Density Estimator (KDE; a common kind of density estimatory), but a special-case Fourier Integral Estimator (FIE). FIEs can be converted to probability density estimators with a correction.
+
+The particular correction for the FIE is:
+\begin{align}
+  f_{X}(x) \approx \max\left\{0,\hat{f}_\mathrm{FIE}\left(x \mid \mathcal{D}\right)-\xi\right\}
+\end{align}
+$\xi\in \mathbb{R}$ is selected so $\int_{-\infty}^{\infty}\max\left\{0,\hat{f}_\mathrm{FIE}\left(x \mid \mathcal{D}\right)-\xi\right\}dx = 1$. The particular correction for our estimator is: 
+\begin{align}
+  f_{X}(x) \approx \max\left\{0,\ssp{x}\cdot M_{X,n} - \xi\right\}
+\end{align}
+
+Which looks like a ReLU with a bias of $\xi$. Interestingly, we can think of either the $X$ or $M$ as connection weights (and the other as activities). Which we choose will lead to different implementation architectures.
+
+Interestingly, unbinding this kind of representation can be thought of as computing a conditional distribution.  Briefly, 
+\begin{align}
+  g(X) = f(X,Y=y) \analog \ssp{x}\bind Y^{0}\cdot \sum_{x_i,y_i \in \mathcal{D}} \sspi{x}{i}\bind Y^{\frac{y_{i}-y}{h}}
+\end{align}
+
+Recognizing that 
+\begin{align}
+  f(X\mid Y=y) = \frac{1}{\eta}f(X,Y=y)
+\end{align}
+means unbnding can be seen as a non-normalized conditioned distribution. There are various ways we might compute the normalization constant $\eta \approx \int_{-\infty}^{\infty}\|\ssp{X}\cdot M_{X\mid Y,n}\|^{2} dx$.
+
+We can similarly perform marginalization with SSP operations:
+\begin{align}
+  f_{X}(x) &= \int_{\domain{Y}}f_{XY}(x,y)dy \\
+  &\analog \int_{\domain{Y}}\ssp{X}\bind\ssp{Y} \cdot \left(\sum_{(x_{i},y_{i}) \in \mathcal{D}}\sspi{X}{i}\bind\sspi{Y}{i}\right)dy \\
+  &\analog \left(\ssp{X}\bind\int_{\domain{Y}}\ssp{Y}dy\right) \cdot \left(\sum_{(x_{i},y_{i}) \in \mathcal{D}}\sspi{X}{i}\bind\sspi{Y}{i}\right)
+\end{align}
+
+The integral over $y$ is a vector we can approximate by sampling $Y$. If we let:
+\begin{align}
+  \Phi_{Y} = \int_{\domain{Y}}\ssp{Y}dy\text{,}
+\end{align}
+then
+\begin{align}
+  f_{X}(x) \analog \left(\ssp{X}\bind\Phi_{Y}\right) \cdot M_{XY,n}.
+\end{align}
+
+Noting that circular convolution can be written as a matrix-vector product between one argument and the circulant matrix, $\mathrm{Circ}(\cdot)$, of the other argument, we can make the following simplification:
+\begin{align}
+  \left(\ssp{X}\bind\Phi_{Y}\right) \cdot M_{XY,n} &= \left(\mathrm{Circ}(\Phi_{Y})\ssp{X}\right)^{T} M_{XY,n}\\
+  &= \ssp{X}\cdot\left(\mathrm{Circ}(\Phi_{Y})^{T} M_{XY,n}\right)
+\end{align}
+
+So the circulate is a linear map that marginalizes $M$.
+
+See the original paper for examples pertaining to entropy estimation and mutual information calculation.  The latter is what is used to solve the search problem shown in the slides.
 
 \printbibliography
 
