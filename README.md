@@ -16,10 +16,8 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 - Nov 4 - Analysing Representation [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_09/syde556_lecture_09_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_09/syde556_lecture_09_notes.pdf)]
 - Nov 10, 11 - Symbols [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_10/syde556_lecture_10_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]
 - Nov 17, 18 - Semantic Pointer Architecture [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_11/syde556_lecture_11_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_11/syde556_lecture_11_notes.pdf)]
-- Nov 24 - Spatial Semantic Pointers [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_14/syde556_lecture_14_slides.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_14/syde556_lecture_14_notes.pdf)]
-- Nov 25 - SPA Model Survey [Slides][Notes]
-- Dec 1 - Biological Details [Slides][Notes]
-- Dec 2 - Conclusion [Slides][Notes]
+- Nov 24, 25 - Spatial Semantic Pointers [[Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_14/syde556_lecture_14_slides.pdf)] [[Notes](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_14/syde556_lecture_14_notes.pdf)]
+- Dec 1, 2 - Critter demo and Conclusion [Slides](https://github.com/celiasmith/syde556-f22/raw/master/lectures/lecture_14/syde556_lecture_13_slides.pdf)]
 
 ## 📝 Assignments
 
