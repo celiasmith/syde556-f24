@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+#To use (example):
+#$ cd lectures/lecture_00 
+#$ conda activate py310
+#$ python ../make_distr_slides.py syde556_lecture_00_slides.pdf
 
 import sys
 import re
