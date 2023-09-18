@@ -2,7 +2,7 @@
 \documentclass[10pt,letterpaper,oneside]{article}
 \input{../syde556_lecture_notes_preamble}
 
-\date{Sept 15 \& 16, 2022}
+\date{Sept 18 \& 20, 2023}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 3: Representation}
 
 
@@ -349,7 +349,7 @@ Have a look at the \href{https://docs.scipy.org/doc/numpy/reference/generated/nu
 We now know how to compute linear decoders $\mat D$ that estimate the value represented by an ensemble of neurons. However, we implicitly made the assumption that each neuron perfectly implements its response curve $G[J]$. We know that this is not true in biological systems.
 
 \paragraph{Noise due to spike rate estimation errors}
-The response curve $G[J]$ is only a first-order approximation of a neuron's behaviour. We know that in real biological systems neurons communicate using spikes -- and it is impossible to perfectly estimate it's firing rate over a short time window (cf.~the time and frequency uncertainty principle \cite{gabor1946theory}). This measurement error can be interpreted as \emph{noise}.
+The response curve $G[J]$ is only a first-order approximation of a neuron's behaviour. We know that in real biological systems neurons communicate using spikes -- and it is impossible to perfectly estimate its firing rate over a short time window (cf.~the time and frequency uncertainty principle \cite{gabor1946theory}). This measurement error can be interpreted as \emph{noise}.
 
 \paragraph{Biological sources of error}
 Nervous systems contain various sources of error, including, but not limited to the following (cf.~\cite{gerstner2002spiking}, Chapter 5.1)
