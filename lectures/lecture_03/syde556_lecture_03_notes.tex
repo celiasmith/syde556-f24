@@ -77,7 +77,7 @@ As a more concrete example, let's consider an $n$-bit binary coding of natural n
 We can write down the encoding function $f$
 \begin{align*}
 	a_i &= \big(f(x)\big)_i = \begin{cases}
-		1 & \text{if } x - 2^i \left\lfloor \frac{x}{2^i} \right\rfloor > 2^{i - 1} \,,\\
+		1 & \text{if } x - 2^i \left\lfloor \frac{x}{2^i} \right\rfloor \geq 2^{i - 1} \,,\\
 		0 & \text{otherwise} \,.
 	\end{cases}
 \end{align*}
