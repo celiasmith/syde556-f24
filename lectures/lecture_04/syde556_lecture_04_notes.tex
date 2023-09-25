@@ -127,7 +127,7 @@ Hence, to model physical stimuli we may want to use \emph{bandlimited white nois
 	\begin{align*}
 		X_i &= \sum_{k = 0}^{N - 1} x_k e^{-i \frac{i 2 \pi}{N} kn} \,,
 	\end{align*}
-	the so called Discrete Fourier Transform (DFT). You can compute the DFT of a signal $\vec x = (x_0, \ldots, x_{N - 1})$ in Python using the following code (see this \CodeLink[this Jupyter notebook]{lecture_04/media/code/dft_numpy_experiments.ipynb}).
+	the so called Discrete Fourier Transform (DFT). You can compute the DFT of a signal $\vec x = (x_0, \ldots, x_{N - 1})$ in Python using the following code (see  \CodeLink[this Jupyter notebook]{lecture_04/media/code/dft_numpy_experiments.ipynb}).
 	\begin{lstlisting}[language=python]
 import numpy as np
 dt = 1e-3                  # One millisecond time step
@@ -243,7 +243,7 @@ The normalisation factor $c$ ensures that the overall integral over $h$ is one. 
 
 We apply a filter to a signal using the convolution operator \enquote{$\ast$}. This operator takes two functions $f(t)$, $g(t)$ as an input and outputs a new function $(f \ast g)(t)$, where
 \begin{align*}
-	\big( f \ast g \big)(t) \overset{\text{def}}= \int_{-\infty}^{\infty} f(t - \tau) g(\tau) \,\mathrm{d}\tau\,.
+	\big( f \ast g \big)(t) \overset{\text{def}}= \int_{-\infty}^{\infty} f(t - t') g(t') \,\mathrm{d}t'\,.
 \end{align*}
 
 \Note{\emph{Convolution in the Fourier Domain.} It holds $\mathcal{F} [ f \ast g ] = \mathcal{F}[f] \mathcal{F}[g]$. Put differently, convolution in the time domain is simple multiplication in the frequency domain. Take another look at the frequency-space representation of the Gaussian filter in \cref{fig:gaussian_filters}.
