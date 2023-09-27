@@ -40,10 +40,10 @@ The five assignments will be posted here.
 ### Assignment 2 ― due Oct 23, 2023
 
 -   **Instructions**  
-  [[Download PDF]<!---https://github.com/celiasmith/syde556-f23/raw/master/assignments/assignment_02/syde556_assignment_02.pdf-->]
+  [[Download PDF](https://github.com/celiasmith/syde556-f23/raw/master/assignments/assignment_02/syde556_assignment_02.pdf)]
 
 -   **Jupyter Notebook Template**  
-  [[Download Jupyter Notebook]<!---https://github.com/celiasmith/syde556-f23/raw/master/assignments/assignment_02/syde556_assignment_02_template.ipynb-->]
+  [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f23/raw/master/assignments/assignment_02/syde556_assignment_02_template.ipynb)]
 
 ### Assignment 3 ― due Nov 6, 2023
 
