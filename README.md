@@ -25,7 +25,7 @@ The five assignments will be posted here.
 
  * Do not copy any code from other students or online sources.  You are expected to write your own code from scratch for this course.
  * Each student must write their own code and submit their own assignment.
- * Assignments are due _at Midnight_.  The late penalty is one mark per day it is late. You may be at most seven days late.
+ * Assignments are due _at 11:59pm EST_.  The late penalty is one mark per day it is late. You may be at most seven days late.
  * **Please read and follow the instructions regarding submission posted on the front page of each assignment.**
  
 ### Assignment 1 ― due Oct 2, 2023
