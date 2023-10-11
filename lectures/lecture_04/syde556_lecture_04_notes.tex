@@ -81,7 +81,7 @@ where $f_i$ are the discrete samples of the function.
 	\caption{Comparison between white noise and bandlimited white noise. Discrete signals generated with a time step of $\Delta t = \SI{1}{\milli\second}$. \CodeLink{lecture_04/media/code/filter_examples.ipynb}}
 \end{figure}
 
-We mentioned above that we would like to randomly generate an input function $x(t)$. But what exactly do we mean by random? And how do we turn such a function into discrete time steps? A somewhat na\" ive attempt would be to select a timestep $\Delta t$, a maximum time $T$, and to just sample $N = \lfloor T / \Delta t \rfloor$ values from a Gaussian distribution. This kind of noise, where the individual points in time are independently sampled from a Gaussian distribution is called \emph{white noise}.
+We mentioneds above that we would like to randomly generate an input function $x(t)$. But what exactly do we mean by random? And how do we turn such a function into discrete time steps? A somewhat na\" ive attempt would be to select a timestep $\Delta t$, a maximum time $T$, and to just sample $N = \lfloor T / \Delta t \rfloor$ values from a Gaussian distribution. This kind of noise, where the individual points in time are independently sampled from a Gaussian distribution is called \emph{white noise}.
 
 \Cref{fig:white_noise} shows what such a signal would look like for a time step $\Delta t = \SI{1}{\milli\second}$ and $T = 1$. Interestingly, the signal looks -- qualitatively -- the same in both the time and the frequency domain. Instead of generating this kind of signal in the time domain we could also create it in the frequency domain by generating random complex numbers for each Fourier coefficient
 \begin{align*}
