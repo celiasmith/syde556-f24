@@ -310,8 +310,8 @@ Let's expand the right equation and bring it into the same form as the left equa
 	X(s) &= \frac{1}{1 + s \tau} (\mat A' X(s) +  \mat B' U(s)) \\
 	\Leftrightarrow X(s) (s \tau + 1) &= \mat A' X(s) +  \mat B' U(s) \\
 	\Leftrightarrow s \tau X(s) &= \mat A' X(s) +  \mat B' U(s) - X(s)
-						    = (\mat A' - \mat I) X(s) + \mat B' \\
-	\Leftrightarrow s X(s) &= \frac{1}\tau (\mat A' - \mat I)  X(s) + \frac{1}{\tau} \mat B' \,.
+						    = (\mat A' - \mat I) X(s) + \mat B' U(s)\\
+	\Leftrightarrow s X(s) &= \frac{1}\tau (\mat A' - \mat I)  X(s) + \frac{1}{\tau} \mat B' U(s)\,.
 \end{align*}
 Comparing to our target equation we get
 \begin{align*}
@@ -350,6 +350,22 @@ As we can see, we generally have to scale our dynamical system by $\tau$ and fee
 \subsection{Examples}
 
 In this example we are using the above equations in order to implement some common dynamical systems in a neural network.
+
+\paragraph{Low-pass filter}
+
+A low-pass filter is defined as the following dynamical system:
+\begin{align*}
+	\frac{\mathrm{d} x(t)}{\mathrm{d}t} &= \frac {u(t)-x(t)}{\tau_{desired}} \,,
+\end{align*}
+where $\tau_{desired}$ is the overall (state space) dynamics that we would like the system to compute. This is not to be confused with $\tau$ which is the intrinsic synaptic dynamics. Writing this as a canonical LTI system, we get
+\begin{align*}
+	\frac{\mathrm{d} x(t)}{\mathrm{d}t} &= \mat A \vec x + \mat B \vec u \,, && \text{where } \mat A = -1/\tau_{desired}, \mat B = 1/\tau_{desired} \,.
+\end{align*}
+Plugging the matrices $\mat A$ and $\mat B$ into \cref{eqn:nef_lti}, we get
+\begin{align*}
+	\mat A' &= -\tau/\tau_{desired} + \mat I \,, & \mat B' &= \tau/\tau_{desired} \,.
+\end{align*}
+Running this network shows how we can dissociated the `low-level' dynamics ($\tau$) from the `high-level' dynamics ($\tau_{desired}$). Note that there is no constraint on one of these being larger than the other, meaning these equations show how we can implement a network-level filter  that is \emph{faster} than any of dynamics of the underlying neurons.
 
 \paragraph{Integrator}
 
