@@ -66,7 +66,7 @@ As we discussed in the last lecture, \cref{fig:feed_forward_recurrent_a} depicts
 	        + J^\mathrm{bias}_i \,,
 	       & \text{where } \vec w^A_i = \big( \mat E \mat D^{g_1} \big)_i \text{ and } \vec w^B_i = \big( \mat E \mat D^{g_2} \big)_i \,,
 \end{align*}
-where $\vec a^{A}_\mathrm{pre}$ and $\vec a^{B}_\mathrm{pre}$ are the activities of the pre-populations $A$, $B$, respectively. The function $h$ is the synaptic filter, $\mat E$ is a matrix of post-population encoders, $\mat D^{g_1}$ is decoding the function $g_1(\vec x)$ from population $A$, $\mat D^{g_2}$ is decoding the function ${g_2}(\vec y)$ from the pre-population population $B$. Then, the value $\vec z$ represented by the population is approximately $\vec z = f(\vec x) + f(\vec y)$.
+where $\vec a^{A}_\mathrm{pre}$ and $\vec a^{B}_\mathrm{pre}$ are the activities of the pre-populations $A$, $B$, respectively. The function $h$ is the synaptic filter, $\mat E$ is a matrix of post-population encoders, $\mat D^{g_1}$ is decoding the function $g_1(\vec x)$ from population $A$, $\mat D^{g_2}$ is decoding the function ${g_2}(\vec y)$ from the pre-population population $B$. Then, the value $\vec z$ represented by the population is approximately $\vec z = g_1(\vec x) + g_2(\vec y)$.
 
 \paragraph{Recurrent populations}
 We can use the same setup as above to implement the recurrent connection depicted in figure \cref{fig:feed_forward_recurrent_b}. Here, a population $B$ represents a value $\vec x$ and receives input from both a pre-population $A$ representing a value $\vec u$, as well as itself -- representing the value $\vec x$. That is, each neuron $i$ in $B$ receives the current
@@ -127,6 +127,12 @@ This a version of the general synaptic filter discussed in lecture four (in part
 \paragraph{Feedback $f(x) = x + 1$}
 The dynamics of the system for a feedback function $f(x) = x + 1$ are depicted in \cref{fig:dynamics_example_a}. The resulting system converges to a value slightly above one. The rate of convergence is determined by the time constant $\tau$ and the scaling of the feedback function; an increase of the time constant by a factor $c$ seems to result in similar dynamics as dividing the feedback function $f$ by $c$.
 
+We can try to do a simple analysis:
+\begin{align*}
+  x = g(u) + f(x) = u + x + 1 \Leftrightarrow x-x=u+1,
+\end{align*}
+but clearly this is non-sensical mathematically. We will return to the issue of analysis in later sections.
+
 \Note{This system only converges to a fixed value due to saturation of the neural responses. For example, if we replace the LIF neurons with rectified linear units, the state $x$ will diverge monotonically towards infinity.}
 
 \paragraph{Feedback $f(x) = -x$}
@@ -134,10 +140,16 @@ The dynamics of a system with the feedback function $f(x) = -x$ are depicted in 
 \begin{align*}
 	x = g(u) + f(x) = u - x \Leftrightarrow x = \frac{u}2 \,.
 \end{align*}
-This explains why the function converges to a steady state of $\frac{u}2$; however, this analysis does not help us to understand the dynamics of the system (e.g.,~the bottom half of \cref{fig:dynamics_example_b}).
+In this case, our analysis explains why the function converges to a steady state of $\frac{u}2$; however, this analysis does not help us to understand the dynamics of the system (e.g.,~the bottom half of \cref{fig:dynamics_example_b}).
 
 \paragraph{Feedback $f(x) = x^2$}
 The dynamics for a feedback function $f(x) = x^2$ are depicted in \cref{fig:dynamics_example_c}. The system converges to $u(t)$ for inputs $u(t) \lessapprox 0.4$ but diverges for larger values. Interestingly, once the system is in a state with $x > 0.4$, it will not converge back to $u(t)$ for values of $u(t)$ between approximately $0.2$ and $0.4$. This means that the system has some kind of memory. For negative inputs $u(t)$ the system approximately converges to $\frac{1}2 u(t)$.
+
+Again, we can try an analysis:
+\begin{align*}
+  x = g(u) + f(x) = u + x^2 \Leftrightarrow x(1-x) = u,
+\end{align*}
+which does not provide useful insight into the dynamics.
 
 \section*{Mathematical Analysis}
 
@@ -163,7 +175,7 @@ The equation detailing the recurrence relationship $x = g(u) + f(x)$ did not not
 	x(t) &= \big( h \ast \big( g(u) + f(x) \big) \big) (t) = \int_{-\infty}^{\infty} h(t') \big( g(u(t - t')) + f(x(t - t')) \big) \mathrm{d}t' \,.
 \end{align*}
 
-Unfortunately, and as we have seen in previous lectures, the convolution operator is a little unwieldy. We could eliminate the convolution by switching to the Fourier Domain, however, there is an alternative, more powerful alternative: the Laplace transformation $\mathcal{L}\{f\} = F(s)$.
+Unfortunately, and as we have seen in previous lectures, the convolution operator is a little unwieldy. We could eliminate the convolution by switching to the Fourier Domain, however, there is a more powerful alternative: the Laplace transformation $\mathcal{L}\{f\} = F(s)$.
 
 \Note{The Laplace transformation is a more general version of the Fourier transformation. 
 \begin{align*}
