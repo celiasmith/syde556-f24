@@ -436,7 +436,7 @@ This is also approximately what the neural ensemble is computing.
 	\label{fig:example_oscillator_phases}
 \end{figure}
 
-An oscillator can be easily written down in terms of the following LTI system
+An oscillator can be written down in terms of the following LTI system
 \begin{align*}
 	\mat A &= \begin{pmatrix}0 & -\omega \\ \omega & 0\end{pmatrix} \,, & \mat B &= 0
 \end{align*}
@@ -444,7 +444,7 @@ where $\omega$ is the angular velocity. Applying \cref{eqn:nef_lti} we get
 \begin{align*}
 	\mat A' &= \begin{pmatrix}1 & -\tau\omega \\ \tau \omega & 1\end{pmatrix} \,,  & \mat B' &= 0 \,.
 \end{align*}
-The dynamics of the resulting network are depicted in \cref{fig:example_oscillator}. The phase portrait is shown in \cref{fig:example_oscillator_phases}. Notice how the limited dynamic range of the neurons naturally restricts the maximum amplitude of the oscillation.
+The dynamics of the resulting network are depicted in \cref{fig:example_oscillator}. The phase portrait is shown in \cref{fig:example_oscillator_phases}. Notice how the limited dynamic range of the neurons naturally restricts the maximum amplitude of the oscillation, despite the large initial input.  As well, that input is required to `kick' the oscillator away from a stationary fixed point at zero.  Once it has been started, it then exhibits a stable cyclic attractor (i.e., an attractor that consists of a closed loop of states). This might not always be evident in neural simulations because the noise and static error in the system can cause an oscillator to collapse to zero.
 
 \paragraph{Lorentz Attractor}
 
@@ -463,7 +463,7 @@ A variant of the Lorentz Attractor is given as
 		 x_1(t) x_2(t) - \frac{8}{3}(x_3(t)+28)-28
 	\end{pmatrix} \,.
 \end{align*}
-we can use \cref{eqn:nef_additive_dyn} to implement this system as a neural ensemble. An example showing this attractor is given in \cref{fig:example_lorentz}.
+We can use \cref{eqn:nef_additive_dyn} to implement this system as a neural ensemble. An example showing this attractor is given in \cref{fig:example_lorentz}. This attractor is interesting because it is nonlinear and chaotic. Also notice that it does not require any kind of intial `kick' to start the system dynamics. 
 
 %
 %\paragraph{Gated Integrator}
