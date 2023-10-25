@@ -171,7 +171,7 @@ where $\epsilon(t)$ is the error we are making at the current point in time. Thi
 
 We now have a simple learning rule that allows us to learn decoders online -- essentially, we just multiply the neural activity $a_i(x(t))$ with the error $\epsilon(t)$ and then update individual decoder values according to the gradient descent update equation
 \begin{align*}
-	d_i \gets -\eta \Delta d_i = -\eta \epsilon(t) a_i(t) \,.
+	d_i \gets d_i -\eta \Delta d_i = d_i -\eta \epsilon(t) a_i(t) \,.
 \end{align*}
 Essentially, if a neuron is active while there is some positive error $\epsilon(t)$, we decrease its influence on the decoding. If there is a negative error $\epsilon(t)$, we increase its influence.
 
