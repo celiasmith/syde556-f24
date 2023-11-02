@@ -47,7 +47,7 @@
 		\begin{align*}
 			h(t)= \begin{cases}
 				0 & \text{if } t < 0 \,, \\
-				\frac{1}\tau e^{-t/\tau} & \text{otherwise} \,.
+				\frac{e^{-t/\tau}}{\int_0^\infty e^{-t'/\tau} \mathrm{d}t'} & \text{otherwise} \,.
 			\end{cases}
 		\end{align*}
 		\item \Marks{1.5} \emph{Decoding using a synaptic filter.} Plot the original signal $x(t)$, the spikes, and the decoded $\hat{x}(t)$ all on the same graph.

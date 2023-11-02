@@ -143,8 +143,8 @@ Second, we will extend this \emph{decoder} learning rule to a biologically plaus
 For simplicity, let's assume that $d = 1$, i.e., we are representing a scalar value. Now, our setup is as follows. We have a neuron population representing the input value $x$ and would like to decode an unknown function $f(x)$. In other words, we would like to continuously update our decoders $\vec d$, such that $f(x(t)) \approx y^\mathrm{d}(t)$. This means that we have the following loss function
 \begin{align*}
 	E(\vec d) &= \frac{1}2 \left(\left(\sum_{i = 1}^n d_i a_i\big(x(t)\big) \right) - y^\mathrm{d}(t) \right)^2 \\
-	\Rightarrow \Delta d_i = \frac{\partial E(\vec d)}{\partial d_i} &= \underbrace{\left(\left(\sum_{i = 1}^n d_i a_i\big(x(t)\big) \right) - y^\mathrm{d}(t)\right)}_{\epsilon(t)} a_i\big(x(t)\big) \\
-		&= \epsilon(t) a_i\big(x(t)\big) \,,
+	\Rightarrow \Delta d_j = \frac{\partial E(\vec d)}{\partial d_j} &= \underbrace{\left(\left(\sum_{i = 1}^n d_i a_i\big(x(t)\big) \right) - y^\mathrm{d}(t)\right)}_{\epsilon(t)} a_j\big(x(t)\big) \\
+		&= \epsilon(t) a_j\big(x(t)\big) \,,
 \end{align*}
 where $\epsilon(t)$ is the error we are making at the current point in time. This is a version of the so-called \enquote{Delta Learning Rule} for a linear model. In the next subsection we will extend this rule to individual synaptic weights $w_{ij}$.
 
@@ -166,16 +166,16 @@ where $\epsilon(t)$ is the error we are making at the current point in time. Thi
 		\includegraphics{media/pes_network_b.pdf}%
 		\caption{Delta learning rule}%
 	\end{subfigure}%
-	\caption{Learning decoders $d_i$ \textbf{(a)} and synaptic weights \textbf{(b)} in an NEF network. We would like to learn an unknown function $\vec y = f(\vec x)$ encoded in either the decoding weights $d_i$ or in the weights between two neural populations. Weights are updated according to an error signal $\epsilon(t) = \vec y^\mathrm{d}(t) - y(t)$.}
+	\caption{Learning decoders $d_j$ \textbf{(a)} and synaptic weights \textbf{(b)} in an NEF network. We would like to learn an unknown function $\vec y = f(\vec x)$ encoded in either the decoding weights $d_j$ or in the weights between two neural populations. Weights are updated according to an error signal $\epsilon(t) = \vec y^\mathrm{d}(t) - y(t)$.}
 \end{figure}
 
 We now have a simple learning rule that allows us to learn decoders online -- essentially, we just multiply the neural activity $a_i(x(t))$ with the error $\epsilon(t)$ and then update individual decoder values according to the gradient descent update equation
 \begin{align*}
-	d_i \gets d_i -\eta \Delta d_i = d_i -\eta \epsilon(t) a_i(t) \,.
+	d_j \gets d_j -\eta \Delta d_j = d_j -\eta \epsilon(t) a_j(t) \,.
 \end{align*}
 Essentially, if a neuron is active while there is some positive error $\epsilon(t)$, we decrease its influence on the decoding. If there is a negative error $\epsilon(t)$, we increase its influence.
 
-The problem with this equation is that it is not biologically plausible. There are no decoders in the brain, so we need to find a way to update synaptic weights $w_{ij}$ instead of decoders $d_i$.
+The problem with this equation is that it is not biologically plausible. There are no decoders in the brain, so we need to find a way to update synaptic weights $w_{ij}$ instead of decoders $d_j$.
 
 However, this problem can be easily fixed. Remember that the synaptic weights are given as
 \begin{align*}
@@ -187,7 +187,7 @@ Substituting the decoder update $\Delta d_j$ into this equation (for the scalar 
 \end{align*}
 For vectorial quantities $\vec x$ (i.e., $d > 1$) this just turns out to be
 \begin{ImportantEqn}{Prescribed Error Sensitivity (PES) Learning Rule}
-\Delta w_{ij} &= \alpha_j e_j \Delta d_i = -\eta \big( \alpha_j \langle \vec \epsilon(t), \vec e_j \rangle \big) a_i(t) \,.
+\Delta w_{ij} &= \alpha_i e_i \Delta d_j = -\eta \big( \alpha_i \langle \vec \epsilon(t), \vec e_i \rangle \big) a_j(t) \,.
 \end{ImportantEqn}
 Notice that the term $\big( \alpha_j \langle \vec \epsilon(t), \vec e_j \rangle \big)$ looks very much like the linear part of the current-translation function in the NEF encoding equation. In particular, we are treating the error $\epsilon(t)$ as if it was an input $\vec x(t)$ -- and in a sense it is exactly that -- a so called \enquote{modulatory} input.
 
