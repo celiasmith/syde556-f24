@@ -9,7 +9,7 @@
 
 \usepackage{ragged2e}
 
-\date{Nov 4, 2022}
+\date{Nov 6, 2023}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 9: Analysing Representations}
 
 \begin{document}
@@ -132,12 +132,13 @@
 		\begin{itemize}
 			\setlength{\itemsep}{0.5cm}
 			\item Can use \hl{PCA} to find the basis functions underlying neural representations
-			\item \hl{Singular values} inversely proportional to noise
+			\item \hl{Singular values} inversely proportional to noise sensitivity
 			\item \hl{Basis function shape} depends on\\[0.25cm]
 			\begin{itemize}
 				\setlength{\itemsep}{0.25cm}
-				\item $x$-intercept distributions
-				\item Neuron response curve $G[J]$
+				\item max firing rate distribution (a bit)
+        \item $x$-intercept distribution
+				\item neuron response curve $G[J]$
 			\end{itemize}
 			\item Finding optimal tuning curves for computing particular functions\\
 			$\Rightarrow$ Full network optimization (must use gradient descent)

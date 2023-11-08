@@ -13,7 +13,7 @@
 
 
 \begin{itemize}
-	\item \textbf{Observation:} Some functions are \enquote{harder} to decoder than others (larger error)
+	\item \textbf{Observation:} Some functions are \enquote{harder} to decode than others (larger error)
 	\item \textbf{Goal:} Get a better understanding of the types of function that can be decoded
 	\item Tuning curves are a set of basis functions; decoders combine these basis functions
 	\begin{align*}
@@ -24,7 +24,7 @@
 	\begin{align*}
 		\hat x &= \langle \vec d, \mat T \vec a \rangle = \langle \vec d \mat T^{-1}, \mat T \vec a \rangle
 	\end{align*}
-	\item The scale Eigenvalues corresponding to the individual Principal Compnents is inversely proportional to the noise in the decoding $\Rightarrow$ large Eigenvalue $\Rightarrow$ this basis function can be decoded well
+	\item The scale of Eigenvalues corresponding to the individual Principal Compnents is inversely proportional to the noise in the decoding. So if a component has a large Eigenvalue $\Rightarrow$ this basis function can be decoded well
 \end{itemize}
 
 \section{Introduction}
@@ -38,9 +38,9 @@ Recall that we can write our estimate of $\mathbf{X}$ in matrix notation:
 We have used packages that take the inverse of $\gamma = \mathbf{A}^{T}\mathbf{A}$ `in the right way'. However, because this matrix has no noise term, and because \emph{some} tuning curves are likely to be similar for a large population, that Gram matrix is likely to be singular, or nearly singular
 so it is \emph{not} invertible. As we have previously seen, there exists a general, and very powerful, technique for analyzing
 such singular matrices called singular value decomposition (SVD).
-Recall taht SVD decomposition of an $M\times N$ matrix, $\mathbf{B}$, results in three matrices whose product gives $\mathbf{B}$, i.e.,
+Recall that SVD decomposition of an $M\times N$ matrix, $\mathbf{B}$, results in three matrices whose product gives $\mathbf{B}$, i.e.,
 \[
-\mathbf{B}_{M\times N}=\mathbf{U}_{M\times N}\mathbf{S}_{N\times N}\mathbf{D}_{N\times N}^{T}.
+\mathbf{B}_{M\times N}=\mathbf{U}_{M\times N}\mathbf{S}_{N\times N}\mathbf{V}_{N\times N}^{T}.
 \]
 The matrix $\mathbf{S}$ is a diagonal matrix whose entries are called
 the \emph{singular values} of $\mathbf{B}$. In the case when $\mathbf{B}$ is square and symmetrical (as with our example), this simplifies to
@@ -55,7 +55,7 @@ of $\mathbf{S}$ are zero (or very small), so the inverse of $\mathbf{S}$
 includes infinite (or very large) terms, meaning the inverse of $\gamma$
 is ill-defined (as expected for singular or near singular matrices).
 In this case, the SVD `pseudo-inverse' is defined where for $S_{i}=0$,
-the inverse is set to $0$. The methods we call for inverting matrices do this 'automatically' (or we add noise to make them invertible). Interestingly, Even in the case when a matrix is singular (or nearly so), SVD can
+the inverse is set to $0$. The methods we call for inverting matrices do this 'automatically' (or we add noise to make them invertible). Interestingly, even in the case when a matrix is singular (or nearly so), SVD can
 be very informative. The columns of $\mathbf{U}$ whose corresponding
 singular values are non-zero form an orthonormal basis that spans
 the range and the corresponding zero elements form an orthonormal
