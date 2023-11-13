@@ -18,7 +18,7 @@ As discussed at the beginning of the course, our ultimate goal is to build model
 
 In particular, one hallmark of human cognition is \emph{language}, and it is not clear how to apply the NEF to language, or facts expressed in language. Examples of language-based statements that we may want to encode are sentences such as \enquote{the number eight comes after the number nine}, \enquote{all dogs chase cats}, or \enquote{Anne knows that Bill thinks that Charlie likes Dave}.
 
-We attempt to solve this problem by first having a look at other modelling approaches in Cognitive Neuroscience. In particular, we will have a look at so called Vector Symbolic Architectures (VSAs), which can be easily mapped onto the NEF. In the next lecture we then use VSAs to build a particular model of cognition, the Semantic Pointer Architecture (SPA).
+We attempt to solve this problem by first having a look at other modelling approaches in Cognitive Neuroscience. In particular, we will have a look at so called Vector Symbolic Algebras (VSAs), which can be easily mapped onto the NEF. In the next lecture we then use VSAs to build a particular model of cognition, the Semantic Pointer Architecture (SPA).
 
 \section{Neural Theories of Cognition}
 
@@ -42,7 +42,7 @@ In his 2002 book \enquote{Foundations of Language: Brain, Meaning, Grammar, Evol
 \newcommand{\BC}{$\color{RoyalBlue}\bullet$}
 \begin{itemize}
 	\item \textbf{The Binding Problem.} Suppose you see a red square and a blue circle. How does the concept of \enquote{red} get bound with the concept of \enquote{square}, and how is it kept separate from \enquote{blue} and \enquote{circle}?
-	\item \textbf{The Problem of Two.} Consider the sentence \enquote{the little star is besides the big star}. How do we keep those two uses of the concept \enquote{star} separate? For example, if there was a group of neurons representing the concept of \enquote{star}, how can this group of neurons both represent the \enquote{little star}, the \enquote{large star}, as well as the fact that the two stars are next to each other?
+	\item \textbf{The Problem of Two.} Consider the sentence \enquote{the little star is besides the big star}. How do we keep those two uses of the concept \enquote{star} separate? For example, if there was a group of neurons representing the concept of \enquote{star}, how can this group of neurons both represent the \enquote{little star}, the \enquote{big star}, as well as the fact that the two stars are next to each other?
 	\item \textbf{The Problem of Variables.} Grammar imposes certain rules on sentences. For example, it is \enquote{correct} to say \enquote{blue $x$}, if $x$ is a noun, but not \enquote{blue $y$}, if $y$ is a verb. Correspondingly, the question is how these rules, which rely on placeholders, or \enquote{variables}, are represented in the brain.
 	\item \textbf{Working Memory versus Long-Term Memory.} We can both \emph{use} sentences (and keep them in working memory; i.e., current neural activities), while also being able to \emph{store} them for very long times (long-term memory; synaptic weights). A neural architecture of language must explain how sentences can be transferred from working memory to long-term memory and back. In other words, we must be able to turn representations from neural activities into synaptic weight changes.
 \end{itemize}
@@ -90,7 +90,7 @@ An attempt at solving all four problems posed by Jackendoff is the \enquote{Neur
 	\item[\OPlus] Explains limitations of human sentence representation.
 	\item[\OMeh] This is still a (at least partially) localist representation.
 	\item[\OMinus] Uses a very particular structure that does not really seem to match biology.
-	\item[\OMinus] Uses a very large number of neurons; about $500\times 10^6$ to represent simple sentences.
+	\item[\OMinus] Uses a very large number of neurons; about $500\times 10^6$ to represent simple sentences (those constructed out of 2,000 verbs and 4,000 nouns). For average adult vocabulary sizes of about 60,000 words, this approach requires more neurons than are in all language areas combined.
 	\item[\OMinus] Only considers sentence representation, but not how they can be transformed and manipulated.
 \end{itemize}
 
@@ -132,7 +132,7 @@ This way, two vectors $\vec x$, $\vec y$ can be bound without losing any informa
 
 \Note{\emph{Symbolic Architectures and Neuroscience.} All methods discussed so far are trying very hard to map purely symbolic architectures onto a neural substrate. In a sense, neural aspects are treated as \emph{mere implementation details}. This is an instance of the top-down approach we discussed at beginning of the course: mapping high-level cognitive architectures onto biology. In a sense, the hope is that, if successful, neurons would not matter. This is (unfortunately) an assumption many cognitive scientists make.}
 
-\section{Vector Symbolic Architectures}
+\section{Vector Symbolic Algebras}
 
 The last idea---using vectors $\vec x$ to represent symbols and to then use an operator such as $\otimes$ to bind them---seems to be reasonable, and fits the Neural Engineering Framework quite well. However, what we would like to have is an operator that maintains the dimensionality of the vectors (i.e., takes two vectors of dimensionality $d$ as an input and outputs a vector of dimensionality $d$), while still allowing us to reconstruct information about the operands.
 
@@ -160,7 +160,7 @@ As we have discussed in the above example, the last property ensures that two co
 \end{align*}
 assuming that $\vec x$ and $\vec y$ are two high-dimensional random vectors, which are likely to be orthogonal. We will still use \enquote{$+$} to combine multiple concepts into one symbolic vector.
 
-The use of (random) vectors $\vec x$ along with a binding operator $\otimes$ to construct cognitive symbolic architectures have been called \enquote{Vector Symbolic Architectures} (VSAs) by Gayler, 2003 \cite{gayler2003vector}. In the same paper, Gayler argues that such architectures can solve all four challenges put forward by Jackendoff.
+The use of (random) vectors $\vec x$ along with a binding operator $\otimes$ to construct cognitive symbolic architectures have been called \enquote{Vector Symbolic Architectures} (more properly Algebras; VSAs) by Gayler, 2003 \cite{gayler2003vector}. In the same paper, Gayler argues that such algebras can be used to solve all four challenges put forward by Jackendoff.
 
 \begin{figure}
 	\centering
@@ -170,7 +170,7 @@ The use of (random) vectors $\vec x$ along with a binding operator $\otimes$ to 
 \end{figure}
 
 \newpage
-\Example{\emph{Possible Binding Operators.} Among others, the following binding operators have been proposed for use in vector symbolic architectures:
+\Example{\emph{Possible Binding Operators.} Among others, the following binding operators have been proposed for use in vector symbolic algebras:
 \begin{align*}
 	\begin{pmatrix}1 \\ 0 \\ 1 \\ 0\end{pmatrix} \oplus \begin{pmatrix}1 \\ 1 \\ 0 \\ 0\end{pmatrix} &= \begin{pmatrix}0 \\ 1 \\ 1 \\ 0\end{pmatrix} && \textit{(XOR)}\\
 	\begin{pmatrix}A \\ B \\ C \\ D\end{pmatrix} \odot \begin{pmatrix}E \\ F \\ G \\ H\end{pmatrix} &= \begin{pmatrix}AE \\ BF \\ CG \\ DH\end{pmatrix} && \textit{(Hadamard Product)} \\
@@ -299,7 +299,7 @@ One potential problem with this approach is that the magnitude of the vector $\v
 
 Raven's progressive matrices is a commonly used IQ test developed in 1936. Questions on the test typically consist of $3 \times 3$ matrices filled with symbols arranged according to an unknown, \enquote{hidden} rule. One of the cells in the matrix is empty, and participants are asked to complete the matrix according to the rule by choosing one of eight possible cells. \Cref{fig:ravens_example} shows two examples of what the test could conceptually look like (these are not actual questions on the test; the actual test is kept secret and has not changed since 1936).
 
-Perhaps surprisingly, this IQ test can be solved with a relatively high precision using Vector Symbolic Architectures. To this end, consider the example in \cref{fig:ravens_example_c} and assume that we already have a vision system that translates each cell into a corresponding vector representation. We can argue that this is a problem that we could solve really well using a modern convolutional neural network.
+Perhaps surprisingly, this IQ test can be solved with a relatively high precision using Vector Symbolic Algebras. To this end, consider the example in \cref{fig:ravens_example_c} and assume that we already have a vision system that translates each cell into a corresponding vector representation. We can argue that this is a problem that we could solve really well using a modern convolutional neural network.
 
 Given this translation between vision and symbol vector, each of the eight given cells could be described in the following way:
 \begin{align*}
@@ -333,7 +333,7 @@ Then, we can make a prediction as for what the ninth cell should contain:
 
 \subsection{Revisiting Jackendoff's Challenges}
 
-The above example demonstrated that we can solve cognitively challenging tasks using vector symbolic architectures (VSAs). Before we extend VSAs into the semantic pointer architecture (SPA) in the next lecture, let's revisit Jackendoff's challenges, and discuss in how far VSAs are able to solve these.
+The above example demonstrated that we can solve cognitively challenging tasks using vector symbolic algebras (VSAs). Before we extend VSAs into the semantic pointer architecture (SPA) in the next lecture, let's revisit Jackendoff's challenges, and discuss in how far VSAs are able to solve these.
 
 \begin{itemize}
 	\item \textbf{The Binding Problem.} We already discussed this in the example above. In short, if we have concepts such as $\Obj{RED}$, $\Obj{BLUE}$, $\Obj{SQUARE}$, and $\Obj{CIRCLE}$, we can use the binding operator $\CC$ to bind concepts, and the addition operator $+$ for concepts that are active at the same time. For example, \enquote{red square and blue circle} becomes
@@ -359,7 +359,7 @@ The above example demonstrated that we can solve cognitively challenging tasks u
 		                         &\approx \Obj{RED} \CC \Obj{BALL} \,.
 	\end{align*}
 	Note that we did not demand binding operators $\CC$ to be commutative in general; however, circular convolution happens to be commutative. For the above to work with a non-commutative binding operator, we can define $\Obj{VAR}$ as $\Obj{NOUN}^{-1} \CC \Obj{BALL}$.
-	\item \textbf{Working vs.~Long-Term Memory.} This problem can be solved quite easily by considering vector symbolic architectures implemented on top of the NEF. Neural activities correspond to concepts that are currently in working memory. Long term memory corresponds to synaptic weights, and hence to functions transforming these concepts---for example, on possible function is an associative long-term memory.
+	\item \textbf{Working vs.~Long-Term Memory.} This problem can be solved quite easily by considering vector symbolic algebras implemented on top of the NEF. Neural activities correspond to concepts that are currently in working memory. Long term memory corresponds to synaptic weights, and hence to functions transforming these concepts---for example, on possible function is an associative long-term memory.
 \end{itemize}
 
 \printbibliography

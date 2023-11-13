@@ -332,8 +332,8 @@ functions under noise:
 
 Note that $\sum_m \chi_m \chi_n = S_n$ because the $\chi$ are orthogonal, so only the $n_{th}$ term is non-zero. Furthermore, 
 \begin{eqnarray*}
-  \mathbf{\chi}^T \mathbf{\chi} &=& \mathbf{U}^T \mathbf{A}^T \mathbf{A} \mathbf{U}^T \\
-  &=& \mathbf{U}^T \mathbf{U} \mathbf{S} \mathbf{U} \mathbf{U}^T \\
+  \mathbf{\chi}^T \mathbf{\chi} &=& \mathbf{U}^T \mathbf{A}^T \mathbf{A} \mathbf{U} \\
+  &=& \mathbf{U}^T \mathbf{U} \mathbf{S} \mathbf{U}^T \mathbf{U} \\
   &=& \mathbf{S}
 \end{eqnarray*}
 
@@ -352,6 +352,8 @@ E_{r} & = & \left\langle \mathbf{x}^{2}\right\rangle _{\mathbf{x},\eta}-2\left\l
  & = & \left\langle \mathbf{x}^{2}\right\rangle _{\mathbf{x}}-2\sum_{m}\frac{\left\langle \chi_{m}\mathbf{x}\right\rangle _{\mathbf{x}}^{2}}{S_{m}+\sigma_{\eta}^{2}}+\sum_{m}(S_{m}+\sigma_{\eta}^{2})\frac{\left\langle \chi_{m}\mathbf{x}\right\rangle _{\mathbf{x}}^{2}}{\left(S_{m}+\sigma_{\eta}^{2}\right)^{2}}\\
  & = & \left\langle \mathbf{x}^{2}\right\rangle _{\mathbf{x}}-\sum_{m}\frac{\left\langle \chi_{m}\mathbf{x}\right\rangle _{\mathbf{x}}^{2}}{S_{m}+\sigma_{\eta}^{2}}.
 \end{eqnarray*}
+
+Note that $ \left\langle \mathbf{\chi}^T \mathbf{\chi}\right\rangle _{\eta,m} = S_{m}+\sigma_{\eta}^{2}$, which is derived on page 325 of the course textbook.
 
 We can see this how much the $m$th basis function, $\chi_{m}$, reduces
 the error in our estimate under the influence of noise. Specifically, we know that as the singular value, $S_{m}$, approaches
