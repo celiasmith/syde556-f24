@@ -35,11 +35,14 @@ This can be written:
 
 where exponentiation in the fourier domain is regular exponentiation.  Where: 
 
-\begin{equation}
-  \mathcal{F}\{ X\} = r_{x} e^{i \theta_{x}}
-\end{equation}
+\begin{align}
+  \mathcal{F}\{ X\} &= r_{x} e^{i \theta_{x}} \\
+  \textrm{So,}\\
+  \mathcal{F}\{ X\}^x &= \left( r_{x} e^{i \theta_{x}} \right)^x \\
+  &= r_{x}^x e^{i \theta_{x} x} 
+\end{align}
 
-Note that because we are working with exclusively unitary vectors, $r_x = 1$, and so the $\theta$ phases completely determine the SSP that is being used.  
+Note that because we are working with exclusively unitary vectors, $r_x = 1$, and so the $\theta$ phases completely determine the SSP that is being used. If that were not the case, the magnitude would grow exponentially or collapse to zero with repeated binding.
 
 We can write a 2D spatial representation as: 
 \begin{equation}
@@ -52,6 +55,7 @@ where $\odot$ is the Hadamard (element-wise) product. In the frequency domain:
    &= \mathcal{F}^{-1}( \mathcal{F}\{ X\}^{x} \odot \mathcal{F}\{ Y\}^{y} ) \\
    &=  \mathcal{F}^{-1}(r_{x}^x e^{ i \theta_{x} x} r_{y}^y  e^{i \theta_{y} y })\\
    &=  \mathcal{F}^{-1}(r_{x}^x r_{y}^y e^{ i(\theta_{x} x + \theta_{y} y )})
+   &=  \mathcal{F}^{-1}(e^{ i(\theta_{x} x + \theta_{y} y )})
 \end{align}
 
 where we have left off the vector indexes for clarity, but note that the $\theta$ for each dimension can be different.
@@ -70,11 +74,10 @@ So it's easy to shift a current spatial representation around without decoding t
   S_{t + \Delta t} = \left ( X^{\Delta x_t} \circledast Y^{\Delta y_t} \right ) \circledast S_{t}  \text{,}
 \end{equation}
 
-where $\Delta x_t$ and $\Delta y_t$ are derived from differential equations that relate $x$ and $y$ to $t$. If the underlying dynamics are linear, we have $\Delta x = \frac{dx}{dt}\Delta t$. Assuming $ S_{t}=X^{x_t} \circledast Y^{y_t}$, then the algebraic properties of SSPs ensure that: 
+where $\Delta x_t$ and $\Delta y_t$ are derived from differential equations that relate $x$ and $y$ to $t$. Assuming $ S_{t}=X^{x_t} \circledast Y^{y_t}$, then the algebraic properties of SSPs ensure that: 
 \begin{align}
   & X^{x_t} \circledast Y^{y_t} \circledast X^{\Delta x_t} \circledast Y^{\Delta y_t} \\
-  &= X^{x_t + \Delta x_t} \circledast Y^{y_t + \Delta y_t} \\
-  &=  M_{t + \Delta t}
+  &= X^{x_t + \Delta x_t} \circledast Y^{y_t + \Delta y_t} 
 \end{align}
 
 It's also possible to write a similar equation without discretizing time. The result of doing so gives: 
@@ -162,7 +165,7 @@ Recognizing that
 \begin{align}
   f(X\mid Y=y) = \frac{1}{\eta}f(X,Y=y)
 \end{align}
-means unbnding can be seen as a non-normalized conditioned distribution. There are various ways we might compute the normalization constant $\eta \approx \int_{-\infty}^{\infty}\|\ssp{X}\cdot M_{X\mid Y,n}\|^{2} dx$.
+means unbinding can be seen as a non-normalized conditioned distribution. There are various ways we might compute the normalization constant $\eta \approx \int_{-\infty}^{\infty}\|\ssp{X}\cdot M_{X\mid Y,n}\|^{2} dx$.
 
 We can similarly perform marginalization with SSP operations:
 \begin{align}
@@ -186,7 +189,7 @@ Noting that circular convolution can be written as a matrix-vector product betwe
   &= \ssp{X}\cdot\left(\mathrm{Circ}(\Phi_{Y})^{T} M_{XY,n}\right)
 \end{align}
 
-So the circulate is a linear map that marginalizes $M$.
+So the circulant is a linear map that marginalizes $M$.
 
 See the original paper for examples pertaining to entropy estimation and mutual information calculation.  The latter is what is used to solve the search problem shown in the slides.
 
