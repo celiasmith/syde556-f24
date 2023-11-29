@@ -18,7 +18,7 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 - Nov 8, 13 - Symbols [[Slides](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_10/syde556_lecture_10_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]
 - Nov 15, 20 - Semantic Pointer Architecture [[Slides](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_11/syde556_lecture_11_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_11/syde556_lecture_11_notes.pdf)]
 - Nov 22 - Spatial Semantic Pointers [[Slides](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_14/syde556_lecture_14_slides.pdf)] [[Notes](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_14/syde556_lecture_14_notes.pdf)]
-- Nov 27 - Conclusion [[Slides]<!---https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_14/syde556_lecture_13_slides.pdf-->]
+- Nov 27, Dec 4 - Conclusion [[Slides](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_14/syde556_lecture_13_slides.pdf)]
 
 ## 📝 Assignments
 
