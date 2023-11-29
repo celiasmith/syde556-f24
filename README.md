@@ -62,7 +62,7 @@ The five assignments will be posted here.
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f23/raw/master/assignments/assignment_04/syde556_assignment_04_template.ipynb)]
 
-### Assignment 5 ― due Dec 4, 2023
+### Assignment 5 ― due Dec 6, 2023
 
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f23/raw/master/assignments/assignment_05/syde556_assignment_05_template.ipynb)]
