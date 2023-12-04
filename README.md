@@ -18,7 +18,7 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 - Nov 8, 13 - Symbols [[Slides](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_10/syde556_lecture_10_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]
 - Nov 15, 20 - Semantic Pointer Architecture [[Slides](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_11/syde556_lecture_11_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_11/syde556_lecture_11_notes.pdf)]
 - Nov 22 - Spatial Semantic Pointers [[Slides](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_14/syde556_lecture_14_slides.pdf)] [[Notes](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_14/syde556_lecture_14_notes.pdf)]
-- Nov 27 - Conclusion [[Slides]<!---https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_14/syde556_lecture_13_slides.pdf-->]
+- Nov 27, Dec 4 - Conclusion [[Slides](https://github.com/celiasmith/syde556-f23/raw/master/lectures/lecture_14/syde556_lecture_13_slides.pdf)]
 
 ## 📝 Assignments
 
@@ -62,7 +62,7 @@ The five assignments will be posted here.
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f23/raw/master/assignments/assignment_04/syde556_assignment_04_template.ipynb)]
 
-### Assignment 5 ― due Dec 4, 2023
+### Assignment 5 ― due Dec 6, 2023
 
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f23/raw/master/assignments/assignment_05/syde556_assignment_05_template.ipynb)]
