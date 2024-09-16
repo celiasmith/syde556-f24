@@ -59,7 +59,7 @@
 			\end{align*}
 		\item<3-> \textbf{Linear decoding}\\[-1cm]
 		\begin{align*}
-			x &= f^{-1}(\vec a) = \sum_{i=0}^{n -1} 2^i a_i = \mat F \vec a = \begin{pmatrix} 1 & 2 & \ldots & 2^{n - 1}\end{pmatrix} \begin{pmatrix} a_0 \\ a_1 \\ \vdots \\ a_{n - 1} \end{pmatrix} \,.
+			x &= f^{-1}(\vec a) = \sum_{i=1}^{n} 2^{i-1} a_i = \mat F \vec a = \begin{pmatrix} 1 & 2 & \ldots & 2^{n-1}\end{pmatrix} \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_{n} \end{pmatrix} \,.
 		\end{align*}
 		\item<4-> This is a \hl{distributed code}. \only<5->{But, \hl{not robust} against additive noise!}
 	\end{itemize}

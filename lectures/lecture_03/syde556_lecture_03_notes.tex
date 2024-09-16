@@ -18,7 +18,7 @@ In order to survive in natural environments, animals must build representations 
 
 For now, and mostly because it is the easiest to reason about, we shall restrict ourselves to relatively low-level representations of sensory information. In this case, the fact that a neuron is representing an external quantity is directly evident from correlation between the quantity and the neuron's activity.  We saw examples of such representations in the first lecture. For example, in the classical Hubel and Wiesel experiment (\YouTube{KE952yueVLA}, \cite{hubel1959receptive}), neural activity is correlated with the location and orientation of a bar of light (an \enquote{edge}) within the visual field. Similarly, in the case of place cells (\YouTube{lfNVv0A8QvI}), neural activity is correlated with the location of the animal in space.
 
-A central claim of the Neural Engineering Framework (NEF) is that values $\vec x$ -- e.g., the physical quantities mentioned above -- are represented in the neural activity $\vec a$ of \emph{groups} of neurons. Furthermore, we claim that there is a non-linear encoding process that translates a value into a neural activity pattern, and a linear decoding process that estimates the represented value from neural activity patterns.
+A central claim of the Neural Engineering Framework (NEF) is that values $\vec x$ -- e.g., the physical quantities mentioned above -- are represented in the neural activity $\vec a$ of \emph{groups} of neurons. Furthermore, we claim that there is a non-linear encoding process that translates a value into a neural activity pattern, and a linear decoding process that can be used to estimate the represented value from neural activity patterns.
 
 \begin{mdframed}
 \textbf{NEF Principle 1 -- Representation}\\
@@ -50,9 +50,9 @@ We will first discuss the encoding and decoding of values in a more abstract sen
 
 \section{Codes: Representing Information}
 
-Human societies have relied on exchanging coded information for millennia. Apart from written and spoken language themselves, examples of such codes include flag semaphores, or Morse code \cite{2009itur}.
+Human societies have relied on exchanging coded information for millennia. Apart from written and spoken languages themselves, examples of such codes include flag semaphores and Morse code \cite{2009itur}.
 
-These codes have in common that there is some kind of \emph{encoding} process that turns an original message $\vec x$ into a coded message $\vec a$, and a \emph{decoding} process that reconstructs $\vec x$ from $\vec a$. If $\vec x$ can be perfectly reconstructed, this is called \emph{lossless coding}, otherwise \emph{lossy coding}.
+These codes have in common that there is some kind of \emph{encoding} process that turns an original message $\vec x$ into a coded message $\vec a$, and a \emph{decoding} process that reconstructs $\vec x$ from $\vec a$. If $\vec x$ can be perfectly reconstructed, this is called \emph{lossless coding}, otherwise it is called \emph{lossy coding}.
 
 \subsection{Lossless Codes}
 
@@ -72,7 +72,7 @@ In the case of a lossless code, there exists an encoding function $f$, as well a
 Here, $\mathcal{S}$ denotes the set of all sequences consisting of the given elements (i.e., the union over all Cartesian powers).
 
 \paragraph{Binary numbers}
-As a more concrete example, let's consider an $n$-bit binary coding of natural numbers. Here, our coded message $\vec a = (a_0, a_1, a_2, a_3, \ldots, a_{n - 1})$ where $a_i \in \{0, 1\}$, while our original value $x$ is a natural number between zero and $2^n - 1$.
+As a more concrete example, let's consider an $n$-bit binary coding of natural numbers. Here, our coded message $\vec a = (a_1, a_2, a_3, a_4, \ldots, a_n)$ where $a_i \in \{0, 1\}$, while our original value $x$ is a natural number between zero and $2^n - 1$.
 
 We can write down the encoding function $f$
 \begin{align*}
@@ -83,11 +83,11 @@ We can write down the encoding function $f$
 \end{align*}
 This function is nonlinear -- we cannot write it as a matrix-vector product. The decoding function $f^{-1}$ is given as
 \begin{align*}
-	x &= f^{-1}(\vec a) = \sum_{i=0}^{n -1} 2^i a_i \,.
+	x &= f^{-1}(\vec a) = \sum_{i=1}^n 2^{i-1} a_i \,.
 \end{align*}
 This function is \emph{linear} in $\vec a$ because we can write it as a matrix-vector product
 \begin{align*}
-x = f^{-1}(\vec a) = {\mat F} \vec a = \begin{pmatrix} 1 & 2 & \ldots & 2^{n - 1}\end{pmatrix} \begin{pmatrix} a_0 \\ a_1 \\ \vdots \\ a_{n - 1} \end{pmatrix} \,.
+x = f^{-1}(\vec a) = {\mat F} \vec a = \begin{pmatrix} 1 & 2 & \ldots & 2^{n - 1}\end{pmatrix} \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{pmatrix} \,.
 \end{align*}
 Since a single value $x$ is represented in multiple \enquote{units} (here: digits of a binary number), we call this kind of coding scheme a \emph{distributed} representation.
 
@@ -368,7 +368,7 @@ Nervous systems contain various sources of error, including, but not limited to 
 	Even simple, non-noisy recurrent networks of excitatory and inhibitory spiking neurons can produce highly irregular spike patterns.
 \end{itemize}
 
-Given these considerations, we should add a zeroth principle to the NEF:\footnote{In the text this principle is called an \enquote{addendum} and listed as the fourth principle. I think that this principle is so fundamental that it should be number zero in the list.}
+Given these considerations, we should add a zeroth principle to the NEF:\footnote{In the text this principle is called an \enquote{addendum} and listed as the fourth principle. It could be argued that this principle is so fundamental that it should be numbered zero in the list, which we do here.}
 \begin{mdframed}
 	\textbf{NEF Principle 0 -- Noise}\\
 	Biological neural systems are subject to significant amounts of noise from various sources. Any analysis of such systems must take the effects of noise into account.
