@@ -383,7 +383,7 @@ Given these considerations, we should add a zeroth principle to the NEF:\footnot
 
 
 \paragraph{Modelling Noise}
-To test whether our modelling framework still holds when we take noise into account, we should somehow be able to include noise to our models. There are two potential ways how we can accomplish this. Either we add more detail to our neuron models and simulate the noise sources, or we -- for now -- simply add noise from a distribution to our neural activities $\vec a$.
+To test whether our modelling framework still holds when we take noise into account, we should somehow be able to include noise in our models. There are two potential ways how we can accomplish this. Either we add more detail to our neuron models and simulate the noise sources, or we -- for now -- simply add noise from a distribution to our neural activities $\vec a$.
 
 \Cref{fig:decoding_example_noise} depicts the decoding accuracy when adding Gaussian noise to the neural activities. As clearly visible, our current method for computing the decoders is incapable of properly dealing with this noise.\footnote{To be fair, the example depicted in \cref{fig:decoding_example_noise} has been consciously chosen to be close to a worst-case scenario.} Can we do better? Let's go back to the drawing board and do some more math.
 
