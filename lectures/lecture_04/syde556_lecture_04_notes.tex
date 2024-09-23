@@ -384,18 +384,20 @@ Does this mean that we have to go back to the drawing board? Not quite. Our anal
 
 \subsection{Synaptic Filters}
 
-\Cref{fig:synapse_schematic} once more shows a schematic drawing of a synapse. Whenever a spike arrives at the pre-synapse, synaptic vesicles fuse with the cell membrane and release neurotransmitter into the synaptic cleft. The neurotransmitter diffuses to the post-synapses, where it triggers a chemical cascade that leads to the formation of a \emph{post-synaptic potential}. Depending on the type of neurotransmitter released by the pre-synapse, this potential either has a positive, or a negative effect on the post-neuron's membrane potential. Positive potentials are called Excitatory Post-Synaptic Potential (EPSP), negative currents are called inhibitory post-synaptic potentials. The \emph{currents} causing these changes in potential are called EPSC and IPSC, respectively. \Cref{fig:burke_1967_epsp} shows such a recording of such potential in a motor neuron. As clearly visible, there is a short delay between the arrival of the pre-synaptic spike (start of the time axis), followed by a rapid increase in potential and a slow decay. This slow decay naturally acts as a low-pass filter.
+In \cref{fig:synapse_schematic} we see a schematic drawing of a synapse. Whenever a spike arrives at the pre-synapse, synaptic vesicles fuse with the cell membrane and release neurotransmitter into the synaptic cleft. The neurotransmitter diffuses to the post-synapses, where it triggers a chemical cascade that leads to the formation of a \emph{post-synaptic potential}. Depending on the type of neurotransmitter released by the pre-synapse, this potential either has a positive, or a negative effect on the post-neuron's membrane potential. Positive potentials are called Excitatory Post-Synaptic Potential (EPSP), negative currents are called inhibitory post-synaptic potentials. The \emph{currents} causing these changes in potential are called EPSC and IPSC, respectively. \Cref{fig:burke_1967_epsp} shows such a recording of such potential in a motor neuron. As clearly visible, there is a short delay between the arrival of the pre-synaptic spike (start of the time axis), followed by a rapid increase in potential and a slow decay. This slow decay naturally acts as a low-pass filter.
 
 \begin{figure}
 	\centering
 	\begin{subfigure}{0.375\textwidth}%
 		\centering%
 		\includegraphics[width=\textwidth]{media/synapse_schematic.pdf}%
+    \caption{Synapse}
 		\label{fig:synapse_schematic}
 	\end{subfigure}%
 	\begin{subfigure}{0.55\textwidth}%
 		\centering%
 		\includegraphics[width=\textwidth]{media/burke_1967_epsp.png}%
+    \caption{Post-synaptic potentials}
 		\label{fig:burke_1967_epsp}
 	\end{subfigure}%
 	\caption{Synapses act as low-pass filters. \textbf{(a)} Textbook sketch of a single neuron. \textbf{(b)} Superposition of the motor potentials of two spikes arriving at a motor-neurons. Image copied from \cite{burke1967composite}.}
