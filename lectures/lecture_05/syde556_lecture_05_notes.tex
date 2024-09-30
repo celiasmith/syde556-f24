@@ -2,7 +2,7 @@
 \documentclass[10pt,letterpaper,oneside]{article}
 \input{../syde556_lecture_notes_preamble}
 
-\date{January 30, 2020}
+\date{September 30, 2024}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 5: Feed-Forward Transformation}
 
 
@@ -260,9 +260,9 @@
 	\pagebreak
 	\Note{\emph{Quality of function decodings.} When decoding a function $f$ from a neural population, we are only approximating that function -- the same way we were approximating the identity function when computing the identity decoder. Hence, we will see some error when computing transformations.
 		
-	As mentioned above, and as visible in \cref{fig:function_decodings}, the decoding error depends on the number of pre-neurons $n$ -- the more neurons, the smaller the error. Of course, when encoding the decoded value in the post-population, we are adding an representational error by representing the decoded value in a population of $m$ neurons.
+	As mentioned above, and as visible in \cref{fig:function_decodings}, the decoding error depends on the number of pre-neurons $n$ -- the more neurons, the smaller the error. Of course, when encoding the decoded value in the post-population, we are adding a representational error by representing the decoded value in a population of $m$ neurons.
 	
-	Furthermore, the error depends on the specific function $f$ we are trying to compute. In general, depending on the shape of the neural tuning curves, we can decode smooth, continuous functions quite well, whereas \enquote{jagged}, discontinuous functions are not well approximated by decoding from a population of neurons. We analyse why that is in a future lecture about analysing representations.}
+	Furthermore, the error depends on the specific function $f$ we are trying to compute. In general, depending on the shape of the neural tuning curves, we can decode smooth, continuous functions quite well, whereas \enquote{jagged}, discontinuous functions are not well approximated by decoding from a population of neurons. We will see why that is in a future lecture about analysing representations.}
 
 	\subsection{Multiple Pre-Populations}
 
@@ -281,7 +281,7 @@
 			\includegraphics[scale=1.25]{media/network_d.pdf}%
 			\caption{Dendritic computation}
 		\end{subfigure}%
-		\caption{Computing functions of values represented in multiple pre-populations. In general, if represented values are spread across multiple pre-populations, we can only compute linear combinations of functions of the represented values \textbf{(a)}. In order to compute nonlinear functions of multiple values, all values need to be represented in a higher-dimensional neuron population \textbf{(b)}. A special case is dendritic computation, where nonlinear effects within the synapses of a neuron are exploited in order to compute nonlinear multivariate functions of values not represented in the same pre-population.}
+		\caption{Computing functions of values represented in multiple pre-populations. In general, if represented values are spread across multiple pre-populations, we can only compute linear combinations of functions of the represented values \textbf{(a)}. In order to compute nonlinear functions of multiple values, all values need to be represented in a higher-dimensional neuron population \textbf{(b)}. A special case is dendritic computation, where nonlinear effects within the synapses of a neuron are exploited in order to compute nonlinear multivariate functions of values not represented in the same pre-population \textbf{(c)}.}
 		\label{fig:network}
 	\end{figure}
 	
@@ -291,9 +291,9 @@
 	\begin{align*}
 		J_i &= \langle \vec e_i, \mat D^f \vec a_1 \rangle + \langle \vec e_i, \mat D^g \vec a_2 \rangle + J^\mathrm{bias}_i \,,
 	\end{align*}
-	where $\vec a_1$ are the activities of the first pre-population, $\vec a_2$ are the activities of the second pre-population, $\mat D^f$ is a function decoder decoding $f$ from the first-propulation, and $\mat D^g$ decodes $g$ form the second pre-population. Note that we can rewrite the above equation as
+	where $\vec a_1$ are the activities of the first pre-population, $\vec a_2$ are the activities of the second pre-population, $\mat D^f$ is a function decoder decoding $f$ from the first-propulation, and $\mat D^g$ decodes $g$ from the second pre-population. Note that we can rewrite the above equation as
 	\begin{align*}
-		J_i &= \langle \vec e_i, \mat D^f \vec a_1 + \mat D^g \vec a_2 \rangle + J^\mathrm{bias}_i \approx \langle \vec e_i, f(\vec x_1) + g(\vec x_2) \rangle \,,
+		J_i &= \langle \vec e_i, \mat D^f \vec a_1 + \mat D^g \vec a_2 \rangle + J^\mathrm{bias}_i \approx \langle \vec e_i, f(\vec x_1) + g(\vec x_2) \rangle \, + J^\mathrm{bias}_i,
 	\end{align*}
 	where $\vec x_1$ and $\vec x_2$ are the values represented by the two pre-populations. This means that we are essentially computing the sum of the two functions.
 
