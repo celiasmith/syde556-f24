@@ -119,7 +119,7 @@ The above equations illustrate how recurrent connections are implemented and wha
 	\end{cases}
 	\label{eqn:filter}
 \end{align}
-This a version of the general synaptic filter discussed in lecture four (in particular $n=0$). For this specific case, we can compute the normalisation factor $c$ in closed form. It holds $c = \frac{1}{\tau}$. To see that this factor is correct, we can compute the integral
+This is a version of the general synaptic filter discussed in lecture four (in particular $n=0$). For this specific case, we can compute the normalisation factor $c$ in closed form. It holds $c = \frac{1}{\tau}$. To see that this factor is correct, we can compute the integral
 \begin{align*}
 	\int_{0}^\infty h(t) \,\mathrm{d}t &= \int_{0}^\infty \frac{1}\tau e^{-t / \tau} \,\mathrm{d}t = \frac{1}{\tau} \big[  -\tau e^{-t / \tau}  \big]_0^\infty = \frac{1}{\tau} \big[  0 + \tau  \big] = 1 \,.
 \end{align*}}

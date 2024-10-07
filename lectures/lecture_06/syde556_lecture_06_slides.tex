@@ -6,7 +6,7 @@
 \fi%
 \input{../syde556_lecture_slides_preamble}
 
-\date{October 16 \& 18, 2023}
+\date{October 9 \& 11, 2024}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 6: Recurrent Dynamics}
 
 \begin{document}
@@ -19,6 +19,14 @@
 			\column{0.4\textwidth}
 			\includegraphics[width=\textwidth]{media/canada_150_mosaic_engine_small.jpg}
 		\end{columns}
+	\end{frame}
+
+  \begin{frame}{NEF Principle 3: Dynamics}
+		\centering
+		\begin{mdframed}
+			\textbf{NEF Principle 3 -- Dynamics}\\
+			Neural dynamics are characterized by considering neural representations as control theoretic state variables. We can use control theory (and dynamical systems theory) to analyse and construct these systems.
+		\end{mdframed}
 	\end{frame}
 
 	\begin{frame}{Feed Forward vs. Recurrent Connections}
@@ -70,6 +78,12 @@
 	
 	\end{frame}
 
+
+	\begin{frame}{Revisiting Recurrence Experiments}
+		\centering
+		\includegraphics[width=\textwidth]{media/phase_portraits.pdf} 		
+	\end{frame}
+
 	\begin{frame}{Behaviour of a Recurrent Connection}
 	\begin{align*}
 		{dx \over dt} &= {{f(x(t))-x(t)} \over \tau} + {{g(u(t))} \over \tau}
@@ -81,7 +95,7 @@
 	Then we set
 	\begin{align*}
 	f(x) &= \tau a(x) + x \\
-	g(x) &= \tau b(u)
+	g(u) &= \tau b(u)
 	\end{align*}
 	And we get
 	\begin{align*}
