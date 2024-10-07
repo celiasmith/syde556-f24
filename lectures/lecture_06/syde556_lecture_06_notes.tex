@@ -2,7 +2,7 @@
 \documentclass[10pt,letterpaper,oneside]{article}
 \input{../syde556_lecture_notes_preamble}
 
-\date{October 7 \& 20th, 2022}
+\date{October 7 \& 9th, 2024}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 6: Recurrent Dynamics}
 
 
@@ -189,13 +189,13 @@ The Laplace and Fourier transformation share many commonalities, including linea
 \end{align*}
 that is, a time-differental just turns into multiplication with the variable $s$. This makes the Laplace transformation an important tool for dealing with differential equations.}
 
-The Laplace-transform of the first-order exponential low-pass filter in \cref{eqn:filter} becomes:
+The Laplace transform of the first-order exponential low-pass filter in \cref{eqn:filter} becomes:
 \begin{align*}
 	\mathcal{L}\{h\}
 	    &=  \int_{0}^\infty h(t) e^{-st} \,\mathrm{d}t
-		 =  \int_{0}^{\infty} \frac{1}{\tau} e^{-t'/\tau} e^{-st'} \mathrm{d}t' 
-		 =  \int_{0}^{\infty} \frac{1}{\tau} e^{-t'(1/\tau + s)} \mathrm{d}t' \\
-		&=  \left[ -\frac{1}{\tau \left( \frac{1}{\tau} + s \right)} \right]_0^\infty
+		 =  \int_{0}^{\infty} \frac{1}{\tau} e^{-t/\tau} e^{-st} \mathrm{d}t 
+		 =  \int_{0}^{\infty} \frac{1}{\tau} e^{-t(1/\tau + s)} \mathrm{d}t \\
+		&=  \left[ -\frac{e^{-t(s+1/\tau)}}{\tau \left( \frac{1}{\tau} + s \right)} \right]_0^\infty
 		 =  \frac{1}{1 + s\tau}
 		 =  H(s) \,.
 \end{align*}
