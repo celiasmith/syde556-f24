@@ -112,11 +112,11 @@ nd_input = nengo.Node(nengo.processes.Piecewise({
 			\item[{\symbolfont 🖈}] Plot the ideal on top of your simulation result in your answer for the previous question.
 			\item[{\symbolfont 🐍}] You can use the \texttt{numpy} function \texttt{np.cumsum} to compute the ideal integral numerically (don't forget to scale by \texttt{dt}). However, still write down the integral mathematically to answer this question.
 		\end{itemize}
-		\item \Marks{1} \emph{Simulation using rate neurons.} Change the neural simulation to rate mode. Re-run the simulation in rate mode. Show the same plots as in the previous question.
+		\item \Marks{0.5} \emph{Simulation using rate neurons.} Change the neural simulation to rate mode. Re-run the simulation in rate mode. Show the same plots as in the previous question.
 		\begin{itemize}
 			\item[{\symbolfont 🐍}] Pass the extra parameter \texttt{neuron\_type = nengo.LIFRate()} to the \texttt{Ensemble} constructor to switch an ensemble to rate mode.
 		\end{itemize}
-		\item \Marks{1} \emph{Discussion.}  How does this compare to the result in part (b)? What deviations from the ideal do you still observe? Where do those deviations come from?
+		\item \Marks{0.5} \emph{Discussion.}  How does this compare to the result in part (b)? What deviations from the ideal do you still observe? Where do those deviations come from?
 		\item \Marks{1} \emph{Integration of a shorter input pulse.} Returning to spiking mode, change the input to be a value of $0.9$ from $t=0.04$ to $0.16$. Show the same plots as before (the input, the ideal, and the value represented by the ensemble over $\SI{1.5}{\second}$). 
 		\item \Marks{1} \emph{Discussion.} How does this compare to (b)? What is the ideal equation? Does it work as intended? If not, why is it better or worse?
 		\item \Marks{1} \emph{Input ramp.} Change the input to a ramp input from $0$ to $0.9$ from $t=0$ to $t=0.45$ (and $0$ for $t>0.45$). Show the same plots as in the previous parts of this question.
@@ -128,7 +128,8 @@ nd_input = nengo.Node(nengo.processes.Piecewise({
 		\item \Marks{0.5} \emph{Discussion.} What should the value represented by the ensemble be? Write the equation. How well does it do? What are the differences between the model's behaviour and the expected ideal behaviour and why do these differences occur?
 		\begin{itemize}
 			\item[{\symbolfont 🖈}] Again, write down the \emph{definite} integral $\int_0^t u(t') \,\mathrm{d}t'$. There is no integration constant.
-\end{itemize}
+    \end{itemize}
+    \item \Marks{1} \emph{Controlled integrator.} Implement a controlled integrator over two populations. Demonstrate that it's working as expected.
 		\item \Marks{+1} \textit{{\symbolfont 🌟} Bonus question.} Implement a nonlinear dynamical system we have not seen in class (and that is not in the book). Demonstrate that it's working as expected.
 		\begin{itemize}
 			\item[{\symbolfont 🖈}] In order to gain marks for this question you must
