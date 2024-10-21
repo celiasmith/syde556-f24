@@ -6,7 +6,7 @@
 \fi%
 \input{../syde556_lecture_slides_preamble}
 
-\date{October 23, 2023}
+\date{October 21, 2024}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 7: Temporal Basis Functions}
 
 \begin{document}
@@ -40,13 +40,23 @@
 		\includegraphics<9>[width=\textwidth]{media/fun_1_q6_4.pdf}%
 		\includegraphics<10>[width=\textwidth]{media/fun_1_q6_5.pdf}%
 		\includegraphics<11>[width=\textwidth]{media/fun_1_q6_6.pdf}%
-		\includegraphics<12>[width=\textwidth]{media/fun_2_q6_1.pdf}%
-		\includegraphics<13>[width=\textwidth]{media/fun_2_q6_2.pdf}%
-		\includegraphics<14>[width=\textwidth]{media/fun_2_q6_3.pdf}%
-		\includegraphics<15>[width=\textwidth]{media/fun_2_q6_4.pdf}%
-		\includegraphics<16>[width=\textwidth]{media/fun_2_q6_5.pdf}%
-		\includegraphics<17>[width=\textwidth]{media/fun_2_q6_6.pdf}%
-		\includegraphics<18>[width=\textwidth]{media/fun_2_q6_small.pdf}%
+  \end{frame}
+  \begin{frame}{Nyquist Sampling}
+		\centering%
+    \begin{mdframed}
+      \emph{The Nyquist-Shannon Sampling Theorem}\\
+      If $f(t)$ contains no frequencies greater than $B$ then it is \emph{completely} determined by samples spaced $\Delta t = \frac{1}{2B}$ apart ($N = 2BT$ equally spaced samples for a time-slice $[0, T)$). There is a \emph{one-to-one mapping} between the samples $\vec x$ and the function $f(t)$.
+    \end{mdframed}
+	\end{frame}
+  \begin{frame}{Representing Functions: Sampling <3Hz}
+		\centering%
+		\includegraphics<1>[width=\textwidth]{media/fun_2_q6_1.pdf}%
+		\includegraphics<2>[width=\textwidth]{media/fun_2_q6_2.pdf}%
+		\includegraphics<3>[width=\textwidth]{media/fun_2_q6_3.pdf}%
+		\includegraphics<4>[width=\textwidth]{media/fun_2_q6_4.pdf}%
+		\includegraphics<5>[width=\textwidth]{media/fun_2_q6_5.pdf}%
+		\includegraphics<6>[width=\textwidth]{media/fun_2_q6_6.pdf}%
+		\includegraphics<7>[width=\textwidth]{media/fun_2_q6_small.pdf}%
 	\end{frame}
 
 	\begin{frame}{Representing Functions: Fourier Basis}

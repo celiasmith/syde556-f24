@@ -2,7 +2,7 @@
 \documentclass[10pt,letterpaper,oneside]{article}
 \input{../syde556_lecture_notes_preamble}
 
-\date{September 21, 2022}
+\date{October 21, 2024}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 7: Temporal Basis Functions}
 
 
@@ -61,7 +61,7 @@ The idea of sampling is to measure the value of a function $f(t)$ at discrete, e
 \end{align*}
 The resulting vector $\vec x$ holds a representation of $f(t)$ over the interval $[0, T)$, where $T = N \Delta t$.
 
-If we wanted the reconstruct the value of the function at a point $t$ that was not sampled, we can in theory use one of many interpolation techniques to \enquote{guess} function values in between samples. If our function is somewhat well-behaved, we would expect the quality of these reconstructions to get better for smaller $\Delta t$. That is, the more sample points $N$ we have over the interval $[0, T)$, the better the representation of the function (\cref{fig:sampling}).
+If we wanted to reconstruct the value of the function at a point $t$ that was not sampled, we can in theory use one of many interpolation techniques to \enquote{guess} function values in between samples. If our function is somewhat well-behaved, we would expect the quality of these reconstructions to get better for smaller $\Delta t$. That is, the more sample points $N$ we have over the interval $[0, T)$, the better the representation of the function (\cref{fig:sampling}).
 
 Unfortunately, in general, for an arbitrary function $f(t)$, we need an infinite number of sample points to perfectly represent it. Mathematically speaking this is true for any infinitesimally small interval $T \to 0$. A function can \enquote{drastically} change its value between any two infinitesimally close points.
 
@@ -99,7 +99,7 @@ While the above restriction---namely, that we need infinitely many points to rep
 
 This guarantee is the Nyquist-Shannon sampling theorem, which connects the discrete, sampled world and continuous functions.
 \begin{mdframed}
-	\hfill\emph{(The Nyquist-Shannon Sampling Theorem)}\\
+	\emph{The Nyquist-Shannon Sampling Theorem}\\
 	If $f(t)$ contains no frequencies greater than $B$ then it is \emph{completely} determined by samples spaced $\Delta t = \frac{1}{2B}$ apart ($N = 2BT$ equally spaced samples for a time-slice $[0, T)$). There is a \emph{one-to-one mapping} between the samples $\vec x$ and the function $f(t)$.
 \end{mdframed}
 Note the emphasis on \enquote{one-to-one mapping}: if we have $N = 2BT$ equally spaced samples of a function with band-limit $B$, we can completely reconstruct the function without any losses. Of course, if we have access to the function, we can measure the sample points.
