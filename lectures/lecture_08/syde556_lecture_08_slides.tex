@@ -154,6 +154,23 @@
 		\includegraphics[scale=0.95]{media/learning_example_unsupervised_3.pdf}
 	\end{frame}
 
+	\begin{frame}{Dimensionality Reduction Example: Faces}
+		\centering
+		\begin{columns}[c]
+			\column{0.4\textwidth}
+			\hl{Face Database}
+			\begin{itemize}
+				\item 84 images of 12 women\\with 7 different expressions
+				\item Normalised eye location
+				\item $45 \times 60$ pixels\\(2700 dimensions)
+				\item Greyscale
+			\end{itemize}
+			\column{0.4\textwidth}
+			\includegraphics[width=\textwidth]{media/face_database.pdf}
+		\end{columns}
+		\ImageSources{\enquote{Pain Expression Subset;} \url{http://pics.stir.ac.uk/2D_face_sets.htm}}
+	\end{frame}
+
 	\begin{frame}{Autoencoder}
 		\centering
 		\includegraphics[width=\textwidth]{media/autoencoder.pdf}
@@ -235,8 +252,14 @@
 		\begin{columns}
 			\column{0.8\textwidth}
 			{\large\justify\quotefont When an axon of cell $A$ is near enough to excite a cell $B$ and repeatedly or persistently takes part in firing it, some growth process or metabolic change takes place in one or both cells such that $A$'s efficiency, as one of the cells firing $B$, is increased.\\[0.25cm]\raggedleft\color{aluminium4} --- Donald O. Hebb, \enquote{The Organization of Behaviour}, 1949\\}
-		\end{columns}
+      \vspace{.75cm}
+      \begin{mdframed}
+        \textbf{Hebbian Learning}\\
+          $\Delta w_{ij} = \eta a_i a_j$
+      \end{mdframed}  
+    	\end{columns}
 	\end{frame}
+
 
 	\begin{frame}{Example: Normalised Hebbian Learning}
 		\centering

@@ -124,7 +124,7 @@ In a nutshell, we analyse how infinitesimally small changes to one of the weight
 \begin{align*}
 	\Delta w_i &= \big( \nabla E(\vec w) \big)_i =  \frac{\partial E(\vec w)}{\partial w_i} = \frac{\partial}{\partial w_i} \frac{1}{N} \sum_{k = 1}^N \big\| f(\vec x_k ; \vec w) - \vec t_k \big\|^2 \,, & \text{weight update step } \vec w &\gets \vec w - \eta \Delta \vec w \,,
 \end{align*}
-where $\eta$ is the so-called \emph{learning rate}. The weight update steps are then repeated until $\vec w$ converges (i.e.,~does not change considerably). See \cref{fig:gradient_descent_poly_example_10} for a simple example. Keep in mind that depending on $f(\vec x; \vec w)$, the loss function will not have a clear global minimum and the number of parameters can go into the billions (and not just two as in the example).
+where $\eta$ is the so-called \emph{learning rate}. The weight update steps are then repeated until $\vec w$ converges (i.e.,~does not change considerably). See \cref{fig:gradient_descent_poly_example_10} for a simple example. Keep in mind that depending on $f(\vec x; \vec w)$, the loss function will not have an easy-to-find  global minimum and the number of parameters can go into the billions (and not just two as in the example).
 
 We can sometimes compute the partial differential $\frac{\partial}{\partial w_i}$ numerically (i.e., by evaluating $E$ for slightly different $\vec w$ and computing the difference quotient). For some $f$, the gradient $\nabla E$ can be evaluated efficiently using the chain-rule, leading to an algorithm called \emph{error back-propagation}. There are libraries such as Autograd or Tensorflow that conveniently compute these gradients.
 
