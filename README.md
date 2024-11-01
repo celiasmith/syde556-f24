@@ -57,7 +57,7 @@ The five assignments will be posted here.
 ### Assignment 4 ― due Nov 18, 2024
 
 -   **Instructions**  
-  [[Download PDF](https://github.com/celiasmith/syde556-f24/raaw/master/assignments/assignment_04/syde556_assignment_04.pdf)]
+  [[Download PDF](https://github.com/celiasmith/syde556-f24/raw/master/assignments/assignment_04/syde556_assignment_04.pdf)]
 
 -   **Jupyter Notebook Template**  
   [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f24/raw/master/assignments/assignment_04/syde556_assignment_04_template.ipynb)]
