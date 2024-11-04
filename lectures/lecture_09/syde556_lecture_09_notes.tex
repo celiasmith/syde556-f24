@@ -22,7 +22,7 @@
 	\item Tuning curves are highly similar
 	\item Find basis transformation $\mat T$ that maximises the information in the basis functions $\Rightarrow$ PCA
 	\begin{align*}
-		\hat x &= \langle \vec d, \mat T \vec a \rangle = \langle \vec d \mat T^{-1}, \mat T \vec a \rangle
+		\hat x &= \langle \vec d, \vec a \rangle = \langle \vec d \mat T^{-1}, \mat T \vec a \rangle
 	\end{align*}
 	\item The scale of Eigenvalues corresponding to the individual Principal Compnents is inversely proportional to the noise in the decoding. So if a component has a large Eigenvalue $\Rightarrow$ this basis function can be decoded well
 \end{itemize}
@@ -34,6 +34,15 @@ Recall that we can write our estimate of $\mathbf{X}$ in matrix notation:
   \hat{\mathbf{X}} & = & \mathbf{A}\mathbf{D}\\
    & = & \mathbf{A}(\mathbf{A}^{T}\mathbf{A})^{-1}\mathbf{A}^{T}\mathbf{X}.
 \end{eqnarray*}
+where 
+\begin{eqnarray*}
+  \mathbf{D} & = & (\mathbf{A}^{T}\mathbf{A})^{-1}\mathbf{A}^{T}\mathbf{X}\\
+    & = & \gamma^{-1}\Upsilon
+\end{eqnarray*}
+or
+\begin{equation*}
+  \gamma \mathbf{D}  =  \Upsilon.
+\end{equation*}
 
 We have used packages that take the inverse of $\gamma = \mathbf{A}^{T}\mathbf{A}$ `in the right way'. However, because this matrix has no noise term, and because \emph{some} tuning curves are likely to be similar for a large population, that Gram matrix is likely to be singular, or nearly singular
 so it is \emph{not} invertible. As we have previously seen, there exists a general, and very powerful, technique for analyzing
@@ -180,7 +189,7 @@ from the neural population. Figure \ref{svd.projection} shows an example of how 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.5]{media/c5.chi.projections.pdf}
-  \caption{A subspace of neuron activity being projected onto the first few principle component planes. Notice that the axis scales are different, capturing the size of the singular value.}
+  \caption{A subspace of neuron activity being projected onto the first few principle component planes. Notice that the axis scales are different, capturing the size of the singular value. Note that U1 is linear in $\vec{x}$.}
 	\label{svd.projection}
 \end{figure}
 
