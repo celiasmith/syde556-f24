@@ -2,7 +2,7 @@
 \documentclass[10pt,letterpaper,oneside]{article}
 \input{../syde556_lecture_notes_preamble}
 
-\date{Nov 10 \& 11, 2022}
+\date{Nov 6 \& 11, 20224}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 10: Symbols and Symbol-like Representations}
 
 
@@ -29,7 +29,7 @@ Traditionally, both cognitive scientists and early computer scientists working o
 \newcommand{\Obj}[1]{\mathtt{\textcolor{RoyalBlue}{#1}}}
 \newcommand{\Fun}[1]{\mathit{\textcolor{ForestGreen}{#1}}}
 \begin{itemize}
-	\item \enquote{The number eight comes after the number nine}: $\Pred{isSucc}(\Obj{EIGHT}, \Obj{NINE})\,$.
+	\item \enquote{The number nine comes after the number eight}: $\Pred{isSucc}(\Obj{NINE}, \Obj{EIGHT})\,$.
 	\item \enquote{All dogs chase cats}: $\forall x \forall y \, \big ( \Pred{isDog}(x) \wedge \Pred{isCat}(y) \big) \rightarrow \Pred{doesChase}(x, y)\,$.
 	\item \enquote{Anne knows that Bill thinks that Charlie likes Dave}:$$\Pred{knows}\Big(\Obj{ANNE}, ``\Pred{thinks}\big(\Obj{BILL}, `\Pred{likes}(\Obj{CHARLIE}, \Obj{DAVE})\text{'}\big)\text{''}\Big)\,.$$
 \end{itemize}
@@ -56,7 +56,7 @@ In his 2002 book \enquote{Foundations of Language: Brain, Meaning, Grammar, Evol
 	\label{fig:eliasmith_2013_lisa.pdf}
 \end{figure}
 
-One relatively early theory of how the \enquote{binding problem} could be solved is the LISA architecture \cite{hummel2003symbolicconnectionist}, which has been developed in the early 1990s. This architecture solves the binding problem by proposing to exploit \enquote{neural synchrony}.
+One relatively early theory of how the \enquote{binding problem} could be solved is the LISA architecture \cite{hummel2003symbolicconnectionist}, which was developed in the early 1990s. This architecture solves the binding problem by proposing to exploit \enquote{neural synchrony}.
 
 A central idea of this approach is that individual groups of neurons represent concepts. This is a so called \emph{localist} representation; individual spatially colocated groups of neurons correspond to individual concepts. Higher-level concepts can be created by connecting groups of neurons. For example, the neurons representing the symbol \enquote{cat} can be connected to neurons representing the concepts \enquote{furry}, \enquote{solitary}, and \enquote{animal} (cf.~\cref{fig:eliasmith_2013_lisa.pdf}).
 
@@ -67,7 +67,7 @@ Concepts are bound by neurons representing the concept oscillating at the same f
 Let's evaluate this architecture.
 \begin{itemize}
 	\item[\OPlus] The architecture solves the binding problem.
-	\item[\OMeh] The architecture assumes localist representation, i.e., a few neurons represent a single concept. Most evidence points towards at least a distributed representation.
+	\item[\OMeh] The architecture assumes localist representation, i.e., a few neurons represent a single concept. Most evidence points towards a distributed representation.
 	\item[\OMeh] It is unclear how this architecture would solve the \enquote{problem of two} -- maybe the same symbol used multiple times could oscillate with two superimposed frequencies.
 	\item[\OMeh] This architecture cannot solve Jackendoff's third and fourth challenge.
 	\item[\OMinus] It is unclear how these oscillations are generated and controlled in the first place, i.e., how is language translated into activation of these localist representations?
@@ -160,7 +160,7 @@ As we have discussed in the above example, the last property ensures that two co
 \end{align*}
 assuming that $\vec x$ and $\vec y$ are two high-dimensional random vectors, which are likely to be orthogonal. We will still use \enquote{$+$} to combine multiple concepts into one symbolic vector.
 
-The use of (random) vectors $\vec x$ along with a binding operator $\otimes$ to construct cognitive symbolic architectures have been called \enquote{Vector Symbolic Architectures} (more properly Algebras; VSAs) by Gayler, 2003 \cite{gayler2003vector}. In the same paper, Gayler argues that such algebras can be used to solve all four challenges put forward by Jackendoff.
+The use of vectors $\vec x$ along with a binding operator $\otimes$ to construct cognitive symbolic representations have been called \enquote{Vector Symbolic Architectures} by Ross Gayler in 2003 \cite{gayler2003vector}. More properly, these are \emph{algebras}, not architectures, so we adopt that terminology here. In the his paper, Gayler argues that such algebras can be used to solve all four challenges put forward by Jackendoff.
 
 \begin{figure}
 	\centering
@@ -204,9 +204,9 @@ Note that we call the term $\Obj{RED} \CC \Obj{CIRCLE} \CC \Obj{BLUE}^{-1}$ \enq
 
 We can use this technique to write down more interesting concepts, such as the sentences we talked about in the previous section:
 \begin{itemize}
-	\item \enquote{The number eight comes after the number nine}:
+	\item \enquote{The number nine comes after the number eight}:
 	\begin{align*}
-		\Obj{NUMBER} \CC \Obj{EIGHT} + \Obj{SUCC} \CC \Obj{NINE} \,.
+		\Obj{NUMBER} \CC \Obj{NINE} + \Obj{SUCC} \CC \Obj{EIGHT} \,.
 	\end{align*}
 	\item \enquote{The dog chases the cat}:
 	\begin{align*}
@@ -238,7 +238,7 @@ i.e., all elements except for the first one are reversed in order.
 
 One potential problem with circular convolution as defined in \cref{eqn:cc}, especially with respect using it in conjunction with the NEF, is that the operator requires $d^2$ multiplications of vector coefficients. This means, that, if, for example, $d = 256$, then we need to perform $65536$ multiplications. This is a little concerning, particularly because even just multiplying a single pair of scalars with a reasonably small error requires on the order of one hundred pre-neurons. Correspondingly, we would end up with requiring about $6\times10^6$ neurons just for convolving two semantic pointers.
 
-Luckily, just as \enquote{normal} convolution, circular convolution can be expressed as a simple multiplication in the Fourier domain
+Luckily, just like \enquote{normal} convolution, circular convolution can be expressed as a simple multiplication in the Fourier domain
 \begin{align*}
 	\vec z &= \mathcal{DFT}^{-1} \big( \mathcal{DFT}(\vec x) \odot \mathcal{DFT}(\vec y) \big) \,,
 \end{align*}
@@ -246,7 +246,7 @@ where $\odot$ is element-wise multiplication, or the so-called \enquote{Hadamard
 \begin{align*}
 	\vec z &= \mat T^{-1} \big( \mat T \vec x \odot \mat T \vec y \big) \,,
 \end{align*}
-where $\mat T$ is the constant (complex-valued) matrix describing the Fourier transformation for a $d$-dimensional vector. As discussed in the lecture about transformations, we can easily compute any linear transformation $\mat T$ in the connection between two neuron populations by simply multiplying the decoder $\mat D$ with $\mat T$. Hence, all we are left with is $d$ complex-values multiplications. Circular convolution is implemented in \texttt{nengo.networks.CircularConvolution} as an efficient NEF network.
+where $\mat T$ is the constant (complex-valued) matrix describing the Fourier transformation for a $d$-dimensional vector. As discussed in the lecture about transformations, we can easily compute any linear transformation $\mat T$ in the connection between two neuron populations by simply multiplying the decoder $\mat D$ with $\mat T$. Hence, all we are left with is $d$ complex-valued multiplications. Circular convolution is implemented in \texttt{nengo.networks.CircularConvolution} as an efficient NEF network.
 
 \subsection{Example: Encoding Numbers}
 
@@ -266,7 +266,7 @@ where exponentiation operator \enquote{$\cdot^k$} corresponds to element-wise ex
 Notice that this allows us to represent any continuous scalar $k$, and not just integers! We will come back to this when we discuss spatial semantic pointers.}
 
 \Note{\emph{Unitary vectors.}
-One potential problem with this approach is that the magnitude of the vector $\vec x$ might exponentially increase with repeated binding. We thus want binding by $\Obj{ONE}$ to preserve inner products. A symbol vector $\vec x$ with this property is called a \emph{unitary} vector. \enquote{Unitary} because binding with this vector results in \enquote{unit} scaling (i.e., no scaling, or scaling by a factor of one). Mathematically, a unitary vector is a vector $\vec x$ with the following property
+One potential problem with this approach is that the magnitude of the vector $\vec x$ might exponentially increase or decrease with repeated binding. We thus want binding by $\Obj{ONE}$ to preserve inner products. A symbol vector $\vec x$ with this property is called a \emph{unitary} vector. \enquote{Unitary} because binding with this vector results in \enquote{unit} scaling (i.e., no scaling, or scaling by a factor of one). Mathematically, a unitary vector is a vector $\vec x$ with the following property
 \begin{align*}
 	\| \vec y \CC \vec x \| = \| \vec y \| \text{ for all } \vec y \in \mathbb{R}^d \,.
 \end{align*}}
@@ -344,7 +344,7 @@ The above example demonstrated that we can solve cognitively challenging tasks u
 	\begin{align*}
 		\Obj{OBJ1} \CC (\Obj{TYPE} \CC \Obj{STAR} + \Obj{SIZE} \CC \Obj{LITTLE}) + \Obj{OBJ2} \CC (\Obj{TYPE} \CC \Obj{STAR} + \Obj{SIZE} \CC \Obj{BIG}) + \Obj{REL} \CC \Obj{BESIDES}
 	\end{align*}
-	\item \textbf{The Problem of Variables.} Here the problem was that language seems to be governed by abstract rules using placeholders. For example, we know that the adjective $\Obj{RED}$ can only be followed by a noun. This rule could be expressed at
+	\item \textbf{The Problem of Variables.} Here the problem was that language seems to be governed by abstract rules using placeholders. For example, we know that the adjective $\Obj{RED}$ can only be followed by a noun. This rule could be expressed as
 	\begin{align*}
 		\Obj{RULE} &= \Obj{RED} \CC \Obj{NOUN} \,.
 	\end{align*}

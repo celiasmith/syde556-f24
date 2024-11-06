@@ -13,7 +13,7 @@
 \newcommand{\Fun}[1]{\mathit{\textcolor{chameleon3}{#1}}}
 \newcommand{\CC}{\circledast}
 
-\date{November 8 \& 13, 2023}
+\date{November 6 \& 11, 2024}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 10: Symbols and Symbol-like Representations}
 
 \begin{document}
@@ -30,7 +30,7 @@
 
 	\begin{frame}{Classical Representation of Knowledge}
 		\begin{itemize}
-			\item \enquote{The number eight comes after the number nine}: $$\Pred{isSucc}(\Obj{EIGHT}, \Obj{NINE})\,.$$
+			\item \enquote{The number nine comes after the number eight}: $$\Pred{isSucc}(\Obj{NINE}, \Obj{EIGHT})\,.$$
 			\item \enquote{All dogs chase cats}: $$\forall x \forall y \, \big ( \Pred{isDog}(x) \wedge \Pred{isCat}(y) \big) \rightarrow \Pred{doesChase}(x, y)\,.$$
 			\item \enquote{Anne knows that Bill thinks that Charlie likes Dave}:$$\Pred{knows}\Big(\Obj{ANNE}, ``\Pred{thinks}\big(\Obj{BILL}, `\Pred{likes}(\Obj{CHARLIE}, \Obj{DAVE})\text{'}\big)\text{''}\Big)\,.$$
 		\end{itemize}
@@ -79,14 +79,14 @@
 				\item[\OPlus] Explains limitations of human sentence representation
 				\item[\OMeh] (At least partially) localist representation
 				\columnbreak
-				\item[\OMinus] Particular structure; does not match biology
-				\item[\OMinus] Large number of neurons; about $500\times 10^6$ to represent sentences
+				\item[\OMinus] Specific neural structure; does not match biology
+				\item[\OMinus] Large number of neurons; about $500\times 10^6$ to represent simple sentences
 				\item[\OMinus] Only considers \emph{representation},\\no control structures
 			\end{itemize}
 		\end{multicols}
 	\end{frame}
 
-	\begin{frame}{Solution Attempt 3: Vector Operators}
+	\begin{frame}{Solution Attempt 3: Vector Operators (I)}
 		\centering
 		\textbf{Idea:}  High-dimensional vectors $\vec x \in \mathbb{R}^d$ represent symbols; bind using tensor product\\\vspace*{-0.33cm}
 		\small
@@ -112,11 +112,16 @@
 		a_{21} b_{21} & a_{21} b_{22} & a_{22} b_{21} & a_{22} b_{22}
 		\end{pmatrix}
 		\end{align*}
-		\vspace*{-0.25cm}
-		\begin{itemize}
-			\centering
-			\item<2->[\OMinus] Scales extremely poorly $d^n$ for $n$ binding operations
-		\end{itemize}
+	\end{frame}
+
+  \begin{frame}{Solution Attempt 3: Vector Operators (II)}
+		\centering
+			\begin{itemize}
+				\setlength{\itemsep}{0.33cm}
+				\item[\OPlus] Solves the binding problem, the problem of two, and the problem of variables
+				\item[\OMeh] Unclear how to solve the working vs long-term memory problem
+        \item[\OMinus] Scales extremely poorly $d^n$ for $n$ binding operations
+			\end{itemize}
 	\end{frame}
 
 	\begin{frame}{A Deeper Problem: Cognitive Science vs. Neuroscience}
@@ -134,7 +139,29 @@
 		\end{columns}
 	\end{frame}
 
-	\begin{frame}{Binding Operator Properties for Vector Symbolic Algebras}
+	\begin{frame}{Vector Symbolic Algebras}
+    VSAs identify four key algebraic operations for capturing symbol-like representations:
+		\begin{columns}\column{0.6\textwidth}
+		\begin{enumerate}[1.]
+			\setlength{\itemsep}{0.5cm}
+			\item Binding
+			\begin{align*}
+	 			\CC &: \mathbb{R}^d \times \mathbb{R}^d \longrightarrow \mathbb{R}^d
+	 		\end{align*}
+			\item Bundling
+			\begin{align*}
+        + &: \mathbb{R}^d \times \mathbb{R}^d \longrightarrow \mathbb{R}^d
+			\end{align*}
+			\item Permutation: We won't worry about this one.
+      \item Similarity
+			\begin{align*}
+        sim(x,y) &: \mathbb{R}^d \times \mathbb{R}^d \longrightarrow \mathbb{R}^1
+			\end{align*}
+
+		\end{enumerate}\end{columns}
+	\end{frame}
+  
+  \begin{frame}{Binding Operator Properties for Vector Symbolic Algebras}
 		\begin{columns}\column{0.6\textwidth}
 		\begin{enumerate}[i.]
 			\setlength{\itemsep}{0.75cm}
@@ -155,9 +182,9 @@
 
 	\begin{frame}{Sentence Encoding Revisited}
 		\begin{itemize}
-			\item \enquote{The number eight comes after the number nine}:
+			\item \enquote{The number nine comes after the number eight}:
 			\begin{align*}
-			\Obj{NUMBER} \CC \Obj{EIGHT} + \Obj{SUCC} \CC \Obj{NINE} \,.
+			\Obj{NUMBER} \CC \Obj{NINE} + \Obj{SUCC} \CC \Obj{EIGHT} \,.
 			\end{align*}
 			\item \enquote{The dog chases the cat}:
 			\begin{align*}
