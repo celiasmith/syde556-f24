@@ -16,7 +16,7 @@ Course website: http://compneuro.uwaterloo.ca/courses/syde-750.html
 - Oct 23, 28, 30 - Learning [[Slides](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_08/syde556_lecture_08_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_08/syde556_lecture_08_notes.pdf)] [[Neuromorphics Bonus](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_05/neuromorphics_intro_2022.pdf)] [[Adaptive Control Example](https://github.com/tcstewar/nengo_learning_examples/blob/master/control/pendulum_pd_adaptive.py)]
 - Nov 4 - Analysing Representation [[Slides](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_09/syde556_lecture_09_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_09/syde556_lecture_09_notes.pdf)]
 - Nov 6, 11 - Symbols [[Slides](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_10/syde556_lecture_10_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_10/syde556_lecture_10_notes.pdf)]
-- Nov 13, 18 - Semantic Pointer Architecture [[Slides]<!--(https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_11/syde556_lecture_11_slides_distr.pdf)-->] [[Notes]<!--(https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_11/syde556_lecture_11_notes.pdf)-->]
+- Nov 13, 18 - Semantic Pointer Architecture [[Slides](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_11/syde556_lecture_11_slides_distr.pdf)] [[Notes](https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_11/syde556_lecture_11_notes.pdf)]
 - Nov 20 - Spatial Semantic Pointers [[Slides]<!--(https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_14/syde556_lecture_14_slides.pdf)-->] [[Notes]<!--(https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_14/syde556_lecture_14_notes.pdf)-->]
 - Nov 25, 27, Dec 2 - Conclusion [[Slides]<!--(https://github.com/celiasmith/syde556-f24/raw/master/lectures/lecture_14/syde556_lecture_13_slides.pdf)-->]
 
@@ -65,6 +65,6 @@ The five assignments will be posted here.
 ### Assignment 5 ― due Dec 2, 2024
 
 -   **Jupyter Notebook Template**  
-  [[Download Jupyter Notebook]<!--(https://github.com/celiasmith/syde556-f24/raw/master/assignments/assignment_05/syde556_assignment_05_template.ipynb)-->]
+  [[Download Jupyter Notebook](https://github.com/celiasmith/syde556-f24/raw/master/assignments/assignment_05/syde556_assignment_05_template.ipynb)]
   <br>Note: All Instructions are included in the notebook.
  

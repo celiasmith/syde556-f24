@@ -4,7 +4,7 @@
 \def\BasedOn{}
 \input{../syde556_lecture_notes_preamble}
 
-\date{November 24 \& 25, 2022}
+\date{November 20, 2024}
 \title{SYDE 556/750 \\ Simulating Neurobiological Systems \\ Lecture 14: Spatial Semantic Pointers}
 
 \newcommand{\sinc}[1]{\operatorname{sinc}\left({#1}\right)}
@@ -126,6 +126,22 @@ to show that equation \ref{eqn:planewavesum} is:
 \end{align}
 
 which defines the interference pattern we see as grid-like for the appropriate choice of $\mathbf{k}$. Changing the orientation of the $\mathbf{k}$ will rotate the grid, and changing the length of the $\mathbf{k}$ will change the spatial frequency (i.e., spacing) of the grid.
+
+Returning to SSPs, we might ask if there is a way to choose the axis vectors, $X$ and $Y$ such that the resulting spatial representation is grid-like. That is, can we impose specific structure on the axis vectors to get grid cells? First, note that we can write multi-dimensional SSPs as:
+\begin{align}
+S(\vec{x})=\mathcal{F}^{-1}\left\{\mathrm{e}^{\mathrm{i}(A \vec{x})}\right\}
+\end{align}
+where $A$ is a matrix whose columns are the axis vectors, and $\vec{x}$ is the 2D space we are representing. Until now, we just pick random axis-vectors, which would be random phases in the two columns of $A$, chosen from an even distribution around the unit circle. We call these RandSSPs. Instead, we can pick the columns and rows carefully, such that the resulting spatial representation is grid-like. We call these HexSSPs. Specifically, if we pick the rows of A to be the vertices of an equilateral triangle (in 2-dimensions, or more generally, the $m$-dimensional simplex), i.e. the $\vec{k}$ vectors above, we will get grid-like representations (see Figure \ref{fig:SSP_kernels.pdf}A). 
+
+We can then rotate and scale those base $\vec{k}$ vectors to get different grid spacing and sizes. As shown in Figure \ref{fig:SSP_kernels.pdf}A, the number of rotated vectors will determine the spacing of rings in the representation, and the number of scaled vectors will determine the smoothness of the representation. As shown in Figure \ref{fig:SSP_kernels.pdf}B, the HexSSP is much better than the RandSSP for estimating a smooth point function.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{media/SSP_kernels.pdf}
+  \caption{HexSSPs. \textbf{(A)} Interference patterns induced by HexSSPs representing points in a 2D space as a heat map. The initial 3-vector structure (top left) produces hexagonal interference patterns like those found in grid cell neurons.  Adding rotated versions (top right) produces a surface with a central peak surrounded by rings.  Increasing the number of rotated vectors (bottom left) results in a starburst pattern. Adding many rotated and scaled vectors (bottom right) reduces the magnitude of the surrounding rings and increases smoothness and robustness to noise. \textbf{(B)} RandSSPs result in a sinc kernel function, while HexSSPs produce a sum of sinc functions, making local maxima and minima more shallow. Figure from \cite{furlong2024bo}.}
+  \label{fig:SSP_kernels.pdf}
+\end{figure}
+
 
 \section{Probabilities}
 
