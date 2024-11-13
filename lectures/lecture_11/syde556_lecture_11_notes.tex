@@ -114,63 +114,70 @@ We can treat these high-level control signals as \enquote{semantic pointers} tha
 	\label{fig:spa_network}
 \end{figure}
 
-In order to use semantic pointers in Nengo models, we can use the \texttt{nengo\_spa} library.\footnote{The current library to use is \texttt{nengo.spa} as \texttt{nengo\_spa} is being deprecated.} While this library does not implement the perception and action systems we discussed above (i.e., per default, semantic vectors are just random symbol vectors), it does provide an implementation of the action selection system we discuss below.
+In order to use semantic pointers in Nengo models, we can use the \texttt{nengo.spa} library. While this library does not implement the perception and action systems we discussed above (i.e., per default, semantic vectors are just random symbol vectors), it does provide an implementation of the action selection system we discuss below.
 
-In a nutshell, the \texttt{nengo\_spa} library provides \texttt{spa.Transcode} in lieu of \texttt{nengo.Node} objects whenever a symbolic stimulus is received from the environment. Furthermore, \texttt{nengo.Ensemble} instances can be replaced with \texttt{spa.State} objects to represent symbol vectors in a neural population.
+In a nutshell, the \texttt{nengo.spa} library provides \texttt{spa.Input} in lieu of \texttt{nengo.Node} objects whenever a symbolic stimulus is received from the environment. Furthermore, \texttt{nengo.Ensemble} instances can be replaced with \texttt{spa.State} objects to represent symbol vectors in a neural population.
 
 Consider the \enquote{question answering} example we discussed in the last lecture, where we saw that the pseudo-inverse of a symbol vector $\vec x$ can be used to reconstruct which other concept $\vec x$ has been bound to. For example, $(\Obj{RED} \CC \Obj{SQUARE}) \CC \Obj{SQUARE}^{-1} \approx \Obj{RED}$, i.e., we are asking the question \enquote{what property does the square have}?
 
-The following code example (\CodeLink{lecture_11/media/code/spa.ipynb}) shows how to implement a network that queries different properties from a dynamically changing set of inputs. A diagram giving a better overview of what we are implementing here is given in \cref{fig:spa_network}.
+The following code example shows how to implement a network that queries different properties from a dynamically changing set of inputs. A diagram giving a better overview of what we are implementing here is given in \cref{fig:spa_network}.
 \pagebreak\vspace*{-0.75cm}
 \cprotect\Python{\begin{lstlisting}[language=python,morekeywords=with]
 import nengo
-import nengo_spa as spa
+import nengo.spa as spa
 
-# Alternate between RED and BLUE as a color
+D = 32  # the dimensionality of the vectors
+vocab = spa.Vocabulary(dimensions=D)
+ZERO = vocab.add("ZERO", [0] * D)
+
+# Alternate between RED and BLUE as a colour
 def colour_input(t):
-    if (t // 0.5) % 2 == 0:
-        return "RED"
-    else:
-        return "BLUE"
+      if (t // 0.5) % 2 == 0:
+          return 'RED'
+      else:
+          return 'BLUE'
 
 # Alternate between CIRCLE AND SQUARE
 def shape_input(t):
-    if (t // 0.5) % 2 == 0:
-        return "CIRCLE"
-    else:
-        return "SQUARE"
-
+      if (t // 0.5) % 2 == 0:
+          return 'CIRCLE'
+      else:
+          return 'SQUARE'
+      
 # Alternate between any of the four properties as a question/cue
 def cue_input(t):
-    sequence = ["0", "CIRCLE", "RED", "0", "SQUARE", "BLUE"]
+    sequence = ["ZERO", "CIRCLE", "RED", "ZERO", "SQUARE", "BLUE"]
     idx = int((t // (1. / len(sequence))) % len(sequence))
     return sequence[idx]
-
-model = spa.Network()
-dimensions = 32
-
+    
+model = spa.SPA(vocabs=[vocab])
 with model:
-    colour_in = spa.Transcode(colour_input, output_vocab=dimensions)
-    shape_in = spa.Transcode(shape_input, output_vocab=dimensions)
-    cue = spa.Transcode(cue_input, output_vocab=dimensions)    
+    
+    model.colour = spa.State(D)
+    model.shape = spa.State(D)
+    model.cue = spa.State(D)
+    model.conv = spa.State(D)
+    model.out = spa.State(D)
 
-    conv = spa.State(dimensions)
-    out = spa.State(dimensions)
+    model.input = spa.Input(colour=colour_input, shape=shape_input, cue=cue_input)
 
-    # Connect the buffers using overloaded Python operators
-    colour_in * shape_in >> conv
-    conv * ~cue >> out
+    # Connect the state populations
+    cortical_actions = spa.Actions(
+        'conv = colour * shape',
+        'out = conv * ~cue'
+    )
+    model.cortical = spa.Cortical(cortical_actions)
 \end{lstlisting}}
 
 \begin{figure}
 	\centering\hspace*{-0.33cm}\includegraphics{media/nengo_spa_example.pdf}
-	\caption{Output of the \texttt{nengo\_spa} \enquote{question answering} example detailed above. As can be seen in the output plot, the network correctly identifies the concept that is bound to any given cue. \CodeLink{lecture_11/media/code/spa.ipynb}}
+	\caption{Output of the \texttt{nengo.spa} \enquote{question answering} example detailed above. As can be seen in the output plot, the network correctly identifies the concept that is bound to any given cue.}
 	\label{fig:nengo_spa_example}
 \end{figure}
 
-Note that the strings returned in the callback functions passed to \texttt{spa.Transcode} are automatically translated into unique, randomly generated symbol vectors, the so called \enquote{vocabulary} of the model. \Cref{fig:nengo_spa_example} shows the result of running the above code. Since it is hard to visualise higher-dimensional vectors, the plots show the similarity of any vector currently represented in a population to the vectors in the vocabulary.
+Note that the strings returned in the callback functions passed to \texttt{spa.Input} are automatically translated into unique, randomly generated symbol vectors, the so called \enquote{vocabulary} of the model. \Cref{fig:nengo_spa_example} shows the result of running the above code. Since it is hard to visualise higher-dimensional vectors, the plots show the similarity of any vector currently represented in a population to the vectors in the vocabulary.
 
-\Note{While the \texttt{nengo\_spa} library offers useful abstractions for building SPA models, keep in mind that the resulting network is still a low-level NEF network; even though you use the \texttt{spa.Transcode} or \texttt{spa.State} objects, the network is consisting of \texttt{nengo.Node} objects for anything input/output related and \texttt{nengo.Ensemble} objects for everything else.}
+\Note{While the \texttt{nengo.spa} library offers useful abstractions for building SPA models, keep in mind that the resulting network is still a low-level NEF network; even though you use the \texttt{spa.Input} or \texttt{spa.State} objects, the network is consisting of \texttt{nengo.Node} objects for anything input/output related and \texttt{nengo.Ensemble} objects for everything else.}
 
 \section{Control: Action Selection}
 
