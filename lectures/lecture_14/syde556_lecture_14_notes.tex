@@ -25,7 +25,7 @@
 
 We define circular convoluation exponentiation as: 
 \begin{equation}
-  B^n = \underbrace{B \circledast B \circledast \dots \circledast B. }_{\text{n times}}
+  B^k = \underbrace{B \circledast B \circledast \dots \circledast B. }_{\text{k times}}
 \end{equation}
 
 This can be written: 
@@ -60,39 +60,9 @@ where $\odot$ is the Hadamard (element-wise) product. In the frequency domain:
 
 where we have left off the vector indexes for clarity, but note that the $\theta$ for each dimension can be different.
 
-\section{Mathematical properties}
-
-The most critical mathematical property that SSPs have is that they preserve Euclidean relations in a much higher dimensional space. That is, 
-\begin{align}
-   S(x_1,y_1) \circledast S(x_2,y_2) 
-   &= S(x_1 + x_2,y_1 + y_2) \\
-   &= X^{x_1 + x_2} \circledast Y^{y_1 + y_2}
-\end{align}
-
-So it's easy to shift a current spatial representation around without decoding the representation. We can use this to implement basic differential equations \cite{voelker2021a}:
-\begin{equation} \label{eq:discrete-binding}
-  S_{t + \Delta t} = \left ( X^{\Delta x_t} \circledast Y^{\Delta y_t} \right ) \circledast S_{t}  \text{,}
-\end{equation}
-
-where $\Delta x_t$ and $\Delta y_t$ are derived from differential equations that relate $x$ and $y$ to $t$. Assuming $ S_{t}=X^{x_t} \circledast Y^{y_t}$, then the algebraic properties of SSPs ensure that: 
-\begin{align}
-  & X^{x_t} \circledast Y^{y_t} \circledast X^{\Delta x_t} \circledast Y^{\Delta y_t} \\
-  &= X^{x_t + \Delta x_t} \circledast Y^{y_t + \Delta y_t} 
-\end{align}
-
-It's also possible to write a similar equation without discretizing time. The result of doing so gives: 
-\begin{equation} \label{eq:continuous-binding}
-  \frac{d S }{dt} = \left( \frac{dx}{dt} \ln X + \frac{dy}{dt} \ln Y \right) \circledast S \text{.}
- \end{equation}
-
-Of relevance to using SSPs as probability representations, it's important to note that as the dimensionality becomes sufficiently high, the expected similiarity approaches:
-\begin{equation}
-X^{x_1} \cdot X^{x_2} = \sinc{x_2 - x_1}
-\end{equation}
-for SSPs~\cite{voelker2020short}.
-
-
 \section{Grid cells}
+In the above, and initial characterization of SSPs, we do not enforce any particular structure on the SSP axis vectors. However, we can choose the axis vectors to have a specific structure to get grid-like representations. To begin, let us consider an argument for why grid cells are useful for representing space.
+
 Suppose ideal place cells are Gaussian bumps, and that they evenly cover a space to be represented. We would like to find the hidden layer activations $G \in \mathbb{R}^{n_x \times n_g}$ (where $n_g$ is the number of hidden neurons and $n_g < n_p$, and $n_p$ is the number of place cells) and the matrix of read-out weights $W \in \mathbb{R}^{n_g \times n_p}$ that minimize the reconstruction error of the place cell responses.
 \begin{align}
 \min_{G,W} || P - \hat{P} ||_{F}^2, \\ \hat{P} = GW
@@ -141,6 +111,40 @@ We can then rotate and scale those base $\vec{k}$ vectors to get different grid 
   \caption{HexSSPs. \textbf{(A)} Interference patterns induced by HexSSPs representing points in a 2D space as a heat map. The initial 3-vector structure (top left) produces hexagonal interference patterns like those found in grid cell neurons.  Adding rotated versions (top right) produces a surface with a central peak surrounded by rings.  Increasing the number of rotated vectors (bottom left) results in a starburst pattern. Adding many rotated and scaled vectors (bottom right) reduces the magnitude of the surrounding rings and increases smoothness and robustness to noise. \textbf{(B)} RandSSPs result in a sinc kernel function, while HexSSPs produce a sum of sinc functions, making local maxima and minima more shallow. Figure from \cite{furlong2024bo}.}
   \label{fig:SSP_kernels.pdf}
 \end{figure}
+
+
+\section{Mathematical properties}
+
+The most critical mathematical property that SSPs have is that they preserve Euclidean relations in a much higher dimensional space. That is, 
+\begin{align}
+   S(x_1,y_1) \circledast S(x_2,y_2) 
+   &= S(x_1 + x_2,y_1 + y_2) \\
+   &= X^{x_1 + x_2} \circledast Y^{y_1 + y_2}
+\end{align}
+
+So it's easy to shift a current spatial representation around without decoding the representation. We can use this to implement basic differential equations \cite{voelker2021a}:
+\begin{equation} \label{eq:discrete-binding}
+  S_{t + \Delta t} = \left ( X^{\Delta x_t} \circledast Y^{\Delta y_t} \right ) \circledast S_{t}  \text{,}
+\end{equation}
+
+where $\Delta x_t$ and $\Delta y_t$ are derived from differential equations that relate $x$ and $y$ to $t$. Assuming $ S_{t}=X^{x_t} \circledast Y^{y_t}$, then the algebraic properties of SSPs ensure that: 
+\begin{align}
+  & X^{x_t} \circledast Y^{y_t} \circledast X^{\Delta x_t} \circledast Y^{\Delta y_t} \\
+  &= X^{x_t + \Delta x_t} \circledast Y^{y_t + \Delta y_t} 
+\end{align}
+
+It's also possible to write a similar equation without discretizing time. The result of doing so gives: 
+\begin{equation} \label{eq:continuous-binding}
+  \frac{d S }{dt} = \left( \frac{dx}{dt} \ln X + \frac{dy}{dt} \ln Y \right) \circledast S \text{.}
+ \end{equation}
+
+Of relevance to using SSPs as probability representations, it's important to note that as the dimensionality becomes sufficiently high, the expected similiarity approaches:
+\begin{equation}
+X^{x_1} \cdot X^{x_2} = \sinc{x_2 - x_1}
+\end{equation}
+for SSPs~\cite{voelker2020short}.
+
+
 
 
 \section{Probabilities}
